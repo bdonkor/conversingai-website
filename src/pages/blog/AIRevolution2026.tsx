@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Linkedin } from "lucide-react";
+import { ArrowLeft, ArrowRight, Linkedin, Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
