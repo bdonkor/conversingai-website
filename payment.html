@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Secure Checkout &mdash; Conversing AI.">
+  <title>Secure Checkout &mdash; Conversing AI</title>
+  <link rel="icon" type="image/jpeg" href="./images/logo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .payment-container {
+      max-width: 500px;
+      margin: 6rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .checkout-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .payment-form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .payment-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-300);
+      margin-bottom: 0.5rem;
+    }
+
+    .payment-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem;
+      padding: 0.875rem 1rem;
+      color: white;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .payment-input:focus {
+      outline: none;
+      border-color: var(--blue-500);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    }
+
+    .summary-box {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .summary-total {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 1rem;
+      padding-top: 1rem;
+      font-weight: 800;
+      font-size: 1.125rem;
+      color: white;
+    }
+
+    .processing-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(59, 130, 246, 0.1);
+      border-top-color: var(--blue-500);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .secure-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+      <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo-link">
+        <img src="./images/logo.jpg" alt="Conversing AI Logo" class="logo-img">
+        <span class="logo-text">Conversing AI</span>
+      </a>
+
+      <nav class="nav-pill">
+        <a href="index.html" class="nav-link">Welcome</a>
+        <div class="dropdown">
+          <div class="dropdown-trigger nav-link">Services <span class="dropdown-arrow">&#9660;</span></div>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-inner">
+              <a href="ai-solutions.html" class="dropdown-item"><span>AI Solutions Suite</span><span class="arrow">&rarr;</span></a>
+              <a href="ai-chat-voice-agents.html" class="dropdown-item"><span>AI Chat &amp; Voice Agents</span><span class="arrow">&rarr;</span></a>
+              <a href="ai-receptionist.html" class="dropdown-item"><span>AI Receptionist</span><span class="arrow">&rarr;</span></a>
+                            <a href="website-design.html" class="dropdown-item"><span>Website Design</span><span class="arrow">&rarr;</span></a>
+                            <a href="blog-writing-seo.html" class="dropdown-item"><span>Blog Writing &amp; SEO</span><span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+        <a href="about.html" class="nav-link">About Us</a>
+        <div class="dropdown">
+          <div class="dropdown-trigger nav-link">Training <span class="dropdown-arrow">&#9660;</span></div>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-inner">
+              <a href="ai-courses.html" class="dropdown-item"><span>AI Courses</span><span class="arrow">&rarr;</span></a>
+              <a href="live-training.html" class="dropdown-item"><span>Live 1-on-1 Training</span><span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+        </div>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        
+        <a href="get-started.html" class="btn btn-primary"
+          style="border-radius:0.5rem;padding:0 1.5rem;font-weight:700;">Get started</a>
+        <div class="mobile-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu">
+    <a href="index.html" class="nav-link">Welcome</a>
+    <div class="dropdown">
+      <a href="#" class="dropdown-trigger nav-link">Services <span class="dropdown-arrow">&#9660;</span></a>
+      <div class="dropdown-menu" style="display:none;">
+        <div class="dropdown-menu-inner">
+          <a href="ai-solutions.html" class="dropdown-item">AI Solutions Suite</a>
+          <a href="ai-chat-voice-agents.html" class="dropdown-item">AI Chat &amp; Voice Agents</a>
+          <a href="ai-receptionist.html" class="dropdown-item">AI Receptionist</a>
+                    <a href="website-design.html" class="dropdown-item">Website Design</a>
+                    <a href="blog-writing-seo.html" class="dropdown-item">Blog Writing &amp; SEO</a>
+        </div>
+      </div>
+    </div>
+    <a href="about.html" class="nav-link">About Us</a>
+
+    <div class="dropdown">
+      <div class="dropdown-trigger nav-link">Training <span class="dropdown-arrow">▼</span></div>
+      <div class="dropdown-menu">
+        <div class="dropdown-menu-inner">
+          <a href="ai-courses.html" class="dropdown-item"><span>AI Courses</span><span class="arrow">&rarr;</span></a>
+          <a href="live-training.html" class="dropdown-item"><span>Live 1-on-1 Training</span><span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    
+    <a href="get-started.html" class="btn btn-primary btn-full">Get started</a>
+  </div>
+
+
+  <main>
+    <div class="payment-container">
+      <div class="checkout-card fade-up">
+        <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 2rem;">Complete Your Order</h2>
+
+        <div class="summary-box">
+          <div class="summary-row">
+            <span style="color: var(--muted);">Item:</span>
+            <span id="lesson-name" style="font-weight: 600;">Live 1-on-1 Training</span>
+          </div>
+          <div class="summary-row">
+            <span style="color: var(--muted);">Qty:</span>
+            <span>1</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>Total:</span>
+            <span id="payment-total">$50.00</span>
+          </div>
+        </div>
+
+        <form id="payment-form">
+          <div class="payment-form-group">
+            <label class="payment-label">Cardholder Name</label>
+            <input type="text" class="payment-input" placeholder="Full name on card" required id="card-name">
+          </div>
+
+          <div class="payment-form-group">
+            <label class="payment-label">Card Number</label>
+            <div style="position: relative;">
+              <input type="text" class="payment-input" placeholder="0000 0000 0000 0000" id="card-num" required
+                maxlength="19">
+              <div style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%);">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  style="color: var(--muted);">
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <line x1="2" y1="10" x2="22" y2="10" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="payment-form-group">
+              <label class="payment-label">Expiry Date</label>
+              <input type="text" class="payment-input" placeholder="MM/YY" maxlength="5" required>
+            </div>
+            <div class="payment-form-group">
+              <label class="payment-label">CVV</label>
+              <input type="text" class="payment-input" placeholder="123" maxlength="4" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" style="background:#09a5db; margin-top: 1rem;">
+            Pay <span id="btn-price">$50.00</span> Now
+          </button>
+
+          <div class="secure-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              style="color: #22c55e;">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            SSL Secured & Encrypted Payment
+          </div>
+        </form>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <p style="font-size: 0.875rem; color: var(--muted);">
+          Back to <a href="live-training.html" style="color: var(--blue-400); text-decoration: underline;">Training
+            Details</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <div class="processing-overlay" id="overlay">
+    <div class="spinner"></div>
+    <div style="text-align: center;">
+      <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem;">Processing Payment</h3>
+      <p style="color: var(--muted); font-size: 0.875rem;">Please do not close this window</p>
+    </div>
+  </div>
+
+  <script src="./js/main.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const lessonType = urlParams.get('lesson_type');
+    const price = urlParams.get('price') || "50";
+    const name = urlParams.get('full_name') || "";
+
+    // Set prices and names
+    document.getElementById('payment-total').textContent = `$${price}.00`;
+    document.getElementById('btn-price').textContent = `$${price}.00`;
+    if (name) document.getElementById('card-name').value = name;
+
+    const lessonNames = {
+      'ai-chat-agent': 'AI Chat Agent Mastery',
+      'website-strategy': 'Premium Website Design'
+    };
+
+    if (lessonType && lessonNames[lessonType]) {
+      document.getElementById('lesson-name').textContent = lessonNames[lessonType];
+    }
+
+    // Card number formatting
+    document.getElementById('card-num').addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '');
+      let formatted = '';
+      for (let i = 0; i < v.length; i++) {
+        if (i > 0 && i % 4 === 0) formatted += ' ';
+        formatted += v[i];
+      }
+      e.target.value = formatted;
+    });
+
+    // Form submission
+    const form = document.getElementById('payment-form');
+    const overlay = document.getElementById('overlay');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Show processing overlay
+      overlay.style.display = 'flex';
+
+      // Simulate payment delay
+      setTimeout(() => {
+        // Redirect to calendar with all current query parameters
+        window.location.href = `booking-confirmation.html?${urlParams.toString()}`;
+      }, 2000);
+    });
+  </script>
+</body>
+
+</html>

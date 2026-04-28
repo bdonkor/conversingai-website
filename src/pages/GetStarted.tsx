@@ -1,6 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { containerVariants, itemFadeUp } from "@/lib/animations";
 import {
   Rocket,
   ArrowRight,
@@ -18,36 +20,50 @@ const GetStarted = () => {
     <div className="min-h-screen bg-[#020617] text-white">
       <Navbar />
 
-      <main>
+      <main className="bg-[#020617]">
         {/* Hero Section */}
-        <section className="relative py-24 overflow-hidden">
+        <section className="relative pt-32 pb-12 overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] opacity-40 shrink-0" />
-            <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[100px] opacity-30 shrink-0" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[700px] bg-blue-600/10 rounded-full blur-[150px] opacity-30 px-4" />
           </div>
 
-          <div className="container relative z-10 text-center">
-            <div className="max-w-3xl mx-auto">
-              <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-8 animate-bounce">
-                <Rocket className="h-4 w-4" /> The Journey Begins Here
-              </div>
-              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8">
-                How would you like to <span className="text-blue-500 text-glow">Scale?</span>
-              </h1>
-              <p className="text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-12">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="container relative z-10 text-center"
+          >
+            <div className="max-w-4xl mx-auto text-center">
+              <motion.div variants={itemFadeUp} className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-950/30 px-6 py-2 text-sm font-semibold text-blue-400 mb-10 backdrop-blur-md">
+                <Rocket className="h-4 w-4" /> The Journey Begins
+              </motion.div>
+              <motion.h1 variants={itemFadeUp} className="text-6xl md:text-8xl font-black tracking-tight mb-10 text-white leading-[1.1]">
+                How would you <br /> like to <span className="text-blue-500 text-glow">Scale?</span>
+              </motion.h1>
+              <motion.p variants={itemFadeUp} className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed mb-12 max-w-2xl mx-auto">
                 Choose the path that best suits your current needs. Whether you're ready to build or just exploring possibilities, we're here to guide you.
-              </p>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Choice Path Section */}
         <section className="py-12 bg-slate-900/20">
-          <div className="container">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="container"
+          >
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
               {/* Path 1: Ready to Build */}
-              <div className="group relative p-8 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-xl hover:border-blue-500/50 transition-all flex flex-col items-center text-center">
+              <motion.div
+                variants={itemFadeUp}
+                whileHover={{ y: -10 }}
+                className="group relative p-8 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-xl hover:border-blue-500/50 transition-all flex flex-col items-center text-center"
+              >
                 <div className="h-16 w-16 rounded-2xl bg-blue-600/10 flex items-center justify-center mb-8 border border-blue-500/20 group-hover:bg-blue-600 transition-colors">
                   <Zap className="h-8 w-8 text-blue-500 group-hover:text-white" />
                 </div>
@@ -60,10 +76,14 @@ const GetStarted = () => {
                     Request Quote <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
 
               {/* Path 2: Let's Talk Strategy */}
-              <div className="group relative p-8 rounded-[40px] border border-blue-500/30 bg-blue-600/5 backdrop-blur-xl hover:scale-105 transition-all flex flex-col items-center text-center z-10">
+              <motion.div
+                variants={itemFadeUp}
+                whileHover={{ y: -10 }}
+                className="group relative p-8 rounded-[40px] border border-blue-500/30 bg-blue-600/5 backdrop-blur-xl hover:scale-105 transition-all flex flex-col items-center text-center z-10"
+              >
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1 rounded-full">
                   Most Popular
                 </div>
@@ -77,10 +97,14 @@ const GetStarted = () => {
                 <Button className="w-full bg-white text-blue-900 hover:bg-slate-200 rounded-2xl h-14 font-bold gap-2">
                   Book a Slot <ArrowRight className="h-4 w-4" />
                 </Button>
-              </div>
+              </motion.div>
 
               {/* Path 3: I'm Just Exploring */}
-              <div className="group relative p-8 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-xl hover:border-blue-500/50 transition-all flex flex-col items-center text-center">
+              <motion.div
+                variants={itemFadeUp}
+                whileHover={{ y: -10 }}
+                className="group relative p-8 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-xl hover:border-blue-500/50 transition-all flex flex-col items-center text-center"
+              >
                 <div className="h-16 w-16 rounded-2xl bg-blue-600/10 flex items-center justify-center mb-8 border border-blue-500/20 group-hover:bg-blue-600 transition-colors">
                   <FileText className="h-8 w-8 text-blue-500 group-hover:text-white" />
                 </div>
@@ -93,17 +117,23 @@ const GetStarted = () => {
                     Visit the Blog <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
 
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* What to Expect Section */}
         <section className="py-24">
-          <div className="container">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="container"
+          >
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">What happens next?</h2>
+              <motion.h2 variants={itemFadeUp} className="text-3xl font-bold mb-12 text-center">What happens next?</motion.h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   { icon: Briefcase, title: "Alignment", desc: "We review your submission to ensure perfect alignment with your goals." },
@@ -111,17 +141,23 @@ const GetStarted = () => {
                   { icon: Users, title: "Review", desc: "We jump on a call if needed to walk you through the projected ROI." },
                   { icon: CheckCircle2, title: "Launch", desc: "Our DFY team builds and deploys your solution with zero tech hassle." }
                 ].map((item, i) => (
-                  <div key={i} className="p-6">
+                  <motion.div
+                    key={i}
+                    variants={itemFadeUp}
+                    whileHover={{ y: -5 }}
+                    className="p-6"
+                  >
                     <item.icon className="h-6 w-6 text-blue-500 mb-4" />
                     <h4 className="font-bold mb-2">{item.title}</h4>
                     <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
+
 
       <Footer />
     </div>

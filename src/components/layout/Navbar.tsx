@@ -1,51 +1,229 @@
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+
+const services = [
+  { label: "AI Chat & Voice Agents", href: "/services/ai-chat-voice-agents", desc: "Automate customer conversations 24/7" },
+  { label: "AI Receptionist", href: "/services/ai-receptionist", desc: "Never miss a call or inquiry" },
+  { label: "Website Design", href: "/services/website-design", desc: "Premium conversion-focused websites" },
+  { label: "Blog Writing & SEO", href: "/services/blog-writing-seo", desc: "Content that ranks and converts" },
+];
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "AI Courses", href: "/ai-courses" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
+];
 
 export const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setServicesOpen(false);
+  }, [location.pathname]);
+
+  const isActive = (href: string) => location.pathname === href;
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: "spring", stiffness: 260, damping: 28 }}
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
+        ? "bg-[#020617]/92 backdrop-blur-xl border-b border-white/6 shadow-xl shadow-black/30"
+        : "bg-transparent border-b border-transparent"
+        }`}
+    >
       <div className="container flex h-20 items-center justify-between">
-        <Link to="/" className="mr-6 flex items-center space-x-2">
-          <img src="/logo.jpg" alt="ConversingAI Logo" className="h-14 w-auto rounded-sm object-contain" />
-          <span className="font-bold text-2xl tracking-tight">Conversing AI</span>
+
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-3 group flex-shrink-0">
+          <img
+            src="/logo.jpg"
+            alt="Conversing AI Logo"
+            className="h-12 w-auto rounded-lg object-contain transition-transform duration-200 group-hover:scale-105"
+          />
+          <span className="font-extrabold text-xl tracking-tight text-white hidden sm:block">
+            Conversing<span className="text-blue-400"> AI</span>
+          </span>
         </Link>
-        <nav className="hidden md:flex items-center justify-center space-x-8 text-base font-medium bg-white/5 border border-white/10 px-8 py-2 rounded-full backdrop-blur-md shadow-sm">
-          <Link to="/" className="transition-colors hover:text-primary text-foreground/80">Home</Link>
 
-          <div className="relative group cursor-pointer py-1">
-            <div className="flex items-center gap-1 transition-colors hover:text-primary text-foreground/60">
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center gap-1 bg-white/4 border border-white/8 px-6 py-2 rounded-full backdrop-blur-xl">
+          <Link
+            to="/"
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive("/") ? "text-white bg-white/10" : "text-slate-400 hover:text-white hover:bg-white/6"
+              }`}
+          >
+            Home
+          </Link>
+
+          {/* Services Dropdown */}
+          <div className="relative group" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+            <button className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/6 transition-all duration-200">
               Services
-              <span className="text-[10px] opacity-50 transition-transform group-hover:rotate-180">▼</span>
-            </div>
-
-            {/* Dropdown Menu */}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100]">
-              <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-xl p-2 w-56 shadow-2xl">
-                <Link to="/services/ai-chat-voice-agents" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm rounded-lg hover:bg-white/10 transition-colors whitespace-nowrap">AI Chat & Voice Agents</Link>
-                <Link to="/services/ai-receptionist" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm rounded-lg hover:bg-white/10 transition-colors whitespace-nowrap">AI Receptionist</Link>
-                <Link to="/services/website-design" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm rounded-lg hover:bg-white/10 transition-colors whitespace-nowrap">Website Design</Link>
-                <Link to="/services/ai-automation" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm rounded-lg hover:bg-white/10 transition-colors whitespace-nowrap">AI Automation</Link>
-                <Link to="/services/lead-generation" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm rounded-lg hover:bg-white/10 transition-colors whitespace-nowrap">Lead Generation</Link>
-                <Link to="/services/blog-writing-seo" target="_blank" rel="noopener noreferrer" className="block px-4 py-2 text-sm rounded-lg hover:bg-white/10 transition-colors whitespace-nowrap">Blog Writing & SEO</Link>
-              </div>
-            </div>
+              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
+            </button>
+            <AnimatePresence>
+              {servicesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-[100] w-72"
+                >
+                  <div className="glass-dark rounded-2xl p-2 shadow-2xl shadow-black/50 border border-white/8">
+                    {services.map((s) => (
+                      <Link
+                        key={s.href}
+                        to={s.href}
+                        className="flex flex-col gap-0.5 px-4 py-3 rounded-xl hover:bg-blue-600/20 transition-all duration-150 group/item"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold text-slate-200 group-hover/item:text-white transition-colors">{s.label}</span>
+                          <ArrowRight className="h-3.5 w-3.5 text-slate-600 opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 transition-all" />
+                        </div>
+                        <span className="text-xs text-slate-500 group-hover/item:text-slate-400 transition-colors">{s.desc}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-
-          <Link to="/how-it-works" className="transition-colors hover:text-primary text-foreground/60">How It Works</Link>
-          <Link to="/blog" className="transition-colors hover:text-primary text-foreground/60">Blog</Link>
-          <Link to="/about" className="transition-colors hover:text-primary text-foreground/60">About Us</Link>
-          <Link to="/contact" className="transition-colors hover:text-primary text-foreground/60">Contact</Link>
+          {navLinks.slice(1).map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive(link.href) ? "text-white bg-white/10" : "text-slate-400 hover:text-white hover:bg-white/6"
+                }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
-        <div className="flex items-center space-x-4">
+
+        {/* Desktop CTA */}
+        <div className="hidden lg:flex items-center gap-3">
           <Link to="/get-quote">
-            <Button variant="outline" size="sm" className="hidden sm:inline-flex border-blue-600 text-blue-500 hover:bg-blue-600/10 font-bold tracking-tight">Free Consultation</Button>
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="h-10 px-5 rounded-lg border border-white/15 text-sm font-semibold text-slate-300 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-200"
+            >
+              Free Consultation
+            </motion.button>
           </Link>
           <Link to="/get-started">
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-900/20 font-bold">Get started</Button>
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="h-10 px-6 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold btn-glow transition-colors duration-200"
+            >
+              Get Started
+            </motion.button>
           </Link>
         </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="lg:hidden h-10 w-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-all"
+          aria-label="Toggle menu"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            {mobileOpen ? (
+              <motion.span key="x" initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.15 }}>
+                <X className="h-5 w-5" />
+              </motion.span>
+            ) : (
+              <motion.span key="menu" initial={{ opacity: 0, rotate: 90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: -90 }} transition={{ duration: 0.15 }}>
+                <Menu className="h-5 w-5" />
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </button>
       </div>
-    </header>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="lg:hidden overflow-hidden bg-[#020617]/97 backdrop-blur-xl border-t border-white/6"
+          >
+            <div className="container py-6 space-y-1">
+              <Link to="/" className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">Home</Link>
+
+              {/* Mobile Services */}
+              <div>
+                <button
+                  onClick={() => setServicesOpen(!servicesOpen)}
+                  className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all"
+                >
+                  Services
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {servicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="ml-4 mt-1 space-y-0.5 overflow-hidden"
+                    >
+                      {services.map((s) => (
+                        <Link key={s.href} to={s.href} className="flex items-center px-4 py-2.5 rounded-xl text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-500 mr-3 flex-shrink-0" />
+                          {s.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {navLinks.slice(1).map((link) => (
+                <Link key={link.href} to={link.href} className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">
+                  {link.label}
+                </Link>
+              ))}
+
+              <div className="pt-4 flex flex-col gap-3">
+                <Link to="/get-quote">
+                  <button className="w-full h-12 rounded-xl border border-white/15 text-sm font-semibold text-slate-300 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all">
+                    Free Consultation
+                  </button>
+                </Link>
+                <Link to="/get-started">
+                  <button className="w-full h-12 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold btn-glow transition-colors">
+                    Get Started
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };

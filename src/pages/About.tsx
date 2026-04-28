@@ -1,6 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { containerVariants, itemFadeUp } from "@/lib/animations";
 import {
   Target,
   Eye,
@@ -24,27 +26,42 @@ const About = () => {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-600/5 rounded-full blur-[120px] opacity-40" />
           </div>
 
-          <div className="container relative z-10 text-center">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="container relative z-10 text-center"
+          >
             <div className="max-w-3xl mx-auto">
-              <div className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-6">
+              <motion.div variants={itemFadeUp} className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-6">
                 About Conversing AI
-              </div>
-              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-white/90">
+              </motion.div>
+              <motion.h1 variants={itemFadeUp} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-white/90">
                 <span className="text-blue-500 text-glow">The Future</span> of AI Business
-              </h1>
-              <p className="text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
+              </motion.h1>
+              <motion.p variants={itemFadeUp} className="text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
                 We are a specialist "Done-For-You" AI agency dedicated to helping businesses navigate the complex landscape of artificial intelligence with ease.
-              </p>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Mission & Vision Section */}
         <section className="py-24 relative overflow-hidden">
-          <div className="container relative z-10">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="container relative z-10"
+          >
             <div className="grid md:grid-cols-2 gap-12">
               {/* Mission */}
-              <div className="relative group p-8 md:p-12 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-md overflow-hidden transition-all hover:border-blue-500/30">
+              <motion.div
+                variants={itemFadeUp}
+                whileHover={{ y: -5 }}
+                className="relative group p-8 md:p-12 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-md overflow-hidden transition-all hover:border-blue-500/30"
+              >
                 <div className="absolute -top-12 -right-12 h-48 w-48 bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-600/20 transition-all" />
                 <div className="relative z-10">
                   <div className="h-14 w-14 rounded-2xl bg-blue-600/10 flex items-center justify-center mb-8 border border-blue-500/20">
@@ -55,10 +72,14 @@ const About = () => {
                     To empower businesses by building and managing intelligent AI solutions that eliminate operational friction, double conversion rates, and unlock sustainable, long-term growth. We handle the technology so you can handle the business.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Vision */}
-              <div className="relative group p-8 md:p-12 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-md overflow-hidden transition-all hover:border-blue-500/30">
+              <motion.div
+                variants={itemFadeUp}
+                whileHover={{ y: -5 }}
+                className="relative group p-8 md:p-12 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-md overflow-hidden transition-all hover:border-blue-500/30"
+              >
                 <div className="absolute -bottom-12 -right-12 h-48 w-48 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all" />
                 <div className="relative z-10">
                   <div className="h-14 w-14 rounded-2xl bg-blue-600/10 flex items-center justify-center mb-8 border border-blue-500/20">
@@ -69,17 +90,23 @@ const About = () => {
                     To become the world's most trusted partner for "Done-For-You" AI services, defining the global standard for how modern enterprises integrate and benefit from autonomous intelligence. We envision a future where every business is AI-powered and human-led.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Core Values */}
         <section className="py-24 bg-slate-950/40">
-          <div className="container">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="container"
+          >
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 italic">The Principles That Drive Us</h2>
-              <p className="text-slate-400 max-w-2xl mx-auto">Transparency, Innovation, and Excellence are at the heart of everything we build.</p>
+              <motion.h2 variants={itemFadeUp} className="text-4xl font-bold mb-4 italic">The Principles That Drive Us</motion.h2>
+              <motion.p variants={itemFadeUp} className="text-slate-400 max-w-2xl mx-auto">Transparency, Innovation, and Excellence are at the heart of everything we build.</motion.p>
             </div>
 
             <div className="grid md:grid-cols-4 gap-8">
@@ -89,31 +116,42 @@ const About = () => {
                 { icon: Users, title: "Global Team", desc: "A world-class remote team working across continents to deliver 24/7." },
                 { icon: Globe, title: "Future Ready", desc: "We build systems that adapt to the rapidly evolving AI landscape." }
               ].map((value, i) => (
-                <div key={i} className="p-8 rounded-3xl border border-white/5 bg-slate-900/20 hover:bg-slate-900/40 transition-all text-center group">
+                <motion.div
+                  key={i}
+                  variants={itemFadeUp}
+                  whileHover={{ y: -5 }}
+                  className="p-8 rounded-3xl border border-white/5 bg-slate-900/20 hover:bg-slate-900/40 transition-all text-center group"
+                >
                   <div className="h-12 w-12 rounded-xl bg-blue-600/10 flex items-center justify-center mb-6 mx-auto group-hover:bg-blue-600 group-hover:text-white transition-all">
                     <value.icon className="h-6 w-6 text-blue-500 group-hover:text-white" />
                   </div>
                   <h4 className="text-xl font-bold mb-2">{value.title}</h4>
                   <p className="text-slate-500 text-sm leading-relaxed">{value.desc}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Why Conversing AI */}
         <section className="py-24">
-          <div className="container">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="container"
+          >
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <h2 className="text-4xl font-bold mb-8 italic">Innovation Beyond <span className="text-blue-500">The Screen</span></h2>
-                <p className="text-slate-400 text-lg leading-relaxed mb-8">
+                <motion.h2 variants={itemFadeUp} className="text-4xl font-bold mb-8 italic">Innovation Beyond <span className="text-blue-500">The Screen</span></motion.h2>
+                <motion.p variants={itemFadeUp} className="text-slate-400 text-lg leading-relaxed mb-8">
                   Founded on the belief that AI should be accessible to every business, regardless of their technical depth. We saw a gap: thousands of amazing AI tools exist, but few companies have the time or expertise to integrate them correctly.
-                </p>
-                <p className="text-slate-400 text-lg leading-relaxed mb-10">
+                </motion.p>
+                <motion.p variants={itemFadeUp} className="text-slate-400 text-lg leading-relaxed mb-10">
                   Conversing AI was built to be that bridge. We don't just give you tools; we build you a department of intelligent autonomous agents.
-                </p>
-                <div className="grid grid-cols-2 gap-8">
+                </motion.p>
+                <motion.div variants={itemFadeUp} className="grid grid-cols-2 gap-8">
                   <div>
                     <p className="text-4xl font-extrabold text-blue-500 mb-2">500+</p>
                     <p className="text-sm font-medium text-slate-500 uppercase tracking-widest">Solutions Deployed</p>
@@ -122,9 +160,9 @@ const About = () => {
                     <p className="text-4xl font-extrabold text-blue-500 mb-2">24/7</p>
                     <p className="text-sm font-medium text-slate-500 uppercase tracking-widest">Managed Support</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
-              <div className="relative">
+              <motion.div variants={itemFadeUp} className="relative">
                 <div className="absolute inset-0 bg-blue-600/5 blur-[100px] rounded-full" />
                 <div className="relative aspect-square rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
                   <img
@@ -140,25 +178,33 @@ const About = () => {
                     <p className="text-white font-bold text-xl uppercase tracking-widest italic">Industry Leaders in DFY AI</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* CTA Section */}
         <section className="py-24">
-          <div className="container text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={containerVariants}
+            className="container text-center"
+          >
             <div className="max-w-4xl mx-auto p-12 md:p-20 rounded-[48px] bg-gradient-to-br from-blue-600/20 to-transparent border border-blue-500/20 relative overflow-hidden">
               <div className="absolute -top-24 -right-24 h-96 w-96 bg-blue-600/10 rounded-full blur-[120px]" />
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Join the AI Revolution</h2>
-              <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
+              <motion.h2 variants={itemFadeUp} className="text-4xl md:text-5xl font-bold mb-8">Join the AI Revolution</motion.h2>
+              <motion.p variants={itemFadeUp} className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto">
                 Stop watching the AI wave from the sidelines. Partner with a team that actually delivers.
-              </p>
-              <Button className="h-16 px-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-lg font-bold gap-2 shadow-xl shadow-blue-900/40">
-                Get Started with Conversing AI <ArrowRight className="h-5 w-5" />
-              </Button>
+              </motion.p>
+              <motion.div variants={itemFadeUp}>
+                <Button className="h-16 px-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-lg font-bold gap-2 shadow-xl shadow-blue-900/40 hover:scale-105 transition-transform">
+                  Get Started with Conversing AI <ArrowRight className="h-5 w-5" />
+                </Button>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
 
@@ -166,5 +212,6 @@ const About = () => {
     </div>
   );
 };
+
 
 export default About;

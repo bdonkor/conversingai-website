@@ -1,85 +1,149 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Sparkles, Play, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { containerVariants, itemFadeUp } from "@/lib/animations";
+
+const stats = [
+  { value: "500+", label: "Projects Delivered", suffix: "" },
+  { value: "98", label: "Client Satisfaction", suffix: "%" },
+  { value: "24/7", label: "AI Availability", suffix: "" },
+  { value: "10x", label: "Efficiency Boost", suffix: "" },
+];
 
 export const HeroSection = () => {
   return (
-    <section className="relative min-h-[85vh] flex flex-col items-center justify-center overflow-hidden bg-[#020617] py-16 px-4">
-      {/* Background Brain/Network Simulation */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px]" />
-        {/* You could add an SVG or Image here for the brain network if desired */}
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5" />
+    <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden bg-[#020617] py-20 px-4">
+
+      {/* ── Layered Background ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Mesh gradient */}
+        <div className="absolute inset-0 mesh-bg" />
+
+        {/* Central blue orb */}
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.45, 0.25] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)" }}
+        />
+        {/* Top-right purple orb */}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          className="absolute -top-32 right-0 w-[600px] h-[600px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%)" }}
+        />
+        {/* Bottom-left teal orb */}
+        <motion.div
+          animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.15, 0.08] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 6 }}
+          className="absolute bottom-0 -left-32 w-[500px] h-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%)" }}
+        />
+
+        {/* Fine grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+          }}
+        />
+
+        {/* Top separator glow line */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
       </div>
 
-      <div className="container relative z-10 flex flex-col gap-16 items-center">
-        {/* Top Row: Hero Content */}
-        <div className="flex flex-col items-center text-center max-w-4xl gap-8">
-          <div className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400">
-            <span className="flex h-2 w-2 rounded-full bg-blue-500 mr-2 animate-pulse"></span>
-            Done-For-You AI Services
-          </div>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="container relative z-10 flex flex-col gap-20 items-center"
+      >
+        {/* ── Hero Content ── */}
+        <div className="flex flex-col items-center text-center max-w-5xl gap-8">
 
-          <h1 className="text-5xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl text-white">
-            Transform Your Business With <span className="text-blue-500 text-glow">AI-Powered Growth</span>
-          </h1>
+          {/* Badge */}
+          <motion.div variants={itemFadeUp} className="badge-blue">
+            <Sparkles className="h-3.5 w-3.5 text-blue-400" />
+            Done-For-You AI Services — Everything Managed For You
+          </motion.div>
 
-          <p className="max-w-2xl text-xl text-muted-foreground/80 leading-relaxed">
-            We design, build, deploy, and manage AI agents, automation systems, and digital solutions — so you can focus on what you do best.
-          </p>
+          {/* Headline */}
+          <motion.h1
+            variants={itemFadeUp}
+            className="text-5xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl xl:text-8xl"
+          >
+            <span className="text-white">Transform Your</span>{" "}
+            <br className="hidden sm:block" />
+            <span className="gradient-text">Business With AI</span>
+          </motion.h1>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-4">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground/90">
-              <CheckCircle2 className="h-5 w-5 text-blue-500" />
-              Fully managed AI solutions
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground/90">
-              <CheckCircle2 className="h-5 w-5 text-blue-500" />
-              No technical expertise required
-            </div>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground/90">
-              <CheckCircle2 className="h-5 w-5 text-blue-500" />
-              Deployed within days
-            </div>
-          </div>
+          {/* Sub-headline */}
+          <motion.p
+            variants={itemFadeUp}
+            className="max-w-2xl text-lg md:text-xl text-slate-400 leading-relaxed"
+          >
+            We design, build, deploy, and manage AI agents, automation systems,
+            and digital solutions — so you can focus on what you do best.
+          </motion.p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
+          {/* CTA Buttons */}
+          <motion.div variants={itemFadeUp} className="flex flex-wrap items-center justify-center gap-4 mt-2">
             <Link to="/get-started">
-              <Button size="lg" className="h-14 px-8 bg-blue-600 hover:bg-blue-700 text-white gap-2 shadow-xl shadow-blue-900/30 text-lg font-semibold transition-all hover:scale-105">
-                Get started <ArrowRight className="h-5 w-5" />
-              </Button>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2.5 h-14 px-8 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-lg font-bold btn-glow transition-colors duration-200"
+              >
+                Get Started Free
+                <ArrowRight className="h-5 w-5" />
+              </motion.button>
             </Link>
             <Link to="/how-it-works">
-              <Button size="lg" variant="outline" className="h-14 px-8 border-slate-800 bg-slate-950/50 hover:bg-slate-900 text-white gap-2 text-lg font-semibold transition-all">
-                <Play className="h-5 w-5 fill-white" /> How It Works
-              </Button>
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="inline-flex items-center gap-2.5 h-14 px-8 glass-dark text-white rounded-xl text-lg font-semibold hover:bg-white/10 transition-all duration-200 border border-white/10"
+              >
+                <span className="flex items-center justify-center h-7 w-7 rounded-full bg-white/10 mr-1">
+                  <Play className="h-3.5 w-3.5 fill-white text-white ml-0.5" />
+                </span>
+                See How It Works
+              </motion.button>
             </Link>
-          </div>
+          </motion.div>
+
+          {/* Trust line */}
+          <motion.div variants={itemFadeUp} className="flex items-center gap-3 text-sm text-slate-500">
+            <TrendingUp className="h-4 w-4 text-green-500" />
+            <span>Trusted by 500+ businesses worldwide · No technical skills required</span>
+          </motion.div>
         </div>
 
-        {/* Bottom Row: Stats (from Image 2) */}
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-          <div className="group flex flex-col gap-2 rounded-2xl border border-white/5 bg-[#0a0f1e]/80 p-8 transition-all hover:border-blue-500/30 hover:bg-[#0a0f1e] text-center">
-            <div className="text-4xl font-bold text-blue-500 mb-1 group-hover:scale-110 transition-transform">500+</div>
-            <div className="text-sm font-medium text-slate-400">Projects Delivered</div>
-          </div>
-
-          <div className="group flex flex-col gap-2 rounded-2xl border border-white/5 bg-[#0a0f1e]/80 p-8 transition-all hover:border-blue-500/30 hover:bg-[#0a0f1e] text-center">
-            <div className="text-4xl font-bold text-blue-500 mb-1 group-hover:scale-110 transition-transform">98%</div>
-            <div className="text-sm font-medium text-slate-400">Client Satisfaction</div>
-          </div>
-
-          <div className="group flex flex-col gap-2 rounded-2xl border border-white/5 bg-[#0a0f1e]/80 p-8 transition-all hover:border-blue-500/30 hover:bg-[#0a0f1e] text-center">
-            <div className="text-4xl font-bold text-blue-500 mb-1 group-hover:scale-110 transition-transform">24/7</div>
-            <div className="text-sm font-medium text-slate-400">AI Availability</div>
-          </div>
-
-          <div className="group flex flex-col gap-2 rounded-2xl border border-white/5 bg-[#0a0f1e]/80 p-8 transition-all hover:border-blue-500/30 hover:bg-[#0a0f1e] text-center">
-            <div className="text-4xl font-bold text-blue-500 mb-1 group-hover:scale-110 transition-transform">10x</div>
-            <div className="text-sm font-medium text-slate-400">Efficiency Boost</div>
-          </div>
-        </div>
-      </div>
+        {/* ── Stats Row ── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="w-full grid grid-cols-2 lg:grid-cols-4 gap-4"
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              variants={itemFadeUp}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="glass-card shimmer group flex flex-col items-center justify-center gap-2 rounded-2xl p-7 text-center transition-all duration-300 hover:border-blue-500/20"
+            >
+              <div className="stat-number text-4xl md:text-5xl font-black">
+                {stat.value}
+              </div>
+              <div className="text-sm font-medium text-slate-400 tracking-wide">{stat.label}</div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

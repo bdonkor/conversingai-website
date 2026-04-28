@@ -1,9 +1,10 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Linkedin, Calendar, Clock } from "lucide-react";
+import { ArrowLeft, ArrowRight, Linkedin, Clock, Facebook, Twitter, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { LivingAICore } from "@/components/blog/LivingAICore";
 
 const AIRevolution2026 = () => {
   useEffect(() => {
@@ -32,15 +33,12 @@ const AIRevolution2026 = () => {
                   AI Strategy
                 </span>
                 <span className="text-slate-500 text-sm flex items-center gap-1">
-                  <Calendar className="h-4 w-4" /> Feb 12, 2026
-                </span>
-                <span className="text-slate-500 text-sm flex items-center gap-1">
                   <Clock className="h-4 w-4" /> 8 min read
                 </span>
               </div>
 
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 leading-tight">
-                How AI Agents are <span className="text-blue-500 text-glow">Revolutionizing</span> Customer Service in 2026
+                How AI Agents Are <span className="text-blue-500 text-glow">Transforming</span> Customer Service in 2026
               </h1>
 
               <div className="flex items-center justify-between py-8 border-y border-white/5 mb-12">
@@ -70,11 +68,7 @@ const AIRevolution2026 = () => {
               </div>
 
               <div className="aspect-video rounded-[32px] overflow-hidden border border-white/10 mb-16 shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200"
-                  alt="AI Agents in Customer Service"
-                  className="w-full h-full object-cover"
-                />
+                <LivingAICore />
               </div>
 
               {/* Article Content */}
@@ -89,7 +83,7 @@ const AIRevolution2026 = () => {
 
                 <h2 className="text-3xl font-bold text-white mt-12 mb-6">What Exactly is an AI Agent?</h2>
                 <p>
-                  Before we dive deep into the revolution, let's clear one thing up: <strong>An AI agent is not a chatbot.</strong>
+                  Before we dive deep into the transformation, let's clear one thing up: <strong>An AI agent is not a chatbot.</strong>
                 </p>
                 <p>
                   You remember the old chatbots—the ones that could only answer "Yes" or "No" and would break if you used a full sentence. An AI agent is different. Think of it more like a digital employee. It has "agency," meaning it can think, plan, and take action.
@@ -196,7 +190,7 @@ const AIRevolution2026 = () => {
                     </Button>
                   </Link>
                   <Link to="/get-quote">
-                    <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 h-14 px-10 text-lg font-bold">
+                    <Button size="lg" variant="outline" className="border-white/40 ring-2 ring-white/10 text-white hover:bg-white/10 h-14 px-10 text-lg font-bold transition-all">
                       Free Consultation
                     </Button>
                   </Link>

@@ -1,49 +1,114 @@
-import { Button } from "@/components/ui/button";
-import { MessageSquare, ArrowRight } from "lucide-react";
+import { MessageSquare, ArrowRight, CheckCircle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { containerVariants, itemFadeUp } from "@/lib/animations";
+
+const perks = [
+  "No contracts — cancel anytime",
+  "Results in 7–14 days",
+  "100% Done-For-You",
+];
 
 export const CTASection = () => {
   return (
-    <section id="contact" className="container py-12 md:py-16 lg:py-20">
-      <div className="relative rounded-3xl overflow-hidden border border-primary/10 bg-card px-6 py-16 md:px-16 md:py-24 text-center shadow-2xl">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl opacity-30" />
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl opacity-20" />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-3xl flex flex-col items-center gap-6">
-          <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-            Ready to Transform?
+    <section id="contact" className="py-24 md:py-32 px-4">
+      <div className="container">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className="relative rounded-3xl overflow-hidden"
+        >
+          {/* Background layers */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-[#020617] to-violet-900/15" />
+            <motion.div
+              animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px]"
+              style={{ background: "radial-gradient(circle, rgba(59,130,246,0.25) 0%, transparent 60%)" }}
+            />
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.35, 0.2] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[100px]"
+              style={{ background: "radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 60%)" }}
+            />
+            {/* Border gradient */}
+            <div className="absolute inset-0 rounded-3xl border border-blue-500/20" />
+            <div
+              className="absolute inset-0 opacity-[0.025]"
+              style={{
+                backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+                backgroundSize: "60px 60px",
+              }}
+            />
           </div>
 
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-            Let's Build Your <span className="text-primary">AI-Powered Future</span>
-          </h2>
+          {/* Content */}
+          <div className="relative z-10 px-8 py-20 md:px-20 md:py-24 text-center">
+            <motion.div variants={itemFadeUp} className="badge-blue mb-8 inline-flex">
+              Ready to Transform?
+            </motion.div>
 
-          <p className="max-w-2xl text-muted-foreground md:text-xl/relaxed">
-            Stop struggling with technology. Let our experts design, build, and manage AI solutions that drive real results for your business.
-          </p>
+            <motion.h2
+              variants={itemFadeUp}
+              className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl mb-6 max-w-3xl mx-auto"
+            >
+              Let's Build Your{" "}
+              <span className="gradient-text">AI-Powered Future</span>
+            </motion.h2>
 
-          <div className="flex flex-col gap-4 min-[400px]:flex-row pt-4 w-full justify-center">
-            <Link to="/get-started">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white gap-2 shadow-lg shadow-blue-900/20">
-                <MessageSquare className="h-4 w-4" /> Get started
-              </Button>
-            </Link>
-            <Link to="/get-quote">
-              <Button size="lg" variant="outline" className="border-primary/20 hover:bg-primary/10 hover:text-primary gap-2">
-                Free Consultation <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
+            <motion.p
+              variants={itemFadeUp}
+              className="max-w-2xl mx-auto text-lg text-slate-400 leading-relaxed mb-10"
+            >
+              Stop struggling with technology. Let our experts design, build, and
+              manage AI solutions that drive real results for your business.
+            </motion.p>
+
+            {/* Perks */}
+            <motion.div
+              variants={itemFadeUp}
+              className="flex flex-wrap justify-center gap-x-8 gap-y-3 mb-12"
+            >
+              {perks.map((perk, i) => (
+                <div key={i} className="flex items-center gap-2 text-sm text-slate-400">
+                  <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
+                  {perk}
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              variants={itemFadeUp}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <Link to="/get-started">
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2.5 h-14 px-10 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-base btn-glow transition-colors duration-200"
+                >
+                  <MessageSquare className="h-5 w-5" />
+                  Get Started Today
+                </motion.button>
+              </Link>
+              <Link to="/get-quote">
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="inline-flex items-center gap-2.5 h-14 px-10 glass-dark text-white rounded-xl font-semibold text-base hover:bg-white/10 transition-all duration-200 border border-white/10"
+                >
+                  Book Free Consultation
+                  <ArrowRight className="h-4 w-4" />
+                </motion.button>
+              </Link>
+            </motion.div>
           </div>
-
-          <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-xs text-muted-foreground/60">
-            <span>AI Agents</span>
-            <span>Website Design</span>
-            <span>Automation</span>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

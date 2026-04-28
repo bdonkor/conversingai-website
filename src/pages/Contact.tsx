@@ -1,6 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { containerVariants, itemFadeUp } from "@/lib/animations";
 import {
   Mail,
   MessageSquare,
@@ -22,27 +24,38 @@ const Contact = () => {
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px] opacity-20" />
           </div>
 
-          <div className="container relative z-10">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+            className="container relative z-10"
+          >
             <div className="max-w-3xl">
-              <div className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-6">
+              <motion.div variants={itemFadeUp} className="inline-flex items-center rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-6">
                 Contact Us
-              </div>
-              <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-white/90">
+              </motion.div>
+              <motion.h1 variants={itemFadeUp} className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-white/90">
                 <span className="text-blue-500 text-glow">Let's Build</span> Your AI Future
-              </h1>
-              <p className="text-xl text-slate-400 leading-relaxed max-w-2xl">
+              </motion.h1>
+              <motion.p variants={itemFadeUp} className="text-xl text-slate-400 leading-relaxed max-w-2xl">
                 Ready to automate your operations and scale your growth? Reach out today for a free discovery call and audit.
-              </p>
+              </motion.p>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Contact Grid */}
         <section className="py-24">
-          <div className="container">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="container"
+          >
             <div className="grid lg:grid-cols-2 gap-16">
               {/* Left Column: Info & Trust */}
-              <div className="space-y-12">
+              <motion.div variants={itemFadeUp} className="space-y-12">
                 <div>
                   <h2 className="text-3xl font-bold mb-8 italic text-white/95">Get in touch directly</h2>
                   <div className="space-y-6">
@@ -94,10 +107,10 @@ const Contact = () => {
                 </div>
 
 
-              </div>
+              </motion.div>
 
               {/* Right Column: Contact Form */}
-              <div className="relative">
+              <motion.div variants={itemFadeUp} className="relative">
                 <div className="absolute inset-0 bg-blue-600/5 blur-[80px] rounded-full pointer-events-none" />
                 <div className="relative p-8 md:p-12 rounded-[40px] border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-2xl max-w-xl mx-auto lg:max-w-none">
                   <h2 className="text-2xl font-bold mb-8">Send us a message</h2>
@@ -128,8 +141,7 @@ const Contact = () => {
                         <option className="bg-[#020617]">AI Chat & Voice Agents</option>
                         <option className="bg-[#020617]">AI Receptionist</option>
                         <option className="bg-[#020617]">Website Design</option>
-                        <option className="bg-[#020617]">AI Automation</option>
-                        <option className="bg-[#020617]">Lead Generation</option>
+                        <option className="bg-[#020617]">Blog Writing & SEO</option>
                         <option className="bg-[#020617]">Other / Inquiry</option>
                       </select>
                     </div>
@@ -152,37 +164,43 @@ const Contact = () => {
                     </p>
                   </form>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* FAQ Preview */}
         <section className="py-24 bg-slate-950/40">
-          <div className="container">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="container"
+          >
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4 italic">Common Questions</h2>
-              <p className="text-slate-400">Everything you need to know before we start.</p>
+              <motion.h2 variants={itemFadeUp} className="text-3xl font-bold mb-4 italic">Common Questions</motion.h2>
+              <motion.p variants={itemFadeUp} className="text-slate-400">Everything you need to know before we start.</motion.p>
             </div>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
+              <motion.div variants={itemFadeUp} className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
                 <h4 className="font-bold mb-3 text-white">How fast is the deployment?</h4>
                 <p className="text-sm text-slate-400">Most AI Agent and Automation projects are deployed within 7-14 business days after the strategy is finalized.</p>
-              </div>
-              <div className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
+              </motion.div>
+              <motion.div variants={itemFadeUp} className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
                 <h4 className="font-bold mb-3 text-white">Do I need technical skills?</h4>
                 <p className="text-sm text-slate-400">Not at all. We are a "Done-For-You" service. We handle development, hosting, and maintenance entirely.</p>
-              </div>
-              <div className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
+              </motion.div>
+              <motion.div variants={itemFadeUp} className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
                 <h4 className="font-bold mb-3 text-white">What is the cost structure?</h4>
                 <p className="text-sm text-slate-400">We offer both project-based pricing and monthly managed subscriptions depending on your scale and needs.</p>
-              </div>
-              <div className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
+              </motion.div>
+              <motion.div variants={itemFadeUp} className="p-8 rounded-3xl border border-white/5 bg-slate-900/10">
                 <h4 className="font-bold mb-3 text-white">Can I integrate existing tools?</h4>
                 <p className="text-sm text-slate-400">Yes! We specialize in connecting AI to your existing CRM, Slack, WhatsApp, and 6,000+ other enterprise apps.</p>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         </section>
       </main>
 
@@ -190,5 +208,6 @@ const Contact = () => {
     </div>
   );
 };
+
 
 export default Contact;

@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { containerVariants, itemFadeUp } from "@/lib/animations";
 
 const plans = [
   {
@@ -35,17 +37,34 @@ const plans = [
 export const LeadGenPreview = () => {
   return (
     <section id="lead-gen" className="container py-12 md:py-16 lg:py-20 bg-background">
-      <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-center space-y-4 text-center mb-16">
-        <div className="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Lead Generation</div>
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Consistent Leads, <span className="text-primary">Every Month</span></h2>
-        <p className="max-w-2xl text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="mx-auto flex max-w-screen-2xl flex-col items-center justify-center space-y-4 text-center mb-16"
+      >
+        <motion.div variants={itemFadeUp} className="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm text-primary">Lead Generation</motion.div>
+        <motion.h2 variants={itemFadeUp} className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Consistent Leads, <span className="text-primary">Every Month</span></motion.h2>
+        <motion.p variants={itemFadeUp} className="max-w-2xl text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
           Subscribe to our lead generation service and never worry about finding new customers again. AI-powered, continuously optimized.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
 
-      <div className="grid gap-8 md:grid-cols-3 max-w-7xl mx-auto">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid gap-8 md:grid-cols-3 max-w-7xl mx-auto"
+      >
         {plans.map((plan, index) => (
-          <div key={index} className={`relative flex flex-col rounded-2xl border ${plan.popular ? 'border-blue-600 shadow-lg shadow-blue-900/20 scale-105 z-10' : 'border-primary/10 bg-card'} p-8 transition-all hover:border-primary/30`}>
+          <motion.div
+            key={index}
+            variants={itemFadeUp}
+            whileHover={{ y: -10 }}
+            className={`relative flex flex-col rounded-2xl border ${plan.popular ? 'border-blue-600 shadow-lg shadow-blue-900/20 scale-105 z-10' : 'border-primary/10 bg-card'} p-8 transition-all hover:border-primary/30`}
+          >
             {plan.popular && (
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
                 Most Popular
@@ -74,15 +93,22 @@ export const LeadGenPreview = () => {
                 {plan.buttonText} {plan.popular && <ArrowRight className="ml-2 h-4 w-4" />}
               </Button>
             </Link>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      <div className="mt-12 text-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        viewport={{ once: true }}
+        className="mt-12 text-center"
+      >
         <Button variant="link" className="text-primary gap-1">
           View full pricing details <ArrowRight className="h-4 w-4" />
         </Button>
-      </div>
+      </motion.div>
     </section>
   );
 };
+
