@@ -1,4 +1,4 @@
-import { MessageSquare, Phone, Globe, PenTool, ArrowRight, CheckCircle } from "lucide-react";
+import { MessageSquare, Phone, Globe, PenTool, ArrowRight, CheckCircle, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { containerVariants, itemFadeUp } from "@/lib/animations";
@@ -27,6 +27,14 @@ const services = [
     features: ["Mobile responsive", "SEO optimized", "Conversion focused"],
     href: "/services/website-design",
     color: "cyan",
+  },
+  {
+    icon: Share2,
+    title: "Social Media Growth",
+    description: "Organic and paid social media strategies to grow your brand, engage your audience, and drive consistent traffic.",
+    features: ["Social media management", "Content creation", "Paid ad campaigns"],
+    href: "/services/social-media-growth",
+    color: "green",
   },
   {
     icon: PenTool,

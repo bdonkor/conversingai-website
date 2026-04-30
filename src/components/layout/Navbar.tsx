@@ -8,19 +8,18 @@ const services = [
   { label: "AI Receptionist", href: "/services/ai-receptionist", desc: "Never miss a call or inquiry" },
   { label: "Website Design", href: "/services/website-design", desc: "Premium conversion-focused websites" },
   { label: "Blog Writing & SEO", href: "/services/blog-writing-seo", desc: "Content that ranks and converts" },
+  { label: "Social Media Growth", href: "/services/social-media-growth", desc: "Scale your audience automatically" },
 ];
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "AI Courses", href: "/ai-courses" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+const trainingLinks = [
+  { label: "AI Courses", href: "/ai-courses", desc: "Master AI automation today" },
+  { label: "Live 1-on-1 Training", href: "/live-training", desc: "Personalized expert guidance" },
 ];
 
 export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [trainingOpen, setTrainingOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -33,6 +32,7 @@ export const Navbar = () => {
   useEffect(() => {
     setMobileOpen(false);
     setServicesOpen(false);
+    setTrainingOpen(false);
   }, [location.pathname]);
 
   const isActive = (href: string) => location.pathname === href;
@@ -68,7 +68,15 @@ export const Navbar = () => {
             className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive("/") ? "text-white bg-white/10" : "text-slate-400 hover:text-white hover:bg-white/6"
               }`}
           >
-            Home
+            Welcome
+          </Link>
+          
+          <Link
+            to="/about"
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive("/about") ? "text-white bg-white/10" : "text-slate-400 hover:text-white hover:bg-white/6"
+              }`}
+          >
+            About Us
           </Link>
 
           {/* Services Dropdown */}
@@ -106,16 +114,55 @@ export const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          {navLinks.slice(1).map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive(link.href) ? "text-white bg-white/10" : "text-slate-400 hover:text-white hover:bg-white/6"
-                }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {/* Training Dropdown */}
+          <div className="relative group" onMouseEnter={() => setTrainingOpen(true)} onMouseLeave={() => setTrainingOpen(false)}>
+            <button className="flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold text-slate-400 hover:text-white hover:bg-white/6 transition-all duration-200">
+              Training
+              <ChevronDown className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180" />
+            </button>
+            <AnimatePresence>
+              {trainingOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 8, scale: 0.97 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-[100] w-72"
+                >
+                  <div className="glass-dark rounded-2xl p-2 shadow-2xl shadow-black/50 border border-white/8">
+                    {trainingLinks.map((s) => (
+                      <Link
+                        key={s.href}
+                        to={s.href}
+                        className="flex flex-col gap-0.5 px-4 py-3 rounded-xl hover:bg-blue-600/20 transition-all duration-150 group/item"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold text-slate-200 group-hover/item:text-white transition-colors">{s.label}</span>
+                          <ArrowRight className="h-3.5 w-3.5 text-slate-600 opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 transition-all" />
+                        </div>
+                        <span className="text-xs text-slate-500 group-hover/item:text-slate-400 transition-colors">{s.desc}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <Link
+            to="/blog"
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive("/blog") ? "text-white bg-white/10" : "text-slate-400 hover:text-white hover:bg-white/6"
+              }`}
+          >
+            Blog
+          </Link>
+          <Link
+            to="/contact"
+            className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${isActive("/contact") ? "text-white bg-white/10" : "text-slate-400 hover:text-white hover:bg-white/6"
+              }`}
+          >
+            Contact
+          </Link>
         </nav>
 
         {/* Desktop CTA */}
@@ -171,12 +218,16 @@ export const Navbar = () => {
             className="lg:hidden overflow-hidden bg-[#020617]/97 backdrop-blur-xl border-t border-white/6"
           >
             <div className="container py-6 space-y-1">
-              <Link to="/" className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">Home</Link>
+              <Link to="/" className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">Welcome</Link>
+              <Link to="/about" className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">About Us</Link>
 
               {/* Mobile Services */}
               <div>
                 <button
-                  onClick={() => setServicesOpen(!servicesOpen)}
+                  onClick={() => {
+                    setServicesOpen(!servicesOpen);
+                    setTrainingOpen(false);
+                  }}
                   className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all"
                 >
                   Services
@@ -202,11 +253,40 @@ export const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {navLinks.slice(1).map((link) => (
-                <Link key={link.href} to={link.href} className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">
-                  {link.label}
-                </Link>
-              ))}
+              {/* Mobile Training */}
+              <div>
+                <button
+                  onClick={() => {
+                    setTrainingOpen(!trainingOpen);
+                    setServicesOpen(false);
+                  }}
+                  className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all"
+                >
+                  Training
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${trainingOpen ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {trainingOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="ml-4 mt-1 space-y-0.5 overflow-hidden"
+                    >
+                      {trainingLinks.map((s) => (
+                        <Link key={s.href} to={s.href} className="flex items-center px-4 py-2.5 rounded-xl text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all">
+                          <span className="h-1.5 w-1.5 rounded-full bg-blue-500 mr-3 flex-shrink-0" />
+                          {s.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <Link to="/blog" className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">Blog</Link>
+              <Link to="/contact" className="flex items-center px-4 py-3 rounded-xl text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/6 transition-all">Contact</Link>
 
               <div className="pt-4 flex flex-col gap-3">
                 <Link to="/get-quote">

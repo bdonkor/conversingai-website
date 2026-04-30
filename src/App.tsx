@@ -4,11 +4,13 @@ import AIChatVoiceAgents from "@/pages/services/AIChatVoiceAgents";
 import AIReceptionist from "@/pages/services/AIReceptionist";
 import WebsiteDesign from "@/pages/services/WebsiteDesign";
 import BlogWritingSEO from "@/pages/services/BlogWritingSEO";
+import SocialMediaGrowth from "@/pages/services/SocialMediaGrowth";
 import Blog from "@/pages/Blog";
 import HowItWorks from "@/pages/HowItWorks";
 import Contact from "@/pages/Contact";
 import About from "@/pages/About";
 import AICourses from "@/pages/AICourses";
+import LiveTraining from "@/pages/LiveTraining";
 import PrivacyPolicy from "@/pages/legal/PrivacyPolicy";
 import TermsOfService from "@/pages/legal/TermsOfService";
 import CookiePolicy from "@/pages/legal/CookiePolicy";
@@ -28,12 +30,14 @@ function App() {
         <Route path="/services/ai-receptionist" element={<AIReceptionist />} />
         <Route path="/services/website-design" element={<WebsiteDesign />} />
         <Route path="/services/blog-writing-seo" element={<BlogWritingSEO />} />
+        <Route path="/services/social-media-growth" element={<SocialMediaGrowth />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/ai-revolution-2026" element={<AIRevolution2026 />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/ai-courses" element={<AICourses />} />
+        <Route path="/live-training" element={<LiveTraining />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsOfService />} />
         <Route path="/cookies" element={<CookiePolicy />} />

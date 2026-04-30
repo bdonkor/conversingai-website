@@ -9,6 +9,7 @@ const footerLinks = {
     { label: "AI Receptionist", href: "/services/ai-receptionist" },
     { label: "Website Design", href: "/services/website-design" },
     { label: "Blog Writing & SEO", href: "/services/blog-writing-seo" },
+    { label: "Social Media Growth", href: "/services/social-media-growth" },
   ],
   Company: [
     { label: "About Us", href: "/about" },
