@@ -1060,10 +1060,16 @@ button {
   transform: translateY(-5px);
 }
 
-.testimonial-quote-icon {
-  margin-bottom: 1.5rem;
-  color: var(--blue-400);
-  opacity: 0.8;
+.testimonial-stars {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.testimonial-stars svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  color: #fbbf24;
 }
 
 .testimonial-text {
