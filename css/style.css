@@ -365,7 +365,7 @@ button {
 
 .logo-text {
   font-weight: 800;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   letter-spacing: -0.025em;
   line-height: 1;
   color: #fff;
@@ -383,7 +383,7 @@ button {
     gap: 0.5rem;
   }
   .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -1381,7 +1381,7 @@ button {
 }
 
 .logo-text {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #fff;
   letter-spacing: -0.05em;
@@ -1799,7 +1799,7 @@ p, .hero-subtitle { font-size: clamp(1rem, 2vw, 1.125rem); }
 /* 5. Mobile Layout Refinements */
 @media (max-width: 768px) {
   .section { padding: 4rem 0; }
-  .hero { padding: 6rem 1rem 4rem; }
+  .hero { padding: 1rem 1rem 4rem; }
   .container { padding: 0 1.25rem; }
   
   .services-grid, .steps-grid {
@@ -1827,6 +1827,7 @@ p, .hero-subtitle { font-size: clamp(1rem, 2vw, 1.125rem); }
 .highlight {
   background: linear-gradient(135deg, var(--blue-400), var(--blue-600));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.3));
 }
@@ -1850,6 +1851,6 @@ body {
 /* 9. Navbar Refinements */
 @media (max-width: 400px) {
   .logo-text {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 }
