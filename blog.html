@@ -267,10 +267,39 @@
           <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:0.75rem;">Stay in the Loop</h2>
           <p style="color:var(--muted);font-size:0.875rem;margin-bottom:1.5rem;">Get the latest AI insights and business
             growth strategies delivered to your inbox.</p>
-          <form style="display:flex;gap:0.75rem;">
-            <input type="email" class="form-input" placeholder="your@email.com" style="flex:1;">
+          <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST" style="display:flex;gap:0.75rem;">
+            <input type="hidden" name="access_key" value="a85ff556-2a00-4660-87fd-89e12fb5d3b4">
+            <input type="hidden" name="from_name" value="Conversing AI Website - Newsletter Signup">
+            <input type="hidden" name="subject" value="New Newsletter Subscriber">
+            <input type="checkbox" name="botcheck" style="display:none;">
+            <input type="email" name="email" class="form-input" placeholder="your@email.com" style="flex:1;" required>
             <button type="submit" class="btn btn-primary">Subscribe</button>
           </form>
+          <p id="newsletter-status" style="margin-top:1rem;font-size:0.875rem;display:none;"></p>
+          <script>
+            (function() {
+              const form = document.getElementById('newsletter-form');
+              const status = document.getElementById('newsletter-status');
+              form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                status.style.display = 'block';
+                status.style.color = 'var(--blue-400)';
+                status.textContent = 'Subscribing...';
+                try {
+                  const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+                  const data = await res.json();
+                  if (data.success) {
+                    form.reset();
+                    status.style.color = '#10b981';
+                    status.textContent = 'Subscribed! Watch your inbox for our next post.';
+                  } else { throw new Error(); }
+                } catch (err) {
+                  status.style.color = '#ef4444';
+                  status.textContent = 'Subscription failed. Try again or email info@conversingai.com.';
+                }
+              });
+            })();
+          </script>
         </div>
       </div>
     </section>

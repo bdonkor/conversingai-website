@@ -252,32 +252,36 @@
       </div>
 
       <div class="form-container">
-        <form id="universal-order-form">
+        <form id="universal-order-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="a85ff556-2a00-4660-87fd-89e12fb5d3b4">
+          <input type="hidden" name="from_name" value="Conversing AI Website - Service Order">
+          <input type="hidden" name="subject" value="New Service Order">
+          <input type="checkbox" name="botcheck" style="display:none;">
                     <div class="form-grid">
             <div class="form-group">
               <label class="form-label" for="full-name">Full Name</label>
-              <input type="text" id="full-name" class="form-input" placeholder="John Doe" required>
+              <input type="text" id="full-name" name="full_name" class="form-input" placeholder="John Doe" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="email">Work Email</label>
-              <input type="email" id="email" class="form-input" placeholder="john@company.com" required>
+              <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required>
             </div>
           </div>
 
           <div class="form-grid">
             <div class="form-group">
               <label class="form-label" for="company">Company Name</label>
-              <input type="text" id="company" class="form-input" placeholder="Your Business Ltd" required>
+              <input type="text" id="company" name="company" class="form-input" placeholder="Your Business Ltd" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="phone">Phone Number</label>
-              <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 000-0000" required>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (555) 000-0000" required>
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="package-selection">Selected Package / Service</label>
-            <select id="package-selection" class="form-select" required>
+            <select id="package-selection" name="package" class="form-select" required>
               <option value="">Select your package...</option>
               <optgroup label="Social Media Growth">
                 <option value="sm-starter-lite">Starter - Lite (GHS 300)</option>
@@ -302,7 +306,7 @@
 
           <div class="form-group">
             <label class="form-label" for="requirements">Specific Requirements / Notes</label>
-            <textarea id="requirements" class="form-textarea" rows="4" placeholder="Tell us about your business goals, any specific features you need, or questions you have before we begin..."></textarea>
+            <textarea id="requirements" name="requirements" class="form-textarea" rows="4" placeholder="Tell us about your business goals, any specific features you need, or questions you have before we begin..."></textarea>
           </div>
 
 <div style="margin-top: 2rem;">
@@ -407,17 +411,34 @@
 
   <script src="./js/main.js" defer></script>
   <script>
-    document.getElementById('universal-order-form').addEventListener('submit', function(e) {
+    document.getElementById('universal-order-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      // Hide form
-      this.style.display = 'none';
-      // Show success
-      document.getElementById('success-screen').style.display = 'block';
-      // Scroll to top of form
-      window.scrollTo({
-        top: document.querySelector('.form-container').offsetTop - 100,
-        behavior: 'smooth'
-      });
+      const form = this;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Submitting...';
+      submitBtn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.style.display = 'none';
+          document.getElementById('success-screen').style.display = 'block';
+          window.scrollTo({
+            top: document.querySelector('.form-container').offsetTop - 100,
+            behavior: 'smooth'
+          });
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        alert('Something went wrong. Please email info@conversingai.com directly with your order.');
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.disabled = false;
+      }
     });
   </script>
 

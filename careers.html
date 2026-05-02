@@ -257,29 +257,33 @@
           <h2 style="font-size:2rem; font-weight:800; text-align:center; margin-bottom:1rem;">Apply to Join Us</h2>
           <p style="text-align:center; color:var(--muted); margin-bottom:3rem;">Don't see a role that fits? Tell us what you can build for us.</p>
           
-          <form id="career-form">
+          <form id="career-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="access_key" value="a85ff556-2a00-4660-87fd-89e12fb5d3b4">
+            <input type="hidden" name="from_name" value="Conversing AI Website - Career Application">
+            <input type="hidden" name="subject" value="New Career Application">
+            <input type="checkbox" name="botcheck" style="display:none;">
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
               <div>
                 <label class="form-label" for="name">Full Name</label>
-                <input type="text" id="name" class="form-input" placeholder="Your Name" required>
+                <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
               </div>
               <div>
                 <label class="form-label" for="email">Work Email</label>
-                <input type="email" id="email" class="form-input" placeholder="email@address.com" required>
+                <input type="email" id="email" name="email" class="form-input" placeholder="email@address.com" required>
               </div>
             </div>
 
             <label class="form-label" for="portfolio">Portfolio URL / GitHub</label>
-            <input type="url" id="portfolio" class="form-input" placeholder="https://github.com/your-username">
+            <input type="url" id="portfolio" name="portfolio" class="form-input" placeholder="https://github.com/your-username">
 
             <label class="form-label" for="role">Desired Role or Area of Expertise</label>
-            <input type="text" id="role" class="form-input" placeholder="e.g. AI Content Writer, UI Designer" required>
+            <input type="text" id="role" name="role" class="form-input" placeholder="e.g. AI Content Writer, UI Designer" required>
 
             <label class="form-label" for="message">How can you help Conversing AI grow?</label>
-            <textarea id="message" class="form-textarea" rows="5" placeholder="Tell us about your experience and why you want to build with us..."></textarea>
+            <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="Tell us about your experience and why you want to build with us..."></textarea>
 
             <label class="form-label">Upload CV / Resume (PDF)</label>
-            <input type="file" id="resume" class="form-file" accept=".pdf">
+            <input type="file" id="resume" name="resume" class="form-file" accept=".pdf">
 
             <div style="margin-top:2rem;">
               <button type="submit" class="btn btn-primary btn-lg btn-full">Submit Application</button>
@@ -373,14 +377,34 @@
 
   <script src="./js/main.js" defer></script>
   <script>
-    document.getElementById('career-form').addEventListener('submit', function(e) {
+    document.getElementById('career-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      this.style.display = 'none';
-      document.getElementById('success-message').style.display = 'block';
-      window.scrollTo({
-        top: document.getElementById('apply').offsetTop - 100,
-        behavior: 'smooth'
-      });
+      const form = this;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.style.display = 'none';
+          document.getElementById('success-message').style.display = 'block';
+          window.scrollTo({
+            top: document.getElementById('apply').offsetTop - 100,
+            behavior: 'smooth'
+          });
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        alert('Something went wrong. Please email info@conversingai.com directly with your application.');
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
     });
   </script>
 </body>

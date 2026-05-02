@@ -252,32 +252,36 @@
       </div>
 
       <div class="form-container">
-        <form id="receptionist-order-form">
+        <form id="receptionist-order-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="a85ff556-2a00-4660-87fd-89e12fb5d3b4">
+          <input type="hidden" name="from_name" value="Conversing AI Website - AI Receptionist Order">
+          <input type="hidden" name="subject" value="New AI Receptionist Order">
+          <input type="checkbox" name="botcheck" style="display:none;">
           <div class="form-grid">
             <div class="form-group">
               <label class="form-label" for="full-name">Full Name</label>
-              <input type="text" id="full-name" class="form-input" placeholder="John Doe" required>
+              <input type="text" id="full-name" name="full_name" class="form-input" placeholder="John Doe" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="email">Work Email</label>
-              <input type="email" id="email" class="form-input" placeholder="john@company.com" required>
+              <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required>
             </div>
           </div>
 
           <div class="form-grid">
             <div class="form-group">
               <label class="form-label" for="company">Company Name</label>
-              <input type="text" id="company" class="form-input" placeholder="Your Business Ltd" required>
+              <input type="text" id="company" name="company" class="form-input" placeholder="Your Business Ltd" required>
             </div>
             <div class="form-group">
               <label class="form-label" for="phone">Phone Number</label>
-              <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 000-0000" required>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+1 (555) 000-0000" required>
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="industry">Industry</label>
-            <select id="industry" class="form-select" required>
+            <select id="industry" name="industry" class="form-select" required>
               <option value="">Select your industry...</option>
               <option>Real Estate</option>
               <option>Healthcare / Medical</option>
@@ -322,7 +326,7 @@
           <div class="form-grid">
             <div class="form-group">
               <label class="form-label" for="volume">Monthly Call Volume (Est.)</label>
-              <select id="volume" class="form-select" required>
+              <select id="volume" name="call_volume" class="form-select" required>
                 <option value="">Select volume...</option>
                 <option>0 - 100 calls</option>
                 <option>100 - 500 calls</option>
@@ -332,7 +336,7 @@
             </div>
             <div class="form-group">
               <label class="form-label" for="voice">Preferred Voice Tone</label>
-              <select id="voice" class="form-select" required>
+              <select id="voice" name="voice_tone" class="form-select" required>
                 <option value="">Select tone...</option>
                 <option>Professional & Formal</option>
                 <option>Friendly & Approachable</option>
@@ -344,7 +348,7 @@
 
           <div class="form-group">
             <label class="form-label" for="requirements">Specific Requirements / Integration Needs</label>
-            <textarea id="requirements" class="form-textarea" rows="4" placeholder="Tell us about any specific software you use (e.g., GoHighLevel, Calendly, Salesforce) or special instructions for the AI..."></textarea>
+            <textarea id="requirements" name="requirements" class="form-textarea" rows="4" placeholder="Tell us about any specific software you use (e.g., GoHighLevel, Calendly, Salesforce) or special instructions for the AI..."></textarea>
           </div>
 
           <div style="margin-top: 2rem;">
@@ -449,17 +453,34 @@
 
   <script src="./js/main.js" defer></script>
   <script>
-    document.getElementById('receptionist-order-form').addEventListener('submit', function(e) {
+    document.getElementById('receptionist-order-form').addEventListener('submit', async function(e) {
       e.preventDefault();
-      // Hide form
-      this.style.display = 'none';
-      // Show success
-      document.getElementById('success-screen').style.display = 'block';
-      // Scroll to top of form
-      window.scrollTo({
-        top: document.querySelector('.form-container').offsetTop - 100,
-        behavior: 'smooth'
-      });
+      const form = this;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = 'Submitting...';
+      submitBtn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(form)
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.style.display = 'none';
+          document.getElementById('success-screen').style.display = 'block';
+          window.scrollTo({
+            top: document.querySelector('.form-container').offsetTop - 100,
+            behavior: 'smooth'
+          });
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch (err) {
+        alert('Something went wrong. Please email info@conversingai.com directly with your order.');
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.disabled = false;
+      }
     });
   </script>
 </body>
