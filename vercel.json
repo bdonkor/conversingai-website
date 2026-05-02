@@ -3,6 +3,8 @@
   "buildCommand": "echo \"no build\"",
   "installCommand": "echo \"no install\"",
   "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/(.*)\\.(css|js|jpg|jpeg|png|gif|svg|ico|webp|avif|woff|woff2|ttf|otf|mp4|webm)",
