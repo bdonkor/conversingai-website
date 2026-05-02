@@ -210,7 +210,7 @@
   grid-template-columns: 1fr;
   gap: 4rem;
   max-width: 60rem;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .faq-category-title {
