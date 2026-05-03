@@ -151,7 +151,7 @@
           dives, case studies, and practical guides on AI, automation, and digital growth.</p>
         <!-- Search bar -->
         <div class="fade-up" style="max-width:32rem;margin:0 auto;position:relative;">
-          <input type="text" class="form-input" placeholder="Search articles..." style="padding-right:3rem;">
+          <input id="blog-search" type="text" class="form-input" placeholder="Search articles..." style="padding-right:3rem;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--slate-500)" stroke-width="2"
             style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);pointer-events:none;">
             <circle cx="11" cy="11" r="8" />
@@ -163,14 +163,16 @@
 
     <!-- CATEGORY FILTERS -->
     <section style="padding:2rem 0;border-bottom:1px solid rgba(255,255,255,0.05);">
-      <div class="container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.75rem;">
-        <button class="btn btn-primary"
+      <div class="container" style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.75rem;" id="blog-filters">
+        <button class="btn btn-primary blog-filter-btn" data-filter="all"
           style="border-radius:9999px;height:2.25rem;padding:0 1.25rem;font-size:0.75rem;">All Posts</button>
-        <button class="btn btn-secondary"
+        <button class="btn btn-secondary blog-filter-btn" data-filter="ai-strategy"
           style="border-radius:9999px;height:2.25rem;padding:0 1.25rem;font-size:0.75rem;">AI Strategy</button>
-        <button class="btn btn-secondary"
+        <button class="btn btn-secondary blog-filter-btn" data-filter="automation"
           style="border-radius:9999px;height:2.25rem;padding:0 1.25rem;font-size:0.75rem;">Automation</button>
-        <button class="btn btn-secondary"
+        <button class="btn btn-secondary blog-filter-btn" data-filter="web-design"
+          style="border-radius:9999px;height:2.25rem;padding:0 1.25rem;font-size:0.75rem;">Web Design</button>
+        <button class="btn btn-secondary blog-filter-btn" data-filter="case-studies"
           style="border-radius:9999px;height:2.25rem;padding:0 1.25rem;font-size:0.75rem;">Case Studies</button>
       </div>
     </section>
@@ -178,7 +180,7 @@
     <!-- FEATURED POST -->
     <section class="section">
       <div class="container">
-        <a href="blog-post-ai-revolution" class="fade-up"
+        <a href="blog-post-ai-revolution" data-blog-card data-category="case-studies" class="fade-up"
           style="display:grid;grid-template-columns:1fr;gap:2rem;padding:2rem;border-radius:1.5rem;border:1px solid rgba(59,130,246,0.15);background:var(--bg-card);transition:all 0.3s;text-decoration:none;color:inherit;">
           <div style="border-radius:1rem;overflow:hidden;aspect-ratio:16/9;">
             <img loading="lazy" decoding="async" src="./images/AI agents transform customer service.jpg" alt="AI agents transforming customer service in 2026" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -210,7 +212,7 @@
       <div class="container">
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;">
           <!-- Post 2 -->
-          <a href="blog-post-5-business-processes-to-automate" class="fade-up"
+          <a href="blog-post-5-business-processes-to-automate" data-blog-card data-category="automation" class="fade-up"
             style="border-radius:1rem;border:1px solid rgba(255,255,255,0.05);background:var(--bg-card);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;">
             <div style="height:12rem;overflow:hidden;">
               <img loading="lazy" decoding="async" src="./images/Team Planning Business Automate.jpg" alt="Team planning business automation strategy" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -225,7 +227,7 @@
             </div>
           </a>
           <!-- Post 3 -->
-          <a href="blog-post-ai-receptionist-save-100-hours" class="fade-up"
+          <a href="blog-post-ai-receptionist-save-100-hours" data-blog-card data-category="ai-strategy" class="fade-up"
             style="border-radius:1rem;border:1px solid rgba(255,255,255,0.05);background:var(--bg-card);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;">
             <div style="height:12rem;overflow:hidden;">
               <img loading="lazy" decoding="async" src="./images/lady exploring the posibility of an AI Receptionist.jpg" alt="Business owner exploring how an AI Receptionist could save her time" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -239,7 +241,7 @@
             </div>
           </a>
           <!-- Post 4 -->
-          <a href="blog-post-website-losing-money" class="fade-up"
+          <a href="blog-post-website-losing-money" data-blog-card data-category="web-design" class="fade-up"
             style="border-radius:1rem;border:1px solid rgba(255,255,255,0.05);background:var(--bg-card);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;">
             <div style="height:12rem;overflow:hidden;">
               <img loading="lazy" decoding="async" src="./images/business man worried his website Is losing money.jpg" alt="Business owner worried his website is losing him money" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -257,7 +259,7 @@
           </a>
 
           <!-- Post 5: AI Training Ghana -->
-          <a href="blog-post-ai-training-ghana-commerce-industries" class="fade-up"
+          <a href="blog-post-ai-training-ghana-commerce-industries" data-blog-card data-category="ai-strategy" class="fade-up"
             style="border-radius:1rem;border:1px solid rgba(255,255,255,0.05);background:var(--bg-card);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;">
             <div style="height:12rem;overflow:hidden;">
               <img loading="lazy" decoding="async" src="./images/briefing about AI training for commerce and industries.jpg" alt="Briefing about AI training for commerce and industries in Ghana" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -271,7 +273,7 @@
           </a>
 
           <!-- Post 6: History of Chatbots -->
-          <a href="blog-post-history-of-chatbots" class="fade-up"
+          <a href="blog-post-history-of-chatbots" data-blog-card data-category="ai-strategy" class="fade-up"
             style="border-radius:1rem;border:1px solid rgba(255,255,255,0.05);background:var(--bg-card);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;">
             <div style="height:12rem;overflow:hidden;">
               <img loading="lazy" decoding="async" src="./images/the history of chatbots.jpg" alt="The history of chatbots from ELIZA to modern AI agents" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -285,7 +287,7 @@
           </a>
 
           <!-- Post 7: What Are AI Chat and Voice Agents -->
-          <a href="blog-post-what-are-ai-chat-voice-agents" class="fade-up"
+          <a href="blog-post-what-are-ai-chat-voice-agents" data-blog-card data-category="ai-strategy" class="fade-up"
             style="border-radius:1rem;border:1px solid rgba(255,255,255,0.05);background:var(--bg-card);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;">
             <div style="height:12rem;overflow:hidden;">
               <img loading="lazy" decoding="async" src="./images/ai chat and voice agents.jpg" alt="AI chat and voice agents handling customer conversations" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -299,7 +301,7 @@
           </a>
 
           <!-- Post 8: Indicators of Effective AI Prompts -->
-          <a href="blog-post-indicators-of-effective-ai-prompts" class="fade-up"
+          <a href="blog-post-indicators-of-effective-ai-prompts" data-blog-card data-category="ai-strategy" class="fade-up"
             style="border-radius:1rem;border:1px solid rgba(255,255,255,0.05);background:var(--bg-card);overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block;">
             <div style="height:12rem;overflow:hidden;">
               <img loading="lazy" decoding="async" src="./images/writing effective prompts.png" alt="Writing effective AI prompts for better results" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -468,6 +470,58 @@
   </footer>
 
   <script src="./js/main.js" defer></script>
+  <script>
+    (function() {
+      const searchInput = document.getElementById('blog-search');
+      const filterButtons = document.querySelectorAll('.blog-filter-btn');
+      const blogCards = document.querySelectorAll('[data-blog-card]');
+      let activeCategory = 'all';
+      let searchQuery = '';
+
+      // Build a "no results" message we can show/hide
+      const noResults = document.createElement('div');
+      noResults.id = 'blog-no-results';
+      noResults.style.cssText = 'display:none;text-align:center;padding:4rem 2rem;color:var(--slate-400);';
+      noResults.innerHTML = '<p style="font-size:1.125rem;font-weight:600;margin-bottom:0.5rem;color:white;">No articles match your search.</p><p style="font-size:0.875rem;">Try a different keyword or click "All Posts".</p>';
+      const grid = blogCards[blogCards.length - 1].parentElement;
+      grid.parentElement.appendChild(noResults);
+
+      function applyFilters() {
+        let visibleCount = 0;
+        blogCards.forEach(card => {
+          const cat = card.getAttribute('data-category');
+          const text = (card.textContent || '').toLowerCase();
+          const catMatch = activeCategory === 'all' || cat === activeCategory;
+          const searchMatch = !searchQuery || text.includes(searchQuery);
+          const visible = catMatch && searchMatch;
+          card.style.display = visible ? '' : 'none';
+          if (visible) visibleCount++;
+        });
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+
+      searchInput.addEventListener('input', e => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        applyFilters();
+      });
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeCategory = btn.getAttribute('data-filter');
+          filterButtons.forEach(b => {
+            if (b === btn) {
+              b.classList.add('btn-primary');
+              b.classList.remove('btn-secondary');
+            } else {
+              b.classList.add('btn-secondary');
+              b.classList.remove('btn-primary');
+            }
+          });
+          applyFilters();
+        });
+      });
+    })();
+  </script>
 </body>
 
 </html>
