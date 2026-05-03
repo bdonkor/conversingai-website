@@ -467,12 +467,7 @@
         });
         const data = await res.json();
         if (data.success) {
-          form.style.display = 'none';
-          document.getElementById('success-screen').style.display = 'block';
-          window.scrollTo({
-            top: document.querySelector('.form-container').offsetTop - 100,
-            behavior: 'smooth'
-          });
+          window.location.href = 'ai-receptionist-plans';
         } else {
           throw new Error(data.message || 'Submission failed');
         }
