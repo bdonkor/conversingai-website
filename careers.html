@@ -76,7 +76,7 @@
       max-width: 48rem;
       margin: 0 auto;
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.6);
       border-radius: 2rem;
       padding: 3rem;
     }
@@ -91,11 +91,22 @@
     .form-input, .form-textarea, .form-file {
       width: 100%;
       background: rgba(2, 6, 23, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1.5px solid rgba(255, 255, 255, 0.28);
       border-radius: 0.75rem;
       padding: 0.75rem 1rem;
       color: white;
       margin-bottom: 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-file:focus {
+      outline: none;
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
     }
 
     .form-file {

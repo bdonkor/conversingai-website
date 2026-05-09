@@ -47,6 +47,22 @@
     "description": "Done-for-you AI, automation & digital growth services."
   }
   </script>
+
+  <!-- Mobile-only centering for the AI Receptionist notice -->
+  <style>
+    @media (max-width: 640px) {
+      .receptionist-notice {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+      .receptionist-notice-info {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
@@ -198,8 +214,8 @@
           </div>
           
           <!-- AI Receptionist Quick Link Notice -->
-          <div class="fade-up" style="margin-bottom: 2rem; padding: 1.25rem 1.5rem; border-radius: 1.25rem; background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.15); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-            <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div class="fade-up receptionist-notice" style="margin-bottom: 2rem; padding: 1.25rem 1.5rem; border-radius: 1.25rem; background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.15); display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+            <div class="receptionist-notice-info" style="display: flex; align-items: center; gap: 0.75rem;">
               <div style="width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--blue-600); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
@@ -207,14 +223,16 @@
               </div>
               <div>
                 <p style="margin: 0; color: white; font-weight: 700; font-size: 0.9375rem;">Ordering for AI Receptionist?</p>
-                <p style="margin: 0; color: var(--slate-400); font-size: 0.8125rem;">Use our specialized order form for faster processing.</p>
+                <p style="margin: 0; color: var(--slate-400); font-size: 0.8125rem;">Otherwise, skip to fill your choice below</p>
               </div>
             </div>
             <a href="order-receptionist" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.875rem; border-radius: 0.75rem;">Go to Order Form &rarr;</a>
           </div>
 
           <div
-            style="background:rgba(15,23,42,0.4);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:2rem;padding:2.5rem;">
+            style="background:rgba(15,23,42,0.4);backdrop-filter:blur(20px);border:2px solid rgba(255,255,255,0.6);border-radius:2rem;padding:2.5rem;">
+            <!-- Honeypot (anti-bot) -->
+            <input type="checkbox" id="q-botcheck" name="botcheck" style="display:none;" tabindex="-1" autocomplete="off">
             <!-- Step 1 -->
             <div id="step1">
               <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:0.25rem;">Step 1: About You</h3>

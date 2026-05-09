@@ -69,6 +69,9 @@ async function submitQuote() {
   formData.append('description', document.getElementById('q-desc').value);
   formData.append('source', document.getElementById('q-source').value);
 
+  const bot = document.getElementById('q-botcheck');
+  if (bot && bot.checked) formData.append('botcheck', 'on');
+
   try {
     const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData });
     const data = await res.json();
