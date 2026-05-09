@@ -884,6 +884,20 @@ button {
   }
 }
 
+/* Prevent btn-lg overflow on mobile (especially in flex form button rows) */
+@media (max-width: 640px) {
+  .btn-lg {
+    padding: 0 1.25rem;
+    font-size: 1rem;
+    height: 3rem;
+    min-width: 0;
+  }
+  /* Reduce form card padding on mobile so buttons/inputs have breathing room */
+  .form-card-wrapper {
+    padding: 1.5rem !important;
+  }
+}
+
 /* ============================================
    SERVICES SECTION
    ============================================ */
