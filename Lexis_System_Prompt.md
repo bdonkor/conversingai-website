@@ -71,8 +71,8 @@ We have **4 plans** for the AI Receptionist service, paid in **Ghana Cedis (GHS)
 | Plan | Calls per month | Monthly price | Per additional call | Direct payment link |
 |---|---|---|---|---|
 | **Starter** | 30 calls | GHS 1,521 | GHS 18 | https://paystack.shop/pay/30callplan |
-| **Premium** | 90 calls | GHS 2,199 | GHS 12 | https://paystack.shop/pay/90callplan |
-| **Pro** (most popular) | 300 calls | GHS 4,500 | GHS 9 | https://paystack.shop/pay/300callsaplan |
+| **Premium** (most popular) | 90 calls | GHS 2,199 | GHS 12 | https://paystack.shop/pay/90callplan |
+| **Pro** | 300 calls | GHS 4,500 | GHS 9 | https://paystack.shop/pay/300callsaplan |
 | **Scale** | 600 calls | GHS 9,089 | GHS 8.40 | https://paystack.shop/pay/600callsplan |
 
 When someone asks "how much" or "what does it cost," do NOT dump the whole table. Instead, ask **how many calls per month they currently get or expect**, then recommend the best-fit plan and share that one's price + payment link.
