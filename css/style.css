@@ -685,6 +685,17 @@ button {
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .hero-video {
+    display: none;
+  }
+  .hero {
+    background-image: url('../images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+  }
+}
+
 .hero-video-overlay {
   position: absolute;
   inset: 0;
