@@ -1798,6 +1798,23 @@ button {
   transform: translateY(0);
 }
 
+/* CSS-only Hero Animation for better LCP */
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-in {
+  opacity: 0;
+  animation: heroFadeInUp 0.8s ease-out forwards;
+}
+
 /* Respect user preferences for reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .fade-up {
