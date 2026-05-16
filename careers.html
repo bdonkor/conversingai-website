@@ -54,13 +54,31 @@
     .job-tag {
       display: inline-block;
       padding: 0.25rem 0.75rem;
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--blue-400);
       border-radius: 2rem;
       font-size: 0.75rem;
       font-weight: 600;
       margin-bottom: 1rem;
     }
+
+    /* Blue Theme */
+    .job-card-blue { border: 1px solid rgba(59, 130, 246, 0.2); }
+    .job-card-blue:hover { border-color: var(--blue-500); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15); }
+    .job-card-blue .job-tag { background: rgba(59, 130, 246, 0.1); color: var(--blue-400); }
+
+    /* Emerald Theme */
+    .job-card-emerald { border: 1px solid rgba(16, 185, 129, 0.2); }
+    .job-card-emerald:hover { border-color: #10b981; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15); }
+    .job-card-emerald .job-tag { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+
+    /* Purple Theme */
+    .job-card-purple { border: 1px solid rgba(168, 85, 247, 0.2); }
+    .job-card-purple:hover { border-color: #a855f7; box-shadow: 0 10px 30px rgba(168, 85, 247, 0.15); }
+    .job-card-purple .job-tag { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+
+    /* Amber Theme */
+    .job-card-amber { border: 1px solid rgba(245, 158, 11, 0.2); }
+    .job-card-amber:hover { border-color: #f59e0b; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.15); }
+    .job-card-amber .job-tag { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
 
     .job-title {
       font-size: 1.5rem;
@@ -272,28 +290,28 @@
         </div>
         
         <div class="job-grid">
-          <div class="job-card fade-up">
+          <div class="job-card job-card-blue fade-up">
             <span class="job-tag">Engineering</span>
             <h3 class="job-title">AI Automation Architect</h3>
             <p class="job-desc">Design and implement complex multi-step AI agents and automation workflows using tools like Make.com, n8n, and Python.</p>
             <a href="#apply" class="btn btn-outline btn-full">Learn More</a>
           </div>
 
-          <div class="job-card fade-up">
+          <div class="job-card job-card-purple fade-up">
             <span class="job-tag">Engineering</span>
             <h3 class="job-title">Fullstack Web Developer</h3>
             <p class="job-desc">Build high-performance web applications and dashboards that integrate with our AI backend services.</p>
             <a href="#apply" class="btn btn-outline btn-full">Learn More</a>
           </div>
 
-          <div class="job-card fade-up">
+          <div class="job-card job-card-emerald fade-up">
             <span class="job-tag">Creative</span>
             <h3 class="job-title">AI Prompt Engineer</h3>
             <p class="job-desc">Refine and optimize Large Language Model prompts for specialized business applications and voice agents.</p>
             <a href="#apply" class="btn btn-outline btn-full">Learn More</a>
           </div>
 
-          <div class="job-card fade-up">
+          <div class="job-card job-card-amber fade-up">
             <span class="job-tag">Growth</span>
             <h3 class="job-title">Technical Account Manager</h3>
             <p class="job-desc">Lead client engagements, managing the deployment and success of AI solutions for our business partners.</p>
