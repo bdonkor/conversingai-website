@@ -274,7 +274,7 @@
           </div>
           <div class="summary-row summary-total">
             <span>Total:</span>
-            <span id="payment-total">$50.00</span>
+            <span id="payment-total">$47.00</span>
           </div>
         </div>
 
@@ -311,7 +311,7 @@
           </div>
 
           <button type="submit" class="btn btn-primary btn-full btn-lg" style="background:#09a5db; margin-top: 1rem;">
-            Pay <span id="btn-price">$50.00</span> Now
+            Pay <span id="btn-price">$47.00</span> Now
           </button>
 
           <div class="secure-badge">
@@ -321,6 +321,7 @@
             </svg>
             SSL Secured & Encrypted Payment
           </div>
+          <p style="font-size:0.7rem; color:var(--muted); margin-top:0.5rem; text-align:center;">You are paying the equivalent in Ghana cedis</p>
         </form>
       </div>
 
@@ -345,7 +346,7 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const lessonType = urlParams.get('lesson_type');
-    const price = urlParams.get('price') || "50";
+    const price = urlParams.get('price') || "47";
     const name = urlParams.get('full_name') || "";
 
     // Set prices and names

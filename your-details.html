@@ -200,7 +200,7 @@
         </a>
 
         <form class="payment-box fade-up" action="" method="GET" style="margin-top:0;">
-          <input type="hidden" name="price" id="hidden-price" value="50">
+          <input type="hidden" name="price" id="hidden-price" value="47">
           <input type="hidden" name="lesson_type" id="hidden-lesson-type" value="ai-chat-agent">
 
           <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:0.5rem;">Your Details</h3>
@@ -234,7 +234,7 @@
           <div
             style="margin: 2rem 0; padding:1.5rem; background:rgba(255,255,255,0.03); border-radius:1rem; text-align:left;">
             <p style="font-size:0.75rem; color:var(--muted); line-height:1.5; margin-bottom:0;">
-              <strong>Note:</strong> After payment of <span id="payment-amount-note">$50</span>, you will be redirected
+              <strong>Note:</strong> After payment of <span id="payment-amount-note">$47</span>, you will be redirected
               to our calendar to select your lesson
               time.
               <br><br>
@@ -246,7 +246,7 @@
           </div>
 
           <button type="submit" id="submit-button" class="btn btn-primary btn-full btn-lg" style="background:#09a5db;">
-            Pay $50 Securely
+            Pay $47 Securely
           </button>
 
           <div
@@ -257,6 +257,7 @@
             </svg>
             <span style="font-size:0.75rem;">Secure Payment via Paystack</span>
           </div>
+          <p style="font-size:0.7rem; color:var(--muted); margin-top:0.5rem; text-align:center;">You are paying the equivalent in Ghana cedis</p>
         </form>
       </div>
     </section>
@@ -354,10 +355,10 @@
     const whatToExpectList = document.getElementById('what-to-expect-list');
 
     const isWebsite = lessonType === 'website-strategy';
-    const price = isWebsite ? "300" : "50";
+    const price = isWebsite ? "297" : "47";
 
     // Set UI elements
-    selectedCourseTitle.textContent = isWebsite ? 'Premium Website Design ($300)' : 'AI Chat Agent Mastery ($50)';
+    selectedCourseTitle.textContent = isWebsite ? 'Premium Website Design ($297)' : 'AI Chat Agent Mastery ($47)';
     submitButton.textContent = `Pay $${price} Securely`;
     paymentAmountNote.textContent = `$${price}`;
 

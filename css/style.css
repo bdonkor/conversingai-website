@@ -11,6 +11,34 @@
   padding: 0;
 }
 
+/* ---------- MOBILE REFINEMENTS ---------- */
+@media (max-width: 640px) {
+  .section {
+    padding: 3rem 0;
+  }
+  .container {
+    padding: 0 1.25rem;
+  }
+  .form-card-wrapper {
+    padding: 1.5rem !important;
+    border-radius: 1.5rem !important;
+  }
+  .cta-box {
+    padding: 2.5rem 1.5rem !important;
+  }
+  .hero-title {
+    font-size: 2.25rem !important;
+  }
+  .hero-subtitle {
+    font-size: 1rem !important;
+  }
+  .btn-lg {
+    height: 3rem;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -22,6 +50,7 @@ body {
   background: hsl(222.2, 84%, 4.9%);
   color: hsl(210, 40%, 98%);
   line-height: 1.6;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -359,9 +388,9 @@ button {
 }
 
 .logo-img {
-  height: 25rem;
+  height: 4rem;
   width: auto;
-  border-radius: 0.375rem;
+  border-radius: 0.125rem;
   object-fit: contain;
   object-position: center;
   display: block;
@@ -382,10 +411,10 @@ button {
     height: 4.5rem;
   }
   .logo-img {
-    height: 12rem;
+    height: 2.75rem;
   }
   .logo-link {
-    transform: translateY(13px);
+    transform: translateY(0);
     gap: 0.5rem;
   }
   .logo-text {

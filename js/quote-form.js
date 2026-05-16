@@ -1,4 +1,23 @@
 /* Multi-step Quote Form Logic */
+
+/* Show / hide the multi-service checkbox panel */
+function toggleMultiService(sel) {
+  const panel = document.getElementById('multi-service-options');
+  if (panel) panel.style.display = sel.value === 'Multiple Services' ? 'block' : 'none';
+  // Reset error when switching away
+  const err = document.getElementById('ms-error');
+  if (err) err.style.display = 'none';
+}
+
+/* Collect checked multi-service values */
+function getMultiServices() {
+  const ids = ['ms-chat', 'ms-website', 'ms-blog', 'ms-social'];
+  return ids
+    .map(id => document.getElementById(id))
+    .filter(el => el && el.checked)
+    .map(el => el.value);
+}
+
 function validateStep(n) {
   const currentStep = document.getElementById('step' + n);
   const inputs = currentStep.querySelectorAll('input[required], select[required], textarea[required]');
@@ -12,6 +31,21 @@ function validateStep(n) {
       input.style.borderColor = 'rgba(255,255,255,0.1)';
     }
   });
+
+  // Extra check: if Multiple Services selected, at least one checkbox must be ticked
+  if (n === 2) {
+    const svc = document.getElementById('q-service');
+    if (svc && svc.value === 'Multiple Services') {
+      const chosen = getMultiServices();
+      const err = document.getElementById('ms-error');
+      if (chosen.length === 0) {
+        if (err) err.style.display = 'block';
+        isValid = false;
+      } else {
+        if (err) err.style.display = 'none';
+      }
+    }
+  }
 
   if (!isValid) {
     alert('Please fill in all required fields.');
@@ -55,6 +89,8 @@ async function submitQuote() {
     submitBtn.disabled = true;
   }
 
+  const serviceValue = document.getElementById('q-service').value;
+
   const formData = new FormData();
   formData.append('access_key', 'a85ff556-2a00-4660-87fd-89e12fb5d3b4');
   formData.append('from_name', 'Conversing AI Website - Quote Request');
@@ -63,11 +99,17 @@ async function submitQuote() {
   formData.append('email', document.getElementById('q-email').value);
   formData.append('company', document.getElementById('q-company').value);
   formData.append('phone', document.getElementById('q-phone').value);
-  formData.append('service', document.getElementById('q-service').value);
+  formData.append('service', serviceValue);
   formData.append('budget', document.getElementById('q-budget').value);
   formData.append('timeline', document.getElementById('q-timeline').value);
   formData.append('description', document.getElementById('q-desc').value);
   formData.append('source', document.getElementById('q-source').value);
+
+  // If "Multiple Services", include the specific selections
+  if (serviceValue === 'Multiple Services') {
+    const chosen = getMultiServices();
+    formData.append('selected_services', chosen.join(', '));
+  }
 
   const bot = document.getElementById('q-botcheck');
   if (bot && bot.checked) formData.append('botcheck', 'on');
