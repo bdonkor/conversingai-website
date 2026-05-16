@@ -20,9 +20,18 @@
 
     .job-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
       margin-top: 2rem;
+      max-width: 64rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+      .job-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .job-card {
@@ -251,7 +260,7 @@
     <section class="career-hero">
       <div class="container">
         <div class="badge badge-blue hero-fade-in" style="animation-delay: 0.0s;">Join Our Mission</div>
-        <h1 class="hero-title hero-fade-in" style="animation-delay: 0.1s; margin-top:1.5rem;">Help Us Build the Future of <span class="highlight text-glow">AI Business</span></h1>
+        <h1 class="hero-title hero-fade-in" style="animation-delay: 0.1s; margin-top:1.5rem; max-width: 52rem; margin-left: auto; margin-right: auto;">Help Us Build the Future of <br> <span class="highlight text-glow">AI Business</span></h1>
         <p class="hero-subtitle hero-fade-in" style="animation-delay: 0.2s; max-width:40rem; margin:0 auto;">We're looking for passionate individuals to help us design, build, and deploy high-impact AI solutions for clients worldwide.</p>
       </div>
     </section>
