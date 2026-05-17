@@ -53,6 +53,14 @@
     gtag('js', new Date());
     gtag('config', 'G-LQKGQXKE92');
   </script>
+  <style>
+    .feature-card h3 {
+      text-align: center;
+    }
+    .feature-card .feature-icon {
+      margin: 0 auto 1.5rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -200,7 +208,7 @@
         <div class="section-header">
           <h2 class="section-title fade-up">Key <span class="highlight">Features</span></h2>
         </div>
-        <div class="feature-grid">
+        <div class="feature-grid" style="max-width: 66rem; margin: 0 auto;">
           <div class="feature-card fade-up">
             <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2">
@@ -275,25 +283,60 @@
         <div class="section-header">
           <h2 class="section-title fade-up">The <span class="highlight">Value</span> You Get</h2>
         </div>
+                <style>
+          .value-card-blue { border-top: 3px solid #3b82f6; background: linear-gradient(to bottom, rgba(59,130,246,0.05), transparent); }
+          .value-card-blue:hover { box-shadow: 0 10px 30px -10px rgba(59,130,246,0.3); border-color: #3b82f6; transform: translateY(-5px); }
+          .value-card-blue .icon-wrapper { background: rgba(59,130,246,0.1); color: #3b82f6; }
+
+          .value-card-emerald { border-top: 3px solid #10b981; background: linear-gradient(to bottom, rgba(16,185,129,0.05), transparent); }
+          .value-card-emerald:hover { box-shadow: 0 10px 30px -10px rgba(16,185,129,0.3); border-color: #10b981; transform: translateY(-5px); }
+          .value-card-emerald .icon-wrapper { background: rgba(16,185,129,0.1); color: #10b981; }
+
+          .value-card-purple { border-top: 3px solid #8b5cf6; background: linear-gradient(to bottom, rgba(139,92,246,0.05), transparent); }
+          .value-card-purple:hover { box-shadow: 0 10px 30px -10px rgba(139,92,246,0.3); border-color: #8b5cf6; transform: translateY(-5px); }
+          .value-card-purple .icon-wrapper { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+
+          .value-card-amber { border-top: 3px solid #f59e0b; background: linear-gradient(to bottom, rgba(245,158,11,0.05), transparent); }
+          .value-card-amber:hover { box-shadow: 0 10px 30px -10px rgba(245,158,11,0.3); border-color: #f59e0b; transform: translateY(-5px); }
+          .value-card-amber .icon-wrapper { background: rgba(245,158,11,0.1); color: #f59e0b; }
+
+          .value-card .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+          }
+        </style>
         <div class="value-grid" style="max-width:56rem;margin:0 auto;">
-          <div class="value-card fade-up">
-            <div class="emoji">??</div>
+          <div class="value-card value-card-blue fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            </div>
             <h3>Organic Growth</h3>
             <p>Build a sustainable traffic source that grows month over month without expensive ad spend.</p>
           </div>
-          <div class="value-card fade-up">
-            <div class="emoji">??</div>
+          <div class="value-card value-card-emerald fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5Z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+            </div>
             <h3>Domain Authority</h3>
             <p>Position your brand as the go-to expert in your industry with consistent, high-quality content.</p>
           </div>
-          <div class="value-card fade-up">
-            <div class="emoji">??</div>
+          <div class="value-card value-card-purple fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            </div>
             <h3>Targeted Traffic</h3>
-            <p>Attract visitors who are actively looking for what you offer. Higher intent equals higher conversions.
-            </p>
+            <p>Attract visitors who are actively looking for what you offer. Higher intent equals higher conversions.</p>
           </div>
-          <div class="value-card fade-up">
-            <div class="emoji">??</div>
+          <div class="value-card value-card-amber fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
             <h3>Thought Leadership</h3>
             <p>Establish your unique brand voice and expertise. Become the authority your industry turns to.</p>
           </div>

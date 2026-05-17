@@ -53,6 +53,14 @@
     gtag('js', new Date());
     gtag('config', 'G-LQKGQXKE92');
   </script>
+  <style>
+    .feature-card h3 {
+      text-align: center;
+    }
+    .feature-card .feature-icon {
+      margin: 0 auto 1.5rem;
+    }
+  </style>
 </head>
 
 <body>
@@ -200,7 +208,7 @@
         <div class="section-header">
           <h2 class="section-title fade-up">Key <span class="highlight">Features</span></h2>
         </div>
-        <div class="feature-grid">
+        <div class="feature-grid" style="max-width: 66rem; margin: 0 auto;">
           <div class="feature-card fade-up">
             <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2">
@@ -272,24 +280,60 @@
         <div class="section-header">
           <h2 class="section-title fade-up">The <span class="highlight">Value</span> You Get</h2>
         </div>
+                <style>
+          .value-card-blue { border-top: 3px solid #3b82f6; background: linear-gradient(to bottom, rgba(59,130,246,0.05), transparent); }
+          .value-card-blue:hover { box-shadow: 0 10px 30px -10px rgba(59,130,246,0.3); border-color: #3b82f6; transform: translateY(-5px); }
+          .value-card-blue .icon-wrapper { background: rgba(59,130,246,0.1); color: #3b82f6; }
+
+          .value-card-emerald { border-top: 3px solid #10b981; background: linear-gradient(to bottom, rgba(16,185,129,0.05), transparent); }
+          .value-card-emerald:hover { box-shadow: 0 10px 30px -10px rgba(16,185,129,0.3); border-color: #10b981; transform: translateY(-5px); }
+          .value-card-emerald .icon-wrapper { background: rgba(16,185,129,0.1); color: #10b981; }
+
+          .value-card-purple { border-top: 3px solid #8b5cf6; background: linear-gradient(to bottom, rgba(139,92,246,0.05), transparent); }
+          .value-card-purple:hover { box-shadow: 0 10px 30px -10px rgba(139,92,246,0.3); border-color: #8b5cf6; transform: translateY(-5px); }
+          .value-card-purple .icon-wrapper { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+
+          .value-card-amber { border-top: 3px solid #f59e0b; background: linear-gradient(to bottom, rgba(245,158,11,0.05), transparent); }
+          .value-card-amber:hover { box-shadow: 0 10px 30px -10px rgba(245,158,11,0.3); border-color: #f59e0b; transform: translateY(-5px); }
+          .value-card-amber .icon-wrapper { background: rgba(245,158,11,0.1); color: #f59e0b; }
+
+          .value-card .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+          }
+        </style>
         <div class="value-grid" style="max-width:56rem;margin:0 auto;">
-          <div class="value-card fade-up">
-            <div class="emoji">??</div>
+          <div class="value-card value-card-blue fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            </div>
             <h3>Premium Design</h3>
             <p>Custom-crafted designs that make a stunning first impression and build trust instantly.</p>
           </div>
-          <div class="value-card fade-up">
-            <div class="emoji">??</div>
+          <div class="value-card value-card-emerald fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            </div>
             <h3>Higher Conversions</h3>
             <p>Strategic design increases conversion rates significantly compared to template websites.</p>
           </div>
-          <div class="value-card fade-up">
-            <div class="emoji">??</div>
+          <div class="value-card value-card-purple fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </div>
             <h3>Competitive Edge</h3>
             <p>Stand out from competitors with a website that looks and performs like an industry leader.</p>
           </div>
-          <div class="value-card fade-up">
-            <div class="emoji">???</div>
+          <div class="value-card value-card-amber fade-up">
+            <div class="icon-wrapper">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
             <h3>Fully Managed</h3>
             <p>We handle design, development, hosting, and ongoing maintenance. Zero technical hassle for you.</p>
           </div>
