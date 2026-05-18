@@ -51,6 +51,28 @@ const blogPosts = [
     image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800",
     featured: false,
     slug: "#"
+  },
+  {
+    id: 5,
+    title: "The Best AI Chat Agent Creators in Ghana",
+    excerpt: "Looking for the best AI chat agent creators in Ghana? Here is a practical guide to the top providers building smart chat agents for Ghanaian businesses.",
+    category: "Ghana AI",
+    author: "DK Benjamin",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&q=80&w=800",
+    featured: false,
+    slug: "/blog/best-ai-chat-agents-ghana"
+  },
+  {
+    id: 6,
+    title: "The Best AI Receptionist Service Providers in Ghana",
+    excerpt: "Discover the best AI receptionist service providers in Ghana — reliable, affordable virtual receptionist solutions built for Ghanaian businesses.",
+    category: "Ghana AI",
+    author: "DK Benjamin",
+    readTime: "6 min read",
+    image: "https://images.unsplash.com/photo-1596524430615-b46475ddff6e?auto=format&fit=crop&q=80&w=800",
+    featured: false,
+    slug: "/blog/best-ai-receptionist-ghana"
   }
 ];
 
@@ -164,7 +186,7 @@ const BlogPage = () => {
           transition={{ delay: 0.4 }}
           className="flex flex-wrap gap-4 mb-12 justify-center"
         >
-          {['All', 'AI Strategy', 'Automation', 'SEO', 'Voice AI', 'Case Studies'].map((cat) => (
+          {['All', 'AI Strategy', 'Automation', 'SEO', 'Voice AI', 'Ghana AI', 'Case Studies'].map((cat) => (
             <motion.button
               key={cat}
               whileHover={{ scale: 1.05 }}

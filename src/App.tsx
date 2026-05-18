@@ -18,6 +18,8 @@ import RefundPolicy from "@/pages/legal/RefundPolicy";
 import GetQuote from "@/pages/GetQuote";
 import GetStarted from "@/pages/GetStarted";
 import AIRevolution2026 from "@/pages/blog/AIRevolution2026";
+import BestAIChatAgentsGhana from "@/pages/blog/BestAIChatAgentsGhana";
+import BestAIReceptionistGhana from "@/pages/blog/BestAIReceptionistGhana";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
         <Route path="/services/social-media-growth" element={<SocialMediaGrowth />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/ai-revolution-2026" element={<AIRevolution2026 />} />
+        <Route path="/blog/best-ai-chat-agents-ghana" element={<BestAIChatAgentsGhana />} />
+        <Route path="/blog/best-ai-receptionist-ghana" element={<BestAIReceptionistGhana />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
