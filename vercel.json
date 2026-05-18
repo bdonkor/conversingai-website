@@ -55,6 +55,8 @@
     { "source": "/history-of-chatbots/", "destination": "/blog-post-history-of-chatbots", "permanent": true },
     { "source": "/what-are-ai-chat-and-voice-agents", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
     { "source": "/what-are-ai-chat-and-voice-agents/", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
+    { "source": "/what-are-ai-chat-agents-and-ai-voice-agents", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
+    { "source": "/what-are-ai-chat-agents-and-ai-voice-agents/", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
     { "source": "/what-is-ai-prompt-engineering", "destination": "/blog", "permanent": true },
     { "source": "/what-is-ai-prompt-engineering/", "destination": "/blog", "permanent": true },
     { "source": "/optimize-ai-prompts-with-gina", "destination": "/blog", "permanent": true },
