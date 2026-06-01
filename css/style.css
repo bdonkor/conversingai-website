@@ -414,7 +414,7 @@ button {
     height: 2.75rem;
   }
   .logo-link {
-    transform: translateY(5px);
+    transform: translateY(12px);
     gap: 0.5rem;
   }
   .logo-text {
