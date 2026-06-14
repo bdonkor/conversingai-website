@@ -343,6 +343,70 @@ button {
 /* ============================================
    HEADER / NAVBAR
    ============================================ */
+/* AD BELT (scrolling marquee above header) */
+.ad-belt {
+  position: relative;
+  z-index: 60;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--blue-700), var(--blue-600), var(--blue-500));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  white-space: nowrap;
+}
+
+.ad-belt-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  /* track holds two identical sets, so -50% lands seamlessly */
+  animation: ad-belt-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+.ad-belt:hover .ad-belt-track {
+  animation-play-state: paused;
+}
+
+.ad-belt-item {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.ad-belt-item a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 700;
+}
+
+.ad-belt-item a:hover {
+  opacity: 0.85;
+}
+
+.ad-belt-sep {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 700;
+}
+
+@keyframes ad-belt-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ad-belt-track {
+    animation: none;
+  }
+}
+
 .header {
   position: sticky;
   top: 0;
