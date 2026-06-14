@@ -424,12 +424,6 @@ button {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ad-belt-track {
-    animation: none;
-  }
-}
-
 .header {
   position: sticky;
   top: 0;
