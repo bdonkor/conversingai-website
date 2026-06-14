@@ -355,17 +355,26 @@ button {
 }
 
 .ad-belt-track {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: nowrap;
+  width: -webkit-max-content;
+  width: max-content;
   align-items: center;
   gap: 0.75rem;
   padding: 0.55rem 0;
   /* track holds two identical sets, so -50% lands seamlessly */
+  -webkit-animation: ad-belt-scroll 35s linear infinite;
   animation: ad-belt-scroll 35s linear infinite;
   will-change: transform;
 }
 
-.ad-belt:hover .ad-belt-track {
-  animation-play-state: paused;
+/* Pause only on devices with a real pointer — avoids sticky :hover
+   freezing the marquee permanently on touch screens. */
+@media (hover: hover) and (pointer: fine) {
+  .ad-belt:hover .ad-belt-track {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
 }
 
 .ad-belt-item {
@@ -391,12 +400,26 @@ button {
   font-weight: 700;
 }
 
-@keyframes ad-belt-scroll {
+@-webkit-keyframes ad-belt-scroll {
   from {
+    -webkit-transform: translateX(0);
     transform: translateX(0);
   }
 
   to {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ad-belt-scroll {
+  from {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+
+  to {
+    -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
 }
