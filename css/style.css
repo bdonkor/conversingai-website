@@ -377,22 +377,35 @@ button {
   }
 }
 
+/* Whole message is a link, so the entire strip is tappable */
 .ad-belt-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.01em;
+  text-decoration: none;
 }
 
-.ad-belt-item a {
-  color: #fff;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  font-weight: 700;
+.ad-belt-item:hover {
+  opacity: 0.9;
 }
 
-.ad-belt-item a:hover {
-  opacity: 0.85;
+/* CTA pill so users immediately spot where to click */
+.ad-belt-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ad-belt-item:hover .ad-belt-cta {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .ad-belt-sep {
