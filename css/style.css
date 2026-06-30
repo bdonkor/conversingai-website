@@ -1030,7 +1030,7 @@ button {
    SERVICES SECTION
    ============================================ */
 .section {
-  padding: 5rem 0;
+  padding: 2.5rem 0;
 }
 
 @media (max-width: 768px) {
@@ -1970,7 +1970,7 @@ p, .hero-subtitle { font-size: clamp(1rem, 2vw, 1.125rem); }
 
 /* 5. Mobile Layout Refinements */
 @media (max-width: 768px) {
-  .section { padding: 4rem 0; }
+  .section { padding: 2.5rem 0; }
   .hero { padding: 1rem 1rem 4rem; }
   .container { padding: 0 1.25rem; }
   
