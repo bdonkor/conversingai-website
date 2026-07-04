@@ -11,7 +11,7 @@ function toggleMultiService(sel) {
 
 /* Collect checked multi-service values */
 function getMultiServices() {
-  const ids = ['ms-chat', 'ms-website', 'ms-blog', 'ms-social'];
+  const ids = ['ms-chat', 'ms-blog', 'ms-social'];
   return ids
     .map(id => document.getElementById(id))
     .filter(el => el && el.checked)
