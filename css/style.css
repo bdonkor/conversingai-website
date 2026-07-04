@@ -845,6 +845,14 @@ button {
   word-break: break-word;
 }
 
+/* Hero headline: mobile-only line break after "AI Automation" */
+.hero-mobile-br { display: none; }
+
+@media (max-width: 640px) {
+  .hero-mobile-br { display: block; }
+  .hero-title { text-align: center; }
+}
+
 /* ---------- SERVICE HERO REFINEMENTS ---------- */
 .service-hero-v2 {
   position: relative;
