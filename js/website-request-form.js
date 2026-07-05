@@ -118,7 +118,8 @@
     data.append('Has Hosting', radioVal('hasHosting'));
     data.append('Has Logo / Brand', radioVal('hasLogo'));
     data.append('Has Content Ready', radioVal('hasContent'));
-    data.append('File Link', val('wr-fileLinks') || '—');
+    data.append('Company Profile Link', val('wr-fileLinks') || '—');
+    data.append('Company Profile (pasted)', val('wr-companyProfile') || '—');
     data.append('Additional Info', val('wr-additionalInfo') || '—');
     data.append('Disclaimer Agreed', 'Yes');
 
