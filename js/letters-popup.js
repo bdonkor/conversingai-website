@@ -2,6 +2,10 @@
 (function () {
   'use strict';
 
+  // Popup master switch — set to true to bring the popup back.
+  var ENABLED = false;
+  if (!ENABLED) return;
+
   var KEY = 'cai_letters_popup_dismissed';
   try { if (localStorage.getItem(KEY)) return; } catch (e) {}
 
