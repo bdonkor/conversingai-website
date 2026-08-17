@@ -9,7 +9,8 @@
       "Open the app. Does everything load without errors, and can you read all the text clearly?",
       "If you're asked to set up your shop (shop name, currency), can you finish that in under a minute without getting stuck?",
       "Click stock and Add 5 different stock items with large quantities you want to sell. Example: Millicent rice 50kg, Blue Band Margarine small size, Tin tomatoes medium Size, etc. Can you see them listed correctly?",
-      "Click sell and record 2 different sales of the stock items you listed. Did it work well.",
+      "Click Sale and record 2 different sales of the stock items you listed. Did it work well.",
+      "Click Expense and record any expense. Did it work?",
       "Look at the Home screen. Can you tell, at a glance, what today's sales and expenses are?"
     ]},
     { id: 'partB', letter: 'B', title: 'Recording a Sale', intro: "Use real items and prices from your own shop if you can.", items: [
