@@ -257,7 +257,7 @@
               high-performance websites engineered to capture leads, establish authority, and drive measurable business
               growth in the AI era.</p>
             <div class="hero-fade-in wd-proof" style="animation-delay: 0.3s;">
-              <span class="wd-proof-item"><strong>5</strong> live platforms built &amp; running</span>
+              <span class="wd-proof-item"><strong>6</strong> live platforms built &amp; running</span>
               <span class="wd-proof-item"><strong>Fixed</strong> written quotes, no meter</span>
               <span class="wd-proof-item"><strong>You</strong> own the code and domain</span>
             </div>
@@ -324,6 +324,10 @@
           .pf-link--muted { color:var(--slate-500); font-weight:600; cursor:default; }
           .pf-link--muted:hover { color:var(--slate-500); gap:0.3rem; }
           .pf-card { position:relative; }
+          .pf-grid--wrap { display:flex; flex-wrap:wrap; justify-content:center; gap:1.75rem; }
+          .pf-grid--wrap > .pf-card { flex:0 1 calc(33.333% - 1.167rem); min-width:min(330px,100%); }
+          @media (max-width:1100px) { .pf-grid--wrap > .pf-card { flex-basis:calc(50% - 0.875rem); } }
+          @media (max-width:720px)  { .pf-grid--wrap > .pf-card { flex-basis:100%; } }
           .pf-badge-client { position:absolute; top:0.75rem; right:0.75rem; z-index:3; background:rgba(34,197,94,0.14);
             border:1px solid rgba(34,197,94,0.4); color:#4ade80; font-size:0.63rem; font-weight:800; letter-spacing:0.08em;
             text-transform:uppercase; padding:0.25rem 0.55rem; border-radius:999px; pointer-events:none; }
@@ -415,10 +419,10 @@
             <div class="pf-group-head fade-up">
               <h3 class="pf-group-title">Apps &amp; Platforms</h3>
               <span class="pf-group-rule"></span>
-              <span class="pf-group-count">3 in production</span>
+              <span class="pf-group-count">4 in production</span>
             </div>
             <p class="pf-group-sub fade-up">Full software behind the front door, with sign-ins, payments, dashboards and automation doing the work.</p>
-            <div class="pf-grid">
+            <div class="pf-grid pf-grid--wrap">
           <article class="pf-card fade-up">
             <div class="pf-chrome">
               <span class="pf-dot" style="background:#ef4444;"></span><span class="pf-dot" style="background:#f59e0b;"></span><span class="pf-dot" style="background:#22c55e;"></span>
@@ -482,6 +486,29 @@
               <div class="pf-foot">
                 <span class="pf-live"><span class="pf-pulse"></span>Live</span>
                 <a class="pf-link" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pf-card fade-up">
+            <div class="pf-chrome">
+              <span class="pf-dot" style="background:#ef4444;"></span><span class="pf-dot" style="background:#f59e0b;"></span><span class="pf-dot" style="background:#22c55e;"></span>
+              <span class="pf-url">app.yourcountant.com</span>
+            </div>
+            <div class="pf-visual">
+              <div class="pf-mark">Yourcountant</div>
+              <div class="pf-tag">Bookkeeping App</div>
+            </div>
+            <div class="pf-body">
+              <p class="pf-desc">Shop bookkeeping for traders who run the whole business from a handset. It is the shop&rsquo;s money notebook, not an accountant&rsquo;s ledger, and it keeps working when the network does not.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Sales, expenses, stock and debts recorded in seconds on a phone.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Works fully offline, then syncs to the cloud the moment signal returns.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Built for shop owners, with no bookkeeping vocabulary to learn first.</span></li>
+              </ul>
+              <div class="pf-foot">
+                <span class="pf-live"><span class="pf-pulse"></span>Live</span>
+                <a class="pf-link" href="https://app.yourcountant.com/" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
               </div>
             </div>
           </article>
