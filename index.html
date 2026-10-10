@@ -16,7 +16,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="./css/style.css?v=20260704">
+  <link rel="stylesheet" href="./css/style.css?v=20261010">
+
+  <style>
+    /* Hero headline capped at 60px (was 72px). Still fluid below that;
+       the 640px breakpoint rule in style.css keeps phones at 36px. */
+    .hero-title { font-size: clamp(2.25rem, 8vw, 3.75rem); }
+
+    /* Stats cards: deep milky-white surface. Text flipped to dark so it
+       stays readable against the light background. */
+    .stat-card {
+      background: linear-gradient(180deg, #faf8f3 0%, #eee9de 100%);
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.55);
+    }
+    .stat-card:hover {
+      background: linear-gradient(180deg, #fffdf8 0%, #f4efe4 100%);
+      border-color: var(--blue-500);
+      box-shadow: 0 18px 42px -14px rgba(0, 0, 0, 0.6), 0 0 22px rgba(59, 130, 246, 0.2);
+    }
+    .stat-number { color: #0f172a; margin-bottom: 0.3rem; }
+    .stat-label  { color: #4b5563; font-weight: 600; }
+
+    /* Shorter cards: trim the vertical padding that was driving the height. */
+    .stat-card { padding: 1.125rem 1rem; }
+    @media (min-width: 768px) {
+      .stat-card { padding: 1.375rem 2rem; }
+    }
+  </style>
   <link rel="canonical" href="https://conversingai.com/">
 
   <!-- Open Graph / Facebook -->
@@ -237,12 +264,10 @@
               <span class="rating-number">4.9/5 Rating</span>
             </div>
           </div>
+
         </div>
 
-        <div class="hero-fade-in" style="position: relative; margin-top: 1.5rem; width: 100%; max-width: 1000px; animation-delay: 0.5s;">
-          <div class="hero-image-glow"></div>
-          <img decoding="async" loading="lazy" src="./images/conversing AI - AI automation.png" alt="Conversing AI Automation Dashboard" class="hero-featured-image">
-        </div>
+        <div class="hero-fade-in" aria-hidden="true" style="animation-delay:0.45s; width:100vw; flex-shrink:0; height:3px; background:linear-gradient(90deg, rgba(37,99,235,0.5) 0%, rgba(96,165,250,0.95) 50%, rgba(37,99,235,0.5) 100%); box-shadow:0 0 18px rgba(59,130,246,0.55);"></div>
       </div>
     </section>
 
