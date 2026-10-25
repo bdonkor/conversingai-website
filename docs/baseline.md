@@ -99,3 +99,65 @@ Agent status on the eight portfolio sites, verified in headless Chrome on 25 Oct
 RAB Energy's HTML also contains a commented-out ElevenLabs voice widget marked "temporarily disabled", separate from its working live chat.
 
 **This is the one place the brief and the evidence disagree.** The brief states four sites run a live agent, naming Yourcountant among them. Three are confirmed. Yourcountant is carried as `hasAiAgent: true` in `data/portfolio.json` on the owner's confirmation, with a TODO beside it, because the owner is the authority on their own product and an agent could be behind a login. It is listed first in `OWNER_INPUTS.md`.
+
+---
+
+# After the rebuild
+
+Measured **25 October 2026**, after Phases 0 to 5.
+
+## Lighthouse, homepage, desktop preset
+
+The before run is real; it completed during Phase 0 against the live site.
+
+| Category | Before | After |
+|---|---|---|
+| Performance | 82 | re-run after deploy |
+| Accessibility | 96 | re-run after deploy |
+| Best Practices | 100 | re-run after deploy |
+| SEO | 92 | re-run after deploy |
+
+Before-run detail: largest contentful paint 1.8 s, first contentful paint 1.8 s, total blocking time 40 ms, cumulative layout shift 0.029, speed index 2.2 s.
+
+The after run has to happen against the deployed site, because Lighthouse scores a real server, not local files. The command is in `launch-checklist.md`. Local measurements that do not need a server are below and are directly comparable.
+
+## Image hygiene, before and after
+
+| Page | Images missing width/height, before | After |
+|---|---|---|
+| Home | 4 of 4 | 0 of 14 |
+| Website design | 3 of 3 | 0 of 11 |
+| Pricing | n/a, page did not exist | 0 of 2 |
+| Niche pages | n/a, did not exist | 0 of 5 |
+
+118 images across 50 pages gained intrinsic dimensions, which is what removes layout shift as each one loads. Alt text was already complete and still is.
+
+## Structural, before and after
+
+| Measure | Before | After |
+|---|---|---|
+| HTML pages | 42 | 53 |
+| Canonicals not matching the served URL | 30 | 0 |
+| Footer social icons pointing at `#` | 124 | 0 |
+| Non-trigger placeholder links | 126 | 0 |
+| Unsourced statistics on the site | 23 occurrences | 0 |
+| Invented testimonials | 8 cards, 4 people | 0 |
+| JSON-LD blocks | 42, Organization only | 131 across 6 types |
+| Sitemap URLs | 34 | 46 |
+| Legacy URL redirects | 55 | 74 |
+| Portfolio items shown | 7, hard-coded in one page | 8, from one data file |
+| Pages claiming an AI agent falsely | 1 claim covering 4 sites | 0 |
+
+## Screenshot payload
+
+Eight real site screenshots replaced stock imagery. Captured at 1280 by 800, converted to WebP at 800px wide.
+
+| | Size |
+|---|---|
+| PNG originals | 4546 KB |
+| WebP shipped | 248 KB |
+| Saving | 95% |
+
+## What still cannot be measured
+
+The live AI demo, booking and prices are placeholders until the owner supplies a provider, a scheduler link and numbers. Those gaps are visible in `OWNER_INPUTS.md` and the site handles each by hiding the element rather than showing something broken.
