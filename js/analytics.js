@@ -174,6 +174,19 @@
     });
   }
 
+  // Fetch the GA4 tag only once the browser is idle, so 200ms of
+  // third-party script stays off the critical rendering path.
+  function loadGaTag() {
+    if (!window.__GA_ID || document.getElementById('ga-tag')) return;
+    var s = document.createElement('script');
+    s.id = 'ga-tag';
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.__GA_ID;
+    document.head.appendChild(s);
+  }
+  if ('requestIdleCallback' in window) requestIdleCallback(loadGaTag, { timeout: 4000 });
+  else setTimeout(loadGaTag, 2500);
+
   document.addEventListener('DOMContentLoaded', function () {
     attachUtmsToForms();
     wireEvents();

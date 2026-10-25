@@ -12,12 +12,19 @@
   <link rel="canonical" href="https://conversingai.com/yourcountant-staff-test">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQKGQXKE92"></script>
+  <!-- GA4 bootstrap. The tag itself is fetched on idle by js/analytics.js?v=20261026,
+       which keeps 200ms of third-party script off the critical path.
+       Consent defaults to denied until the visitor chooses. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied', ad_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+    });
     gtag('config', 'G-LQKGQXKE92');
+    window.__GA_ID = 'G-LQKGQXKE92';
   </script>
 
   <style>
@@ -572,6 +579,6 @@
 
 <script src="./js/yourcountant-staff-test.js?v=20260817d" defer></script>
   <script src="./js/site-config.js?v=20261025" defer></script>
-  <script src="./js/analytics.js?v=20261025" defer></script>
+  <script src="./js/analytics.js?v=20261026" defer></script>
 </body>
 </html>

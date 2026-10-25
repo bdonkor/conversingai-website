@@ -252,3 +252,4 @@
 .consent-btn--ghost { background: transparent; color: var(--slate-300); border-color: rgba(255, 255, 255, 0.2); }
 .consent-btn:hover { filter: brightness(1.08); }
 @media (max-width: 768px) { .consent-banner { bottom: 4.9rem; } }
+.step-item h3.step-h { font-size: 1.05rem; font-weight: 700; margin: 0 0 0.4rem; color: #fff; }

@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./css/style.css?v=20261010">
   <link rel="stylesheet" href="./css/pages.css">
   <link rel="stylesheet" href="./css/portfolio.css?v=20261025">
-  <link rel="stylesheet" href="./css/home.css?v=20261025">
+  <link rel="stylesheet" href="./css/home.css?v=20261026">
   <link rel="canonical" href="https://conversingai.com/ai-chat-agents/restaurants-hospitality">
 
   <!-- Open Graph / Facebook -->
@@ -32,12 +32,19 @@
   <meta property="twitter:image" content="https://conversingai.com/images/Custom Email Marketing Solutions.jpg">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQKGQXKE92"></script>
+  <!-- GA4 bootstrap. The tag itself is fetched on idle by js/analytics.js?v=20261026,
+       which keeps 200ms of third-party script off the critical path.
+       Consent defaults to denied until the visitor chooses. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied', ad_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+    });
     gtag('config', 'G-LQKGQXKE92');
+    window.__GA_ID = 'G-LQKGQXKE92';
   </script>
   <style>
     .feature-card h3 {
@@ -131,8 +138,8 @@
   <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
-      <a href="./" class="logo-link" aria-label="Go to home page">
-        <img src="./images/conversing AI official logo.png" alt="Conversing AI Logo" class="logo-img" fetchpriority="high" width="335" height="167">
+      <a href="./" class="logo-link" aria-label="Conversing AI, go to home page">
+        <img src="./images/conversing-ai-logo.webp" alt="Conversing AI Logo" class="logo-img" fetchpriority="high" width="335" height="167">
         <span class="logo-text">Conversing AI</span>
       </a>
 
@@ -392,8 +399,8 @@
     <div class="container">
       <div class="footer-grid">
         <div class="fade-up">
-          <a href="./" class="logo-link" aria-label="Go to home page" style="margin-bottom:1.5rem;">
-            <img fetchpriority="high" loading="lazy" decoding="async" src="./images/conversing AI official logo.png" alt="Conversing AI Logo" style="height:3rem;border-radius:0.125rem;object-fit:contain;" width="335" height="167">
+          <a href="./" class="logo-link" aria-label="Conversing AI, go to home page" style="margin-bottom:1.5rem;">
+            <img fetchpriority="high" loading="lazy" decoding="async" src="./images/conversing-ai-logo.webp" alt="Conversing AI Logo" style="height:3rem;border-radius:0.125rem;object-fit:contain;" width="335" height="167">
             <span class="logo-text" style="font-size:1.5rem;letter-spacing:-0.05em;">Conversing AI</span>
           </a>
           <p class="footer-brand-text">Done-for-you AI, automation &amp; digital growth services. We design, build, deploy, and manage AI systems end-to-end.</p>
@@ -471,7 +478,7 @@
 
   <script src="./js/letters-popup.js?v=20260717off" defer></script>
   <script src="./js/site-config.js?v=20261025" defer></script>
-  <script src="./js/analytics.js?v=20261025" defer></script>
+  <script src="./js/analytics.js?v=20261026" defer></script>
 </body>
 
 </html>

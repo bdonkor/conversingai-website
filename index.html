@@ -61,12 +61,19 @@
   <meta property="twitter:image" content="https://conversingai.com/images/conversing-ai-logo.png">
 
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQKGQXKE92"></script>
+  <!-- GA4 bootstrap. The tag itself is fetched on idle by js/analytics.js?v=20261026,
+       which keeps 200ms of third-party script off the critical path.
+       Consent defaults to denied until the visitor chooses. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied', ad_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+    });
     gtag('config', 'G-LQKGQXKE92');
+    window.__GA_ID = 'G-LQKGQXKE92';
   </script>
   
   <!-- BUILD:schema -->
@@ -114,8 +121,8 @@
   <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
-      <a href="./" class="logo-link" aria-label="Go to home page">
-        <img src="./images/conversing AI official logo.png" alt="Conversing AI Logo" class="logo-img" fetchpriority="high" width="335" height="167">
+      <a href="./" class="logo-link" aria-label="Conversing AI, go to home page">
+        <img src="./images/conversing-ai-logo.webp" alt="Conversing AI Logo" class="logo-img" fetchpriority="high" width="335" height="167">
         <span class="logo-text">Conversing AI</span>
       </a>
 
@@ -224,7 +231,7 @@
   <main>
     <!-- HERO SECTION -->
     <section class="hero">
-      <video autoplay muted loop playsinline preload="none" poster="./images/hero-bg.png" class="hero-video">
+      <video autoplay muted loop playsinline preload="none" poster="./images/hero-bg.webp" class="hero-video">
         <source src="./images/hero-video-v2.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
@@ -801,10 +808,10 @@
         </div>
 
         <div class="steps-grid">
-          <div class="step-item fade-up"><span class="step-day">Day 1</span><h4>Strategy call</h4><p>We learn the business, the customers and what a good enquiry looks like for you. You get a fixed written quote.</p></div>
-          <div class="step-item fade-up"><span class="step-day">Day 3</span><h4>Design &amp; agent training</h4><p>The design takes shape while we train the agent on your services, prices and real customer questions.</p></div>
-          <div class="step-item fade-up"><span class="step-day">Day 10</span><h4>You review</h4><p>You see the real site and talk to your own agent. We change what you want changed.</p></div>
-          <div class="step-item fade-up"><span class="step-day">Day 14</span><h4>Launch</h4><p>Site and agent go live together. Hosting, backups, security and monitoring are ours from then on.</p></div>
+          <div class="step-item fade-up"><span class="step-day">Day 1</span><h3 class="step-h">Strategy call</h3><p>We learn the business, the customers and what a good enquiry looks like for you. You get a fixed written quote.</p></div>
+          <div class="step-item fade-up"><span class="step-day">Day 3</span><h3 class="step-h">Design &amp; agent training</h3><p>The design takes shape while we train the agent on your services, prices and real customer questions.</p></div>
+          <div class="step-item fade-up"><span class="step-day">Day 10</span><h3 class="step-h">You review</h3><p>You see the real site and talk to your own agent. We change what you want changed.</p></div>
+          <div class="step-item fade-up"><span class="step-day">Day 14</span><h3 class="step-h">Launch</h3><p>Site and agent go live together. Hosting, backups, security and monitoring are ours from then on.</p></div>
         </div>
       </div>
     </section>
@@ -896,8 +903,8 @@
     <div class="container">
       <div class="footer-grid">
         <div class="fade-up">
-          <a href="./" class="logo-link" aria-label="Go to home page">
-            <img fetchpriority="high" loading="lazy" decoding="async" src="./images/conversing AI official logo.png" alt="Conversing AI Logo" width="335" height="167">
+          <a href="./" class="logo-link" aria-label="Conversing AI, go to home page">
+            <img fetchpriority="high" loading="lazy" decoding="async" src="./images/conversing-ai-logo.webp" alt="Conversing AI Logo" width="335" height="167">
             <span class="logo-text">Conversing AI</span>
           </a>
           <p class="footer-brand-text">Done-for-you AI agents and automation systems that grow your business 24/7. We design, build, deploy, and manage your AI-powered future.</p>
@@ -997,7 +1004,7 @@
     <span>Chat with our team</span>
   </a>
 
-  <script src="./js/analytics.js?v=20261025" defer></script>
+  <script src="./js/analytics.js?v=20261026" defer></script>
 </body>
 
 </html>
