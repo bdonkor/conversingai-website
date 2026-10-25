@@ -214,12 +214,20 @@ export async function sendLeadEmail(d) {
   const from = process.env.LEAD_EMAIL_FROM || SMTP_USER;
   const name = process.env.LEAD_EMAIL_NAME || 'Conversing AI Demo';
 
+  /* If the Bcc is the same mailbox as the recipient, drop it. Otherwise one
+   * send lands twice in the same inbox, which looks like the agent emailed
+   * the visitor twice and undermines trust in the demo. */
+  const bccRaw = (process.env.LEAD_EMAIL_BCC || '').trim();
+  const bcc = bccRaw && bccRaw.toLowerCase() !== String(d.email).trim().toLowerCase()
+    ? bccRaw
+    : undefined;
+
   try {
     const info = await transport().sendMail({
       from: `"${name}" <${from}>`,
       to: d.email,
-      bcc: process.env.LEAD_EMAIL_BCC || undefined,
-      replyTo: process.env.LEAD_EMAIL_BCC || from,
+      bcc,
+      replyTo: bccRaw || from,
       subject: `HOT LEAD: New Website Visitor Enquiry – ${d.website || 'your website'}`,
       text: buildText(d),
       html: buildHtml(d),
