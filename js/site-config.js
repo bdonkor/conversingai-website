@@ -169,6 +169,46 @@
     });
   }
 
+  /* Maintenance notice. Deliberately a banner, not a blocked site: the
+   * portfolio stays visible to prospects and nothing is deindexed while
+   * the owner keeps building. Dismissed state is remembered per browser. */
+  function applyMaintenance(cfg) {
+    var m = cfg.maintenance || {};
+    if (!m.enabled || !m.message) return;
+
+    var KEY = 'cai_maint_dismissed_v1';
+    try {
+      if (m.dismissible && localStorage.getItem(KEY) === m.message) return;
+    } catch (e) {}
+
+    var bar = document.createElement('div');
+    bar.className = 'maint-bar';
+    bar.setAttribute('role', 'status');
+
+    var text = '<span class="maint-dot" aria-hidden="true"></span><span class="maint-msg">' +
+      String(m.message).replace(/</g, '&lt;') + '</span>';
+    if (m.linkText && m.linkHref) {
+      text += ' <a class="maint-link" href="' + String(m.linkHref).replace(/"/g, '&quot;') + '">' +
+        String(m.linkText).replace(/</g, '&lt;') + ' &rarr;</a>';
+    }
+    if (m.dismissible) {
+      text += '<button type="button" class="maint-close" aria-label="Dismiss this notice">&times;</button>';
+    }
+    bar.innerHTML = text;
+
+    document.body.insertBefore(bar, document.body.firstChild);
+    document.body.classList.add('has-maint-bar');
+
+    var btn = bar.querySelector('.maint-close');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        bar.remove();
+        document.body.classList.remove('has-maint-bar');
+        try { localStorage.setItem(KEY, m.message); } catch (e) {}
+      });
+    }
+  }
+
   setYear();
 
   fetch(CONFIG_URL, { cache: 'no-cache' })
@@ -176,6 +216,7 @@
     .then(function (cfg) {
       if (!cfg) return;
       window.SITE_CONFIG = cfg;
+      applyMaintenance(cfg);
       applySocials(cfg);
       applyContact(cfg);
       applyChannels(cfg);
