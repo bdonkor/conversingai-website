@@ -1,0 +1,20 @@
+{
+  "_comment": "REAL testimonials only. Every entry here is rendered publicly on the site. Never add an entry that is not a real quote from a real, consenting client. While this list is empty the site shows a 'founding client' block instead, which is honest rather than filled with invented praise.",
+
+  "_requiredFields": "name, role, company, quote",
+  "_optionalFields": "photo (path under images/testimonials/), url (company or LinkedIn), project (which site we built for them)",
+
+  "_example": {
+    "name": "Full Name",
+    "role": "Managing Director",
+    "company": "Company Ltd",
+    "quote": "Their exact words, unedited, in quotation marks as they gave them.",
+    "photo": "images/testimonials/filename.webp",
+    "url": "https://example.com",
+    "project": "hydrocom"
+  },
+
+  "_todo": "TODO(owner): add real testimonials with written permission. Delete nothing above; just append objects to the items array below.",
+
+  "items": []
+}

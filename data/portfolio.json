@@ -1,0 +1,161 @@
+{
+  "_comment": "Single source of truth for the websites and web apps portfolio. Rendered by js/portfolio.js on the homepage and /website-design. hasAiAgent must be TRUE only where a live agent genuinely exists on the public site.",
+  "_verification": {
+    "checkedOn": "2026-10-25",
+    "method": "Headless Chrome visit, 8s wait, looked for a fixed-position chat launcher.",
+    "found": {
+      "anystudents.com": "Ask Sofia - Student advisor",
+      "mockexams.anystudents.com": "Open help chat with Ama",
+      "rabenergysolutions.com": "Open RAB Live Chat",
+      "yourcountant.com": "NO launcher found on the marketing site or app.yourcountant.com",
+      "hydrocomlimited.com": "WhatsApp link only (human, not an AI agent)"
+    },
+    "ownerTodo": "Yourcountant is marked hasAiAgent:true because the owner confirmed it in CONVERSION_PLAN.md, but the automated check could not find it. Confirm, or set hasAiAgent to false and change the stat in config/site.json."
+  },
+  "items": [
+    {
+      "id": "anystudents",
+      "name": "AnyStudents",
+      "url": "https://anystudents.com",
+      "displayUrl": "anystudents.com",
+      "category": "website",
+      "niche": "AI learning platform",
+      "label": "own-product",
+      "summary": "An AI tutoring platform used by students around the world. One-on-one interactive tutoring, study guides and mock exams, with a genuinely free daily tier.",
+      "highlights": [
+        "A conversational AI tutor, free for thirty minutes every day.",
+        "Nine core subjects, each with a full study guide and curated resources.",
+        "Mock papers and adaptive practice for WAEC, BECE, JAMB, IGCSE and SAT."
+      ],
+      "screenshot": "images/portfolio/anystudents.webp",
+      "hasAiAgent": true,
+      "agentName": "Sofia",
+      "agentPrompt": "Ask: can you explain photosynthesis for BECE?"
+    },
+    {
+      "id": "mockexams",
+      "name": "MockExams",
+      "url": "https://mockexams.anystudents.com",
+      "displayUrl": "mockexams.anystudents.com",
+      "category": "website",
+      "niche": "Exam practice",
+      "label": "own-product",
+      "summary": "A mock exam generator for Ghanaian candidates sitting BECE and WASSCE. It writes fresh WAEC-standard papers on demand rather than recycling the same question bank every student has already seen.",
+      "highlights": [
+        "Unique papers generated per subject, so practice never goes stale.",
+        "Marking schemes returned instantly, so a student can grade themselves the same evening.",
+        "First exam free, with no card required to start."
+      ],
+      "screenshot": "images/portfolio/mockexams.webp",
+      "hasAiAgent": true,
+      "agentName": "Ama",
+      "agentPrompt": "Ask: how do I generate a BECE maths paper?"
+    },
+    {
+      "id": "yourcountant",
+      "name": "Yourcountant",
+      "url": "https://yourcountant.com/",
+      "displayUrl": "yourcountant.com",
+      "category": "web-app",
+      "niche": "Shop bookkeeping",
+      "label": "own-product",
+      "summary": "Shop bookkeeping for traders who run the whole business from a handset. It is the shop's money notebook, not an accountant's ledger, and it keeps working when the network does not.",
+      "highlights": [
+        "Sales, expenses, stock and debts recorded in seconds on a phone.",
+        "Works fully offline, then syncs to the cloud the moment signal returns.",
+        "Built for shop owners, with no bookkeeping vocabulary to learn first."
+      ],
+      "screenshot": "images/portfolio/yourcountant.webp",
+      "hasAiAgent": true,
+      "agentPrompt": "Ask: does it work offline?",
+      "_todo": "TODO(owner): automated check found no chat launcher on yourcountant.com or app.yourcountant.com. Confirm the agent is live, or set hasAiAgent to false."
+    },
+    {
+      "id": "rab-energy",
+      "name": "RAB Energy Solutions",
+      "url": "https://rabenergysolutions.com",
+      "displayUrl": "rabenergysolutions.com",
+      "category": "website",
+      "niche": "Solar & renewable energy",
+      "label": "client",
+      "summary": "A solar and renewable energy installer based in Takoradi, serving homes and businesses across Ghana with panels, inverters, batteries and backup power.",
+      "highlights": [
+        "Built for a local service business where most visitors arrive on a phone.",
+        "Presents panels, inverters, batteries and backup power for homes and businesses.",
+        "Runs a live chat agent that answers sizing and cost questions around the clock."
+      ],
+      "screenshot": "images/portfolio/rab-energy.webp",
+      "hasAiAgent": true,
+      "agentPrompt": "Ask: what size solar system do I need?",
+      "_todo": "TODO(owner): confirm the client-work label for RAB Energy Solutions."
+    },
+    {
+      "id": "hydrocom",
+      "name": "Hydrocom Limited",
+      "url": "https://www.hydrocomlimited.com/",
+      "displayUrl": "hydrocomlimited.com",
+      "category": "website",
+      "niche": "Engineering & infrastructure",
+      "label": "client",
+      "summary": "A wholly Ghanaian-owned engineering, procurement and construction firm working since 1996. The site had to carry real institutional weight, because its readers decide on contracts worth millions.",
+      "highlights": [
+        "Four service sectors presented clearly: water supply, energy, roads and buildings, and sanitation.",
+        "A project record front and centre, including the Karaga and Tsiame water supply schemes.",
+        "Written for an audience of funders and agencies, from the World Bank and DANIDA to UNDP."
+      ],
+      "screenshot": "images/portfolio/hydrocom.webp",
+      "hasAiAgent": false
+    },
+    {
+      "id": "schoolspec",
+      "name": "SchoolSpec",
+      "url": "https://schoolspec.com",
+      "displayUrl": "schoolspec.com",
+      "category": "web-app",
+      "niche": "School management",
+      "label": "own-product",
+      "summary": "A complete school management system for basic schools in Ghana, from Creche to JHS 3. Everything the office used to do on paper, finished before the bell.",
+      "highlights": [
+        "Four sign-in roles. Heads, teachers, parents and students each see only what belongs to them.",
+        "Mobile money fee collection with partial payments and automatic SMS receipts to parents.",
+        "Report cards printed under the school's own crest in a single click."
+      ],
+      "screenshot": "images/portfolio/schoolspec.webp",
+      "hasAiAgent": false
+    },
+    {
+      "id": "fabri-manager",
+      "name": "Fabri Manager",
+      "url": "https://fabrimanager.com",
+      "displayUrl": "fabrimanager.com",
+      "category": "web-app",
+      "niche": "Job & invoice management",
+      "label": "own-product",
+      "summary": "Job management for the trades. Every enquiry, job, invoice and payment in one system, built hands-on inside a working fabrication shop rather than a boardroom.",
+      "highlights": [
+        "One straight line from first enquiry to fully paid, with nothing lost in notebooks or chats.",
+        "A client portal that answers the \"how far is my job?\" call before it is made.",
+        "Serves fabricators, carpenters, plumbers, electricians, roofers and fit-out teams."
+      ],
+      "screenshot": "images/portfolio/fabri-manager.webp",
+      "hasAiAgent": false
+    },
+    {
+      "id": "lettersready",
+      "name": "LettersReady",
+      "url": "https://lettersready.conversingai.com",
+      "displayUrl": "lettersready.conversingai.com",
+      "category": "web-app",
+      "niche": "AI correspondence",
+      "label": "own-product",
+      "summary": "A focused AI writing tool for business correspondence. Draft or reply to any professional letter in seconds, in the language your reader expects.",
+      "highlights": [
+        "Professional letters drafted and answered in seconds, not hours.",
+        "Writes in English, French, Spanish and Arabic.",
+        "Secure accounts with saved history, on a modern application stack."
+      ],
+      "screenshot": "images/portfolio/lettersready.webp",
+      "hasAiAgent": false
+    }
+  ]
+}

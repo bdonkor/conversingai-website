@@ -1,0 +1,100 @@
+{
+  "_comment": "Single source of truth for contact details, socials, channel status and headline stats. js/site-config.js reads this and fills the header, footer and channel badges on every page.",
+
+  "business": {
+    "name": "Conversing AI",
+    "tagline": "Websites and web apps, with AI chat agents that answer your customers 24/7",
+    "email": "info@conversingai.com",
+    "phone": "",
+    "phoneDisplay": "",
+    "whatsapp": "",
+    "whatsappMessage": "Hi Conversing AI, I'd like to talk about a website and an AI chat agent.",
+    "hours": "",
+    "timezone": "GMT (Ghana)",
+    "location": "",
+    "registeredIn": ""
+  },
+
+  "_todo_business": "TODO(owner): phone, phoneDisplay, whatsapp (digits only, country code, no +), hours, location/registeredIn. Empty values are hidden automatically, so nothing breaks while they are blank.",
+
+  "social": {
+    "facebook": "https://www.facebook.com/profile.php?id=61590293817209",
+    "linkedin": "",
+    "instagram": "",
+    "x": "",
+    "youtube": "",
+    "tiktok": ""
+  },
+
+  "_todo_social": "TODO(owner): remaining profile URLs. Any left empty is hidden from the footer rather than linking to '#'.",
+
+  "channels": {
+    "website": "live",
+    "whatsapp": "soon",
+    "messenger": "soon",
+    "instagram": "soon"
+  },
+
+  "_todo_channels": "When a channel launches, change its value to 'live'. That single edit updates every badge, the pricing table row and the FAQ answer at once.",
+
+  "channelLabels": {
+    "website": "Website chat",
+    "whatsapp": "WhatsApp",
+    "messenger": "Facebook Messenger",
+    "instagram": "Instagram"
+  },
+
+  "stats": [
+    { "value": "8", "label": "live websites &amp; web apps built", "href": "#our-work" },
+    { "value": "4", "label": "running a live 24/7 AI chat agent", "href": "#our-work" },
+    { "value": "Fixed", "label": "written quotes, no meter", "href": "/website-development-request" },
+    { "value": "You own", "label": "the code &amp; domain", "href": "#faq" }
+  ],
+
+  "chatAgent": {
+    "provider": "",
+    "embedUrl": "",
+    "scriptSrc": "",
+    "agentId": "",
+    "enabled": false,
+    "launcherLabel": "Chat with our AI agent",
+    "tryAsking": [
+      "How much does a website cost?",
+      "Can you build an AI agent for my shop?",
+      "How long does a website take?",
+      "Do I own the code when it is finished?"
+    ]
+  },
+
+  "_todo_chatAgent": "TODO(owner): choose a provider (Voiceflow, Botpress, Chatbase, or a custom backend) and supply the embed details. While enabled is false the site shows an honest 'demo coming soon' card instead of a broken widget, and the Chat CTA falls back to the contact page.",
+
+  "booking": {
+    "provider": "",
+    "url": "",
+    "enabled": false
+  },
+
+  "_todo_booking": "TODO(owner): Cal.com or Calendly link. While enabled is false, every 'Book a call' CTA falls back to the quote form.",
+
+  "analytics": {
+    "ga4": "G-LQKGQXKE92",
+    "metaPixel": "",
+    "consentRequired": true
+  },
+
+  "_todo_analytics": "TODO(owner): Meta Pixel ID if you intend to run Facebook ads. GA4 is already live.",
+
+  "forms": {
+    "provider": "web3forms",
+    "quoteUrl": "/website-development-request",
+    "thankYouUrl": "/thank-you"
+  },
+
+  "guarantee": {
+    "enabled": false,
+    "title": "",
+    "body": ""
+  },
+
+  "_todo_guarantee": "TODO(owner): decide the risk-reversal terms, for example 'unlimited design revisions until launch' or a 14-day agent trial. Hidden while enabled is false."
+}
