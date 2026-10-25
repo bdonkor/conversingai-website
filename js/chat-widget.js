@@ -269,6 +269,10 @@
     if (state.open) return;
     state.open = true;
     el.panel.hidden = false;
+    if (el.launcher) {
+      el.launcher.setAttribute('aria-expanded', 'true');
+      el.launcher.hidden = true;        // the panel replaces it while open
+    }
     document.body.classList.add('cw-open');
     setTimeout(function () { el.input.focus(); }, 60);
     track('chat_widget_open', { agent: 'demo' });
@@ -281,6 +285,11 @@
   function close() {
     state.open = false;
     if (el.panel) el.panel.hidden = true;
+    if (el.launcher) {
+      el.launcher.setAttribute('aria-expanded', 'false');
+      el.launcher.hidden = false;
+      el.launcher.focus();
+    }
     document.body.classList.remove('cw-open');
   }
 
@@ -300,6 +309,12 @@
     var root = document.createElement('div');
     root.className = 'cw-root';
     root.innerHTML =
+      '<button type="button" class="cw-launcher" aria-expanded="false" aria-controls="cw-panel">' +
+        '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">' +
+          '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/>' +
+        '</svg>' +
+        '<span class="cw-launcher-label">Try the demo</span>' +
+      '</button>' +
       '<section class="cw-panel" id="cw-panel" hidden aria-label="Conversing AI demo agent">' +
         '<header class="cw-head">' +
           '<div>' +
@@ -325,11 +340,13 @@
 
     document.body.appendChild(root);
 
+    el.launcher = root.querySelector('.cw-launcher');
     el.panel = root.querySelector('.cw-panel');
     el.log = root.querySelector('.cw-log');
     el.input = root.querySelector('.cw-input');
     el.send = root.querySelector('.cw-send');
 
+    el.launcher.addEventListener('click', function () { state.open ? close() : open(); });
     root.querySelector('.cw-close').addEventListener('click', close);
     root.querySelector('.cw-restart').addEventListener('click', function () {
       if (!state.busy) reset();
@@ -358,7 +375,14 @@
   }
 
   /* --------------------------------------------------------------- start up */
-  // Opens only from an explicit demo trigger.
+  /* The launcher lives on every page, bottom right. The demo button still
+   * opens the same widget, so there are two ways in and one agent. */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
+    build();
+  }
+
   document.addEventListener('click', function (e) {
     var t = e.target.closest('[data-opens-demo]');
     if (!t) return;

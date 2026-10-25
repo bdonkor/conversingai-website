@@ -181,3 +181,60 @@
 .cw-cf-send:disabled { opacity: .55; cursor: not-allowed; }
 .cw-cf-note { margin: 0.35rem 0 0; font-size: 0.76rem; color: #fca5a5; line-height: 1.45; }
 .cw-cf-ok { margin: 0; font-size: 0.86rem; color: #4ade80; font-weight: 600; line-height: 1.5; }
+
+/* ------------------------------------------------------ floating launcher
+   Bottom right on every page. Stacks above the WhatsApp button (a human)
+   and clears the sticky mobile CTA bar, so nothing covers anything. */
+.cw-launcher {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 78;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--blue-600), #1d4ed8);
+  color: #fff;
+  border: 0;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0.75rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 14px 32px -10px rgba(37, 99, 235, 0.75);
+  transition: transform .2s ease, filter .2s ease;
+}
+.cw-launcher:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.cw-launcher:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+.cw-launcher[hidden] { display: none !important; }
+
+/* a quiet pulse so it is noticed without nagging */
+.cw-launcher::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.55);
+  animation: cwpulse 3.4s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes cwpulse {
+  0%   { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+  60%  { box-shadow: 0 0 0 0.9rem rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* sit above the WhatsApp button when both are present */
+body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 5rem; }
+
+@media (max-width: 768px) {
+  .cw-launcher { bottom: 5rem; right: 0.75rem; padding: 0.8rem; }
+  .cw-launcher-label { display: none; }
+  body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 8.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cw-launcher:hover { transform: none; }
+  .cw-launcher::after { animation: none; }
+}
