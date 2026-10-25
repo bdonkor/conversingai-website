@@ -1,0 +1,24 @@
+{
+  "_comment": "Real people only. Rendered on the About page under 'Who you'll work with'. While items is empty the page shows an honest placeholder instead of invented staff.",
+
+  "_requiredFields": "name, role",
+  "_optionalFields": "bio, photo (images/team/*.webp), linkedin",
+
+  "_example": {
+    "name": "Benjamin Donkor",
+    "role": "Founder",
+    "bio": "One or two sentences about what you actually do on a project and what you have built.",
+    "photo": "images/team/benjamin.webp",
+    "linkedin": "https://www.linkedin.com/in/username"
+  },
+
+  "_todo": "TODO(owner): add yourself and anyone else on the team. The About page is titled 'The Team Behind Your AI Growth' and currently names nobody, which is the single biggest trust gap on that page.",
+
+  "origin": {
+    "enabled": true,
+    "heading": "How this started",
+    "body": "We began by building software for our own problems: a school that needed fees recorded, a fabrication shop losing track of jobs, students who could not afford a tutor. Each one shipped, and each one still runs. Client work followed, because the fastest way to prove you can build something is to point at something you built."
+  },
+
+  "items": []
+}
