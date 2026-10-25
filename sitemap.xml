@@ -1,42 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://conversingai.com/</loc><priority>1.0</priority></url>
   <url><loc>https://conversingai.com/about</loc><priority>0.8</priority></url>
-  <url><loc>https://conversingai.com/ai-solutions</loc><priority>0.9</priority></url>
+  <url><loc>https://conversingai.com/ai-chat-agents/clinics</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/ai-chat-agents/customer-service</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/ai-chat-agents/ecommerce</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/ai-chat-agents/real-estate</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/ai-chat-agents/restaurants-hospitality</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/ai-chat-agents/schools-training</loc><priority>0.8</priority></url>
   <url><loc>https://conversingai.com/ai-chat-voice-agents</loc><priority>0.9</priority></url>
-  <url><loc>https://conversingai.com/ai-receptionist</loc><priority>0.9</priority></url>
-  <url><loc>https://conversingai.com/ai-receptionist-plans</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/ai-courses</loc><priority>0.7</priority></url>
   <url><loc>https://conversingai.com/ai-receptionist-faq</loc><priority>0.7</priority></url>
-  <url><loc>https://conversingai.com/website-design</loc><priority>0.9</priority></url>
-  <url><loc>https://conversingai.com/blog-writing-seo</loc><priority>0.9</priority></url>
-  <url><loc>https://conversingai.com/custom-email-marketing</loc><priority>0.9</priority></url>
-  <url><loc>https://conversingai.com/social-media-growth</loc><priority>0.9</priority></url>
-  <url><loc>https://conversingai.com/ai-courses</loc><priority>0.8</priority></url>
-  <url><loc>https://conversingai.com/live-training</loc><priority>0.8</priority></url>
-  <url><loc>https://conversingai.com/blog</loc><priority>0.8</priority></url>
-  <url><loc>https://conversingai.com/how-it-works</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/ai-receptionist-plans</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/ai-receptionist</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/ai-solutions</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-5-business-processes-to-automate</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-ai-receptionist-save-100-hours</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-ai-revolution</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-ai-training-ghana-commerce-industries</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-best-ai-chat-agents-ghana</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-best-ai-receptionist-ghana</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-history-of-chatbots</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-indicators-of-effective-ai-prompts</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-website-losing-money</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-post-what-are-ai-chat-voice-agents</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog-writing-seo</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/blog</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/careers</loc><priority>0.7</priority></url>
   <url><loc>https://conversingai.com/contact</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/cookies</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/corporate-training</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/custom-email-marketing</loc><priority>0.9</priority></url>
   <url><loc>https://conversingai.com/faq</loc><priority>0.7</priority></url>
-  <url><loc>https://conversingai.com/careers</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/get-started</loc><priority>0.8</priority></url>
-  <url><loc>https://conversingai.com/get-quote</loc><priority>0.8</priority></url>
-  <url><loc>https://conversingai.com/website-development-request</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/get-quote</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/get-started</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/how-it-works</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://conversingai.com/live-training</loc><priority>0.7</priority></url>
   <url><loc>https://conversingai.com/order-receptionist</loc><priority>0.7</priority></url>
   <url><loc>https://conversingai.com/order</loc><priority>0.7</priority></url>
-
-  <!-- Blog Posts -->
-  <url><loc>https://conversingai.com/blog-post-ai-revolution</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/blog-post-5-business-processes-to-automate</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/blog-post-website-losing-money</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/blog-post-ai-receptionist-save-100-hours</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/blog-post-ai-training-ghana-commerce-industries</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/blog-post-history-of-chatbots</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/blog-post-what-are-ai-chat-voice-agents</loc><priority>0.6</priority></url>
-  <url><loc>https://conversingai.com/blog-post-indicators-of-effective-ai-prompts</loc><priority>0.6</priority></url>
-
-  <!-- Legal -->
-  <url><loc>https://conversingai.com/privacy</loc><priority>0.3</priority></url>
-  <url><loc>https://conversingai.com/terms</loc><priority>0.3</priority></url>
-  <url><loc>https://conversingai.com/cookies</loc><priority>0.3</priority></url>
-  <url><loc>https://conversingai.com/refund</loc><priority>0.3</priority></url>
+  <url><loc>https://conversingai.com/pricing</loc><priority>0.9</priority></url>
+  <url><loc>https://conversingai.com/privacy</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/refund</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/social-media-growth</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/terms</loc><priority>0.7</priority></url>
+  <url><loc>https://conversingai.com/website-design/small-business</loc><priority>0.8</priority></url>
+  <url><loc>https://conversingai.com/website-design</loc><priority>0.9</priority></url>
+  <url><loc>https://conversingai.com/website-development-request</loc><priority>0.7</priority></url>
 </urlset>

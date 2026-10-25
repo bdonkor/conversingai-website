@@ -280,6 +280,101 @@
       "source": "/optimize-ai-prompts-with-gina/",
       "destination": "/blog",
       "permanent": true
+    },
+    {
+      "source": "/agricexpert",
+      "destination": "/ai-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/agricexpert/",
+      "destination": "/ai-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-create-a-website-with-lovable-dev-ai-simple-steps-to-follow",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-create-a-website-with-lovable-dev-ai-simple-steps-to-follow/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/ai-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/services/",
+      "destination": "/ai-solutions",
+      "permanent": true
+    },
+    {
+      "source": "/category/:slug*",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/tag/:slug*",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/author/:slug*",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-includes/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/feed",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/feed/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pricing/",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you/",
+      "destination": "/thank-you",
+      "permanent": true
     }
   ],
   "headers": [

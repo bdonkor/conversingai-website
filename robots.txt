@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+Disallow: /thank-you
+Disallow: /yourcountant-staff-test
+Disallow: /booking-confirmation
+Disallow: /payment
+Disallow: /your-details
+
 Sitemap: https://conversingai.com/sitemap.xml
