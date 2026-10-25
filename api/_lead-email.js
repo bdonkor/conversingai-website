@@ -13,7 +13,9 @@
  * an honest { ok, detail } and never pretends.
  *
  * Environment variables (Vercel → Settings → Environment Variables):
- *   SMTP_HOST        e.g. mail.conversingai.com
+ *   SMTP_HOST        the mail server, e.g. premium59.web-hosting.com
+ *   SMTP_SERVERNAME  optional. Hostname to validate the TLS certificate
+ *                    against, when it differs from SMTP_HOST.
  *   SMTP_PORT        465 (implicit TLS) or 587 (STARTTLS). Default 465.
  *   SMTP_USER        the full mailbox address, e.g. demo@conversingai.com
  *   SMTP_PASS        that mailbox's password
@@ -128,14 +130,33 @@ let cachedTransport = null;
 function transport() {
   if (cachedTransport) return cachedTransport;
   const port = Number(process.env.SMTP_PORT || 465);
+  const host = process.env.SMTP_HOST;
+
+  /* Shared cPanel servers present a wildcard certificate for the HOSTING
+   * provider (*.web-hosting.com), not for the customer's own mail subdomain.
+   * Connecting to mail.conversingai.com therefore fails strict TLS checks
+   * with ERR_TLS_CERT_ALTNAME_INVALID, which nodemailer surfaces as a
+   * connection failure rather than a clear certificate error.
+   *
+   * The fix is to connect to the server's real hostname, which the
+   * certificate does cover, and leave verification ON. Both names resolve to
+   * the same machine, so mail still leaves from the same server and stays
+   * SPF- and DKIM-aligned. SMTP_SERVERNAME lets that be set without changing
+   * the From address.
+   *
+   * Turning rejectUnauthorized off would also "work", but it would disable
+   * certificate checking on the path carrying the mailbox password. */
+  const servername = process.env.SMTP_SERVERNAME || host;
+
   cachedTransport = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
+    host,
     port,
     secure: port === 465,            // 465 is implicit TLS; 587 upgrades via STARTTLS
     auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
+    tls: { servername, minVersion: 'TLSv1.2' },
     connectionTimeout: 10_000,
     greetingTimeout: 8_000,
-    socketTimeout: 15_000,
+    socketTimeout: 20_000,
     pool: false,                      // serverless: one connection, then done
   });
   return cachedTransport;
@@ -197,6 +218,9 @@ export async function sendLeadEmail(d) {
       detail = 'The mailbox credentials were rejected. The email was NOT sent. Tell the visitor honestly.';
     } else if (err?.code === 'ETIMEDOUT' || err?.code === 'ECONNECTION' || err?.code === 'ESOCKET') {
       detail = 'The mail server could not be reached in time. The email was NOT confirmed as sent. Tell the visitor honestly.';
+    } else if (/ALTNAME|CERT|self.signed|unable to verify/i.test(err?.code + ' ' + err?.message)) {
+      detail = 'The mail server TLS certificate did not match the hostname, so the connection was refused. ' +
+        'The email was NOT sent. Tell the visitor honestly.';
     } else if (err?.responseCode >= 500) {
       detail = `The mail server rejected the message (${err.responseCode}). It was NOT delivered. Tell the visitor honestly.`;
     }
