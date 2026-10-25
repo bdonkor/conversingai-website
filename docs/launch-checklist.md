@@ -22,6 +22,23 @@ The rebuild fixed 30 canonical URLs that previously pointed at `.html` addresses
 GA4 (`G-LQKGQXKE92`) is already installed and now runs behind a consent banner, defaulting to denied. Nothing identifying fires until a visitor allows it.
 
 - **owner** Add the Meta Pixel ID to `config/site.json` → `analytics.metaPixel` if you intend to run Facebook ads. It loads only after consent.
+
+## 3b. Demo agent
+
+Set these in Vercel → Settings → Environment Variables, Production:
+
+| Variable | Value |
+|---|---|
+| `ANTHROPIC_API_KEY` | your Anthropic key |
+| `SMTP_HOST` | `mail.conversingai.com` |
+| `SMTP_PORT` | `465` |
+| `SMTP_USER` | a cPanel mailbox, e.g. `demo@conversingai.com` |
+| `SMTP_PASS` | that mailbox's password |
+| `LEAD_EMAIL_BCC` | optional, copies each demo lead to you |
+
+The lead email goes out through your own cPanel mailbox, which is already
+SPF-authenticated (`+mx` and `include:spf.web-hosting.com`) and DKIM-signed
+on the `default` selector. No third-party sender setup is needed.
 - Confirm events are arriving in GA4 under **Reports → Realtime**. The tracked events are:
   `chat_widget_open`, `chat_conversation_start`, `chat_lead_captured`, `book_call_open`, `booking_completed`, `quote_form_submit`, `whatsapp_click`, `facebook_click`, `pricing_view`, `roi_calculated`, `portfolio_click`.
 - Mark `quote_form_submit` and `booking_completed` as **key events** in GA4 so they show as conversions.

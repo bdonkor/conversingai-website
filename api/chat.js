@@ -10,14 +10,14 @@
  *                    Running it server-side at Anthropic means OUR server
  *                    never fetches a visitor-supplied URL, which removes the
  *                    request-forgery risk a homemade crawler would carry.
- *   send_lead_email  Ours (api/_lead-email.js). Returns an honest ok/failed
- *                    result, because the prompt forbids claiming delivery
- *                    that did not happen.
+ *   send_lead_email  Ours (api/_lead-email.js), over your own cPanel SMTP.
+ *                    Returns an honest ok/failed result, because the prompt
+ *                    forbids claiming delivery that did not happen.
  *
  * Environment variables:
  *   ANTHROPIC_API_KEY   required
- *   BREVO_API_KEY       required for the lead email
- *   LEAD_EMAIL_FROM     required for the lead email, Brevo-verified sender
+ *   SMTP_HOST/USER/PASS required for the lead email (your cPanel mailbox)
+ *   LEAD_EMAIL_FROM     optional, defaults to SMTP_USER
  *   LEAD_EMAIL_BCC      optional, copies each demo lead to your own inbox
  *   AGENT_MODEL         defaults to claude-opus-5-5
  *   AGENT_RATE_PER_MIN  defaults to 10 requests per IP per minute
