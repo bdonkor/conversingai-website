@@ -291,3 +291,63 @@
 
 .demo-note { color: var(--slate-500); font-size: 0.85rem; line-height: 1.6; margin: 1.25rem auto 0; max-width: 34rem; }
 .demo-note a { color: var(--blue-400); }
+
+/* ------------------------------------------- per-industry colour identity
+   Each use-case tab carries its own accent. One custom property drives the
+   tab, the panel border and tint, the chat bubbles and the link, so a tab
+   change reads as a change of context rather than just a swapped paragraph.
+   Values are the accent's RGB channels, so alpha can vary per element. */
+.uc-tab[data-uc="service"],  .uc-panel[data-uc="service"]  { --uc: 59, 130, 246; }   /* blue    */
+.uc-tab[data-uc="ecom"],     .uc-panel[data-uc="ecom"]     { --uc: 245, 158, 11; }   /* amber   */
+.uc-tab[data-uc="leads"],    .uc-panel[data-uc="leads"]    { --uc: 16, 185, 129; }   /* emerald */
+.uc-tab[data-uc="booking"],  .uc-panel[data-uc="booking"]  { --uc: 34, 211, 238; }   /* cyan    */
+.uc-tab[data-uc="property"], .uc-panel[data-uc="property"] { --uc: 167, 139, 250; }  /* violet  */
+.uc-tab[data-uc="school"],   .uc-panel[data-uc="school"]   { --uc: 251, 113, 133; }  /* rose    */
+
+/* tabs */
+.uc-tab:hover { border-color: rgba(var(--uc), 0.55); color: #fff; }
+.uc-tab.is-active {
+  background: rgba(var(--uc), 0.16);
+  border-color: rgba(var(--uc), 0.75);
+  color: rgb(var(--uc));
+  box-shadow: 0 0 0 1px rgba(var(--uc), 0.25), 0 8px 22px -12px rgba(var(--uc), 0.8);
+}
+
+/* panel takes the same accent */
+.uc-panel {
+  border-color: rgba(var(--uc), 0.3);
+  background:
+    linear-gradient(160deg, rgba(var(--uc), 0.09), rgba(15, 23, 42, 0.55) 62%);
+  position: relative;
+  overflow: hidden;
+}
+/* a thin accent rule along the top edge, so the colour reads even when the
+   tint is subtle on a dark ground */
+.uc-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(var(--uc), 0.9), rgba(var(--uc), 0));
+}
+.uc-panel h3 { color: #fff; }
+.uc-panel .uc-pain { color: var(--muted); }
+
+/* chat bubbles pick up the industry colour */
+.uc-panel .chat-in {
+  background: rgba(var(--uc), 0.2);
+  border-color: rgba(var(--uc), 0.45);
+  color: #f1f5f9;
+}
+.uc-panel .chat-out {
+  background: rgba(2, 6, 23, 0.72);
+  border-color: rgba(var(--uc), 0.16);
+}
+
+/* link */
+.uc-panel .uc-link { color: rgb(var(--uc)); }
+.uc-panel .uc-link:hover { filter: brightness(1.18); }
+
+@media (prefers-reduced-motion: reduce) {
+  .uc-tab.is-active { box-shadow: 0 0 0 1px rgba(var(--uc), 0.25); }
+}
