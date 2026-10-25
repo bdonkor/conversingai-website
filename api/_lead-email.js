@@ -266,3 +266,115 @@ export async function sendLeadEmail(d) {
     return { ok: false, detail };
   }
 }
+
+/* ------------------------------------------------------------------------
+ * Team notification for NON-demo conversations.
+ *
+ * The owner wants every conversation, not only demos. A demo already copies
+ * the team via the Bcc on the visitor's email, so this covers the rest:
+ * general questions, enquiries, anyone who declined the demo.
+ *
+ * It goes to the team address ONLY. The visitor is never a recipient here,
+ * so there is no risk of mailing someone who did not ask to be mailed.
+ * ---------------------------------------------------------------------- */
+
+function teamHtml(d) {
+  const row = (label, value) => value
+    ? `<tr>
+         <td style="padding:5px 0;font:700 13px/1.5 Arial,Helvetica,sans-serif;color:#64748b;width:120px;vertical-align:top;">${esc(label)}</td>
+         <td style="padding:5px 0;font:400 14px/1.5 Arial,Helvetica,sans-serif;color:#0f172a;">${esc(value)}</td>
+       </tr>`
+    : '';
+  const wa = waDigits(d.whatsapp);
+
+  return `<!doctype html>
+<html><body style="margin:0;padding:24px 12px;background:#f1f5f9;">
+<table role="presentation" cellpadding="0" cellspacing="0" style="max-width:620px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;">
+  <tr><td style="background:linear-gradient(135deg,#0f172a,#1e293b);padding:20px 24px;">
+    <p style="margin:0;font:800 12px/1 Arial,Helvetica,sans-serif;letter-spacing:.14em;color:#94a3b8;">CONVERSING AI</p>
+    <h1 style="margin:7px 0 0;font:800 21px/1.25 Arial,Helvetica,sans-serif;color:#fff;">Website chat</h1>
+    <p style="margin:5px 0 0;font:400 13px/1.5 Arial,Helvetica,sans-serif;color:#cbd5e1;">A visitor talked to the agent on conversingai.com</p>
+  </td></tr>
+  <tr><td style="padding:20px 24px 0;">
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+      ${row('Name', d.name)}
+      ${row('Email', d.email)}
+      ${row('Phone', d.phone)}
+      ${row('WhatsApp', d.whatsapp)}
+      ${row('Their website', d.website)}
+      ${row('What they wanted', d.topic)}
+    </table>
+  </td></tr>
+  ${block('Conversation', d.conversation)}
+  ${block('Recommended action', d.recommended_action)}
+  ${wa ? `<tr><td style="padding:20px 24px 6px;"><a href="https://wa.me/${wa}" style="display:inline-block;background:#25d366;color:#052e16;font:700 14px/1 Arial,Helvetica,sans-serif;padding:12px 20px;border-radius:7px;text-decoration:none;">Chat on WhatsApp</a></td></tr>` : ''}
+  ${d.phone ? `<tr><td style="padding:4px 24px 18px;"><p style="margin:0;font:400 14px/1.6 Arial,Helvetica,sans-serif;color:#334155;">Call: <a href="tel:${esc(String(d.phone).replace(/[ ]/g,''))}" style="color:#1d4ed8;font-weight:700;text-decoration:none;">${esc(d.phone)}</a></p></td></tr>` : ''}
+  <tr><td style="padding:14px 24px 20px;border-top:1px solid #e2e8f0;">
+    <p style="margin:0;font:400 12px/1.6 Arial,Helvetica,sans-serif;color:#94a3b8;">Sent to the team only. The visitor did not receive a copy.</p>
+  </td></tr>
+</table></body></html>`;
+}
+
+const sentToTeam = new Map();
+
+/**
+ * Sends a non-demo conversation to the team address only.
+ * @returns {Promise<{ok: boolean, detail: string}>} never throws
+ */
+export async function sendTeamNotification(d) {
+  const { SMTP_HOST, SMTP_USER, SMTP_PASS } = process.env;
+  const team = (process.env.LEAD_EMAIL_BCC || '').trim();
+
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+    return { ok: false, detail: 'Email is not configured on this deployment, so the team was not notified. Do not tell the visitor anything was emailed.' };
+  }
+  if (!team) {
+    return { ok: false, detail: 'No team address is configured (LEAD_EMAIL_BCC), so nothing was sent.' };
+  }
+
+  const key = (d.conversation || '').slice(0, 200) + '|' + (d.email || '');
+  const at = sentToTeam.get(key);
+  if (at && Date.now() - at < DEDUPE_WINDOW_MS) {
+    return { ok: true, detail: 'This conversation was already sent to the team. It was not sent again.' };
+  }
+
+  const from = process.env.LEAD_EMAIL_FROM || SMTP_USER;
+  const name = process.env.LEAD_EMAIL_NAME || 'Conversing AI';
+
+  try {
+    const who = d.name || d.email || 'website visitor';
+    const info = await transport().sendMail({
+      from: `"${name}" <${from}>`,
+      to: team,
+      replyTo: d.email || from,
+      subject: `Website chat: ${who}${d.topic ? ' — ' + String(d.topic).slice(0, 60) : ''}`,
+      text: [
+        'Website chat on conversingai.com',
+        '',
+        `Name:        ${d.name || '-'}`,
+        `Email:       ${d.email || '-'}`,
+        `Phone:       ${d.phone || '-'}`,
+        `WhatsApp:    ${d.whatsapp || '-'}`,
+        `Their site:  ${d.website || '-'}`,
+        `Wanted:      ${d.topic || '-'}`,
+        '',
+        'CONVERSATION',
+        d.conversation || '-',
+        '',
+        'RECOMMENDED ACTION',
+        d.recommended_action || '-',
+      ].join(String.fromCharCode(10)),
+      html: teamHtml(d),
+    });
+
+    const accepted = Array.isArray(info?.accepted) ? info.accepted : [];
+    if (!accepted.length) {
+      return { ok: false, detail: 'The mail server did not accept the team address, so nothing was delivered.' };
+    }
+    sentToTeam.set(key, Date.now());
+    return { ok: true, detail: `The conversation was sent to the team at ${team}. The visitor was not emailed.` };
+  } catch (err) {
+    console.error('team notification failed:', err?.code, err?.message);
+    return { ok: false, detail: 'The conversation could not be sent to the team because of a mail server error.' };
+  }
+}

@@ -26,7 +26,7 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { betaTool } from '@anthropic-ai/sdk/helpers/beta/json-schema';
 import { SYSTEM_PROMPT } from './_agent-prompt.js';
-import { sendLeadEmail } from './_lead-email.js';
+import { sendLeadEmail, sendTeamNotification } from './_lead-email.js';
 
 const MODEL = process.env.AGENT_MODEL || 'claude-opus-5-5';
 const RATE_PER_MIN = Number(process.env.AGENT_RATE_PER_MIN || 10);
@@ -88,7 +88,7 @@ function sanitise(messages) {
 const MIN_VISITOR_TURNS_BEFORE_EMAIL = 5;
 
 const makeLeadEmailTool = (visitorTurns) => betaTool({
-  name: 'send_lead_email',
+  name: 'send_demo_lead_email',
   description:
     'Send the HOT LEAD notification email to the visitor, showing them what their own business would receive ' +
     'when a website visitor becomes a potential customer. Call this EXACTLY ONCE per demo, and only AFTER the ' +
@@ -124,6 +124,39 @@ const makeLeadEmailTool = (visitorTurns) => betaTool({
     return result.ok
       ? `SENT. ${result.detail}`
       : `NOT SENT. ${result.detail}`;
+  },
+});
+
+/* Non-demo conversations still have to reach the team. The demo email
+ * already copies them, so this covers everything else: questions, enquiries,
+ * and anyone who declined the demo. It goes to the team address only — the
+ * visitor is never a recipient, so nobody is mailed who did not ask to be. */
+const teamNotifyTool = betaTool({
+  name: 'send_conversation_to_team',
+  description:
+    'Send this conversation to the Conversing AI team. Use it for any conversation that is NOT a demo: ' +
+    'general questions, enquiries, or a visitor who declined the demo. Call it when the conversation reaches ' +
+    'a natural end, when the visitor shares contact details, or when they show real buying intent. ' +
+    'Call it at most once per conversation. It goes to the team only, never to the visitor, so do not tell ' +
+    'the visitor you have emailed them. Do NOT use this for a demo: send_demo_lead_email already copies the team.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      name: { type: 'string', description: "The visitor's name, if they gave one." },
+      email: { type: 'string', description: 'Their email, if they gave one.' },
+      phone: { type: 'string', description: 'Their phone number, if given.' },
+      whatsapp: { type: 'string', description: 'Their WhatsApp number, if given.' },
+      website: { type: 'string', description: 'Their website, if mentioned.' },
+      topic: { type: 'string', description: 'One short line on what they wanted.' },
+      conversation: { type: 'string', description: 'The relevant conversation so far.' },
+      recommended_action: { type: 'string', description: 'What the team should do next.' },
+    },
+    required: ['conversation'],
+    additionalProperties: false,
+  },
+  run: async (input) => {
+    const r = await sendTeamNotification(input);
+    return r.ok ? `SENT TO TEAM. ${r.detail}` : `NOT SENT. ${r.detail}`;
   },
 });
 
@@ -242,7 +275,12 @@ A brief, well-judged reply is itself part of the demonstration.`,
       // The demo is a scripted flow, not a hard reasoning problem, and it is
       // latency-sensitive. Low effort keeps replies quick.
       output_config: { effort: 'low' },
-      tools: [webFetchTool, showFormTool, makeLeadEmailTool(messages.filter((m) => m.role === 'user').length)],
+      tools: [
+        webFetchTool,
+        showFormTool,
+        teamNotifyTool,
+        makeLeadEmailTool(messages.filter((m) => m.role === 'user').length),
+      ],
       messages,
       max_iterations: MAX_ITERATIONS,
       stream: true,
@@ -266,7 +304,8 @@ A brief, well-judged reply is itself part of the demonstration.`,
             } else {
               const label =
                 b.name === 'web_fetch' ? 'Reading your website…' :
-                b.name === 'send_lead_email' ? 'Sending your lead email…' :
+                b.name === 'send_demo_lead_email' ? 'Sending your lead email…' :
+                b.name === 'send_conversation_to_team' ? 'Passing this to the team…' :
                 'Working…';
               send('status', { text: label });
             }
