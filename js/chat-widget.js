@@ -65,6 +65,79 @@
     });
   }
 
+
+  /* ------------------------------------------------- inline contact form
+   * Rendered when the agent calls show_contact_form. Posts to the same
+   * Web3Forms endpoint the site's other forms use, so enquiries land in the
+   * same inbox rather than a new place nobody checks. */
+  var FORM_KEY = 'a85ff556-2a00-4660-87fd-89e12fb5d3b4';
+  var formShown = false;
+
+  function showContactForm() {
+    if (formShown) return;
+    formShown = true;
+
+    var wrap = document.createElement('div');
+    wrap.className = 'cw-form-card';
+    wrap.innerHTML =
+      '<p class="cw-form-title">Send your details to the team</p>' +
+      '<p class="cw-form-sub">A person replies, usually within one working day.</p>' +
+      '<form class="cw-cf">' +
+        '<input class="cw-cf-in" name="name" placeholder="Your name" autocomplete="name" required>' +
+        '<input class="cw-cf-in" name="email" type="email" placeholder="Email" autocomplete="email" required>' +
+        '<input class="cw-cf-in" name="phone" placeholder="Phone or WhatsApp" autocomplete="tel">' +
+        '<textarea class="cw-cf-in" name="message" rows="2" placeholder="What do you need?"></textarea>' +
+        '<button type="submit" class="cw-cf-send">Send to the team</button>' +
+        '<p class="cw-cf-note" hidden></p>' +
+      '</form>';
+
+    el.log.appendChild(wrap);
+    scrollDown();
+
+    var f = wrap.querySelector('.cw-cf');
+    var note = wrap.querySelector('.cw-cf-note');
+    var btn = wrap.querySelector('.cw-cf-send');
+
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = f.name.value.trim();
+      var email = f.email.value.trim();
+      if (!name || !email) { return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      var data = new FormData();
+      data.append('access_key', FORM_KEY);
+      data.append('from_name', 'Conversing AI — Demo agent enquiry');
+      data.append('subject', 'Demo agent enquiry: ' + name);
+      data.append('Name', name);
+      data.append('email', email);
+      data.append('Phone / WhatsApp', f.phone.value.trim() || '—');
+      data.append('Message', f.message.value.trim() || '—');
+      data.append('Source', 'Demo agent chat');
+      // the conversation gives the team context on what was discussed
+      data.append('Conversation', state.messages.filter(function (m) { return !m.hidden; })
+        .map(function (m) { return (m.role === 'user' ? 'Visitor: ' : 'Agent: ') + m.content; })
+        .join(String.fromCharCode(10, 10)).slice(0, 4000));
+
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res.success) throw new Error(res.message || 'failed');
+          f.innerHTML = '<p class="cw-cf-ok">Thank you. Your details are with the team.</p>';
+          track('quote_form_submit', { form_id: 'demo-agent-chat' });
+          scrollDown();
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = 'Send to the team';
+          note.hidden = false;
+          note.textContent = 'That did not send. Email info@conversingai.com instead.';
+        });
+    });
+  }
+
   /* --------------------------------------------------------------- render */
   function bubble(role, html, isError) {
     var wrap = document.createElement('div');
@@ -154,6 +227,8 @@
             answer += payload.text;
             typing.innerHTML = format(answer);
             scrollDown();
+          } else if (evt === 'form') {
+            showContactForm();
           } else if (evt === 'refusal' || evt === 'error') {
             if (!started) typing.innerHTML = '';
             typing.parentElement.classList.add('cw-msg--error');
@@ -211,6 +286,7 @@
 
   function reset() {
     state.messages = [];
+    formShown = false;
     try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
     renderHistory();
     send(OPENER, { hidden: true });
@@ -290,5 +366,7 @@
     open();
   });
 
-  window.CAIDemoAgent = { open: open, close: close, reset: reset };
+  // showForm is exposed so a page button can also surface the form, and so
+  // the behaviour can be exercised directly in a test.
+  window.CAIDemoAgent = { open: open, close: close, reset: reset, showForm: showContactForm };
 })();

@@ -33,7 +33,7 @@ const RATE_PER_MIN = Number(process.env.AGENT_RATE_PER_MIN || 10);
 
 const MAX_TURNS = 40;
 const MAX_CHARS_PER_MESSAGE = 2000;
-const MAX_OUTPUT_TOKENS = 2048;
+const MAX_OUTPUT_TOKENS = 700;   // replies are meant to be short
 const MAX_ITERATIONS = 12;
 
 /* ------------------------------------------------------------------ limits */
@@ -127,6 +127,30 @@ const makeLeadEmailTool = (visitorTurns) => betaTool({
   },
 });
 
+/* The owner's prompt says to "Display the contact/request form" when the
+ * visitor declines, and to encourage contact at the close. Without a tool
+ * that is just words, so this makes the instruction executable: calling it
+ * renders a real form inside the chat. */
+const showFormTool = betaTool({
+  name: 'show_contact_form',
+  description:
+    'Display the contact request form inside the chat so the visitor can send their details to the team. ' +
+    'Use it when the visitor declines the demo, when the demo has finished, or when they ask about anything ' +
+    'outside the demo. Say one short sentence pointing at the form; the form itself is rendered for you.',
+  inputSchema: {
+    type: 'object',
+    properties: {
+      reason: {
+        type: 'string',
+        description: 'Why the form is being shown: declined, demo_complete, or off_topic.',
+      },
+    },
+    required: [],
+    additionalProperties: false,
+  },
+  run: async () => 'The contact form is now displayed in the chat. Tell the visitor it is there, in one short sentence. Do not repeat the form fields.',
+});
+
 // Anthropic-hosted. Only fetches URLs already present in the conversation,
 // which is exactly the visitor's pasted address.
 const webFetchTool = {
@@ -192,7 +216,24 @@ export default async function handler(req, res) {
       system: [
         {
           type: 'text',
-          text: SYSTEM_PROMPT,
+          /* The owner's prompt is used verbatim. This addendum is operator
+           * guidance appended after it, never edited into it. The prompt asks
+           * for brevity; a concrete ceiling holds better than an adjective,
+           * because a chat panel is narrow and long replies go unread. */
+          text: SYSTEM_PROMPT + `
+
+---
+
+## LENGTH (operator instruction)
+
+Keep every reply short. This renders in a narrow chat panel, so long answers are not read.
+
+- Normal replies: at most 2 short sentences.
+- Answers to the two demo questions: at most 3 short bullets, under 60 words total.
+- The closing message: 2 sentences, then stop.
+
+Never repeat what you have already said. No preamble, no sign-off, no restating the question.
+A brief, well-judged reply is itself part of the demonstration.`,
           // Identical on every request, so cache it: the first call writes
           // the cache and every later message reads it cheaply.
           cache_control: { type: 'ephemeral' },
@@ -201,7 +242,7 @@ export default async function handler(req, res) {
       // The demo is a scripted flow, not a hard reasoning problem, and it is
       // latency-sensitive. Low effort keeps replies quick.
       output_config: { effort: 'low' },
-      tools: [webFetchTool, makeLeadEmailTool(messages.filter((m) => m.role === 'user').length)],
+      tools: [webFetchTool, showFormTool, makeLeadEmailTool(messages.filter((m) => m.role === 'user').length)],
       messages,
       max_iterations: MAX_ITERATIONS,
       stream: true,
@@ -220,11 +261,15 @@ export default async function handler(req, res) {
              * populated when a block starts, so "anything that is not
              * web_fetch" previously mislabelled web fetches as the lead email
              * and made it look like the email was being sent repeatedly. */
-            const label =
-              b.name === 'web_fetch' ? 'Reading your website…' :
-              b.name === 'send_lead_email' ? 'Sending your lead email…' :
-              'Working…';
-            send('status', { text: label });
+            if (b.name === 'show_contact_form') {
+              send('form', { reason: 'agent' });
+            } else {
+              const label =
+                b.name === 'web_fetch' ? 'Reading your website…' :
+                b.name === 'send_lead_email' ? 'Sending your lead email…' :
+                'Working…';
+              send('status', { text: label });
+            }
           }
         } else if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
           sawText = true;
