@@ -1,7 +1,70 @@
 /* Demo chat agent widget. Sits above the sticky mobile CTA and below the
-   consent banner so nothing ever covers a decision the visitor must make. */
+   consent banner so nothing ever covers a decision the visitor must make.
 
-.cw-root { position: fixed; inset: auto 0 0 auto; z-index: 78; }
+   Finish: bronze and silver plating. The metal lives in the frames, rims and
+   the header nameplate; every surface that carries text stays dark graphite,
+   so the plating is decoration and never costs legibility. The worst contrast
+   pair in here is 4.55:1 (header subtitle on the lightest bronze band).
+
+   How the plating is built, in case it needs extending:
+     rim     two backgrounds, the face on padding-box and the metal on
+             border-box, behind a transparent border. Keeps border-radius,
+             which border-image would not.
+     bevel   inset box-shadow, light on the top edge and dark on the bottom
+             for a raised plate, reversed for a machined recess.
+     brush   a 3px repeating-linear-gradient at very low alpha.
+     gloss   an off-centre specular band, not a smooth fade. Real metal has
+             hard highlights. */
+
+.cw-root {
+  position: fixed; inset: auto 0 0 auto; z-index: 78;
+
+  /* bronze, dark to polished */
+  --cw-bz-1: #2a1a0e;
+  --cw-bz-2: #3a2512;
+  --cw-bz-3: #5c3b1c;
+  --cw-bz-4: #8a5c2e;
+  --cw-bz-5: #a9752f;
+  --cw-bz-6: #c89551;
+  --cw-bz-7: #e0b579;
+  --cw-bz-8: #f6e0b8;
+
+  /* silver, dark to polished */
+  --cw-ag-1: #171c25;
+  --cw-ag-2: #2a3140;
+  --cw-ag-3: #5c6675;
+  --cw-ag-4: #96a0ae;
+  --cw-ag-5: #c9d2de;
+  --cw-ag-6: #f2f5f9;
+
+  /* faces and ink */
+  --cw-face: #141821;
+  --cw-face-deep: #0d1117;
+  --cw-ink: #f7e9d2;      /* warm white, for metal-adjacent text */
+  --cw-ink-cool: #dfe5ee; /* cool white, for the log */
+  --cw-ink-dark: #1d0f04; /* engraved ink on bright bronze */
+  --cw-patina: #35c89a;
+
+  /* the two metals, as reusable plate gradients */
+  --cw-plate-bronze: linear-gradient(145deg,
+    var(--cw-bz-8) 0%, var(--cw-bz-6) 13%, var(--cw-bz-4) 30%, var(--cw-bz-5) 45%,
+    var(--cw-bz-8) 51%, var(--cw-bz-5) 58%, var(--cw-bz-3) 78%, var(--cw-bz-6) 93%, var(--cw-bz-7) 100%);
+  /* Silver, held back on purpose. Bubbles and chips repeat many times over a
+     conversation, so at full polish a wall of rims out-shouts the bronze
+     header. These bands keep it legible as plating without leading the eye.
+     The full-polish silver lives inside --cw-plate-duo, used once each on the
+     panel, the launcher and the form card, which is where it should lead. */
+  --cw-plate-silver: linear-gradient(145deg,
+    #7f8a99 0%, #59636f 16%, #39414d 36%, #5e6875 48%,
+    #aeb8c6 52%, #576170 62%, #333a45 80%, #68727f 95%, #96a0ae 100%);
+  /* the signature: bronze and silver in one run of plating */
+  --cw-plate-duo: linear-gradient(150deg,
+    var(--cw-bz-8) 0%, var(--cw-bz-5) 15%, var(--cw-bz-3) 27%, var(--cw-ag-4) 41%,
+    var(--cw-ag-6) 49%, var(--cw-ag-3) 57%, var(--cw-bz-3) 71%, var(--cw-bz-6) 88%, var(--cw-bz-8) 100%);
+
+  --cw-brush: repeating-linear-gradient(90deg,
+    rgba(255, 255, 255, 0.05) 0 1px, rgba(0, 0, 0, 0.06) 1px 3px);
+}
 
 /* -------------------------------------------------------------- panel */
 .cw-panel {
@@ -12,36 +75,76 @@
   height: min(32rem, calc(100vh - 2rem));
   display: flex;
   flex-direction: column;
-  background: #0b1220;
-  border: 1px solid rgba(59, 130, 246, 0.35);
+  /* face on the inside, plating in the border */
+  background:
+    linear-gradient(170deg, #161b26, var(--cw-face-deep) 58%, #11151e) padding-box,
+    var(--cw-plate-duo) border-box;
+  border: 2px solid transparent;
   border-radius: 1.1rem;
   overflow: hidden;
-  box-shadow: 0 28px 60px -18px rgba(0, 0, 0, 0.8);
+  box-shadow:
+    inset 0 1px 0 rgba(246, 224, 184, 0.16),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.55),
+    0 28px 60px -18px rgba(0, 0, 0, 0.85),
+    0 0 30px -14px rgba(201, 149, 81, 0.35);
 }
 @media (max-width: 480px) {
   .cw-panel { right: 0.5rem; left: 0.5rem; bottom: 0.5rem; width: auto; height: min(78vh, 34rem); }
 }
 
+/* the header is a brushed bronze nameplate, seamed to the body in silver */
 .cw-head {
+  position: relative;
   display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;
   padding: 0.95rem 1rem;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(15, 23, 42, 0.5));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(104deg, transparent 30%, rgba(255, 246, 228, 0.16) 47%,
+      rgba(255, 255, 255, 0.26) 50%, rgba(255, 246, 228, 0.16) 53%, transparent 70%),
+    var(--cw-brush),
+    linear-gradient(180deg, var(--cw-bz-4) 0%, var(--cw-bz-3) 44%,
+      var(--cw-bz-2) 52%, var(--cw-bz-3) 100%);
+  border: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(246, 224, 184, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.5),
+    0 1px 0 rgba(242, 245, 249, 0.5),   /* the silver seam */
+    0 2px 3px rgba(0, 0, 0, 0.6);
 }
-.cw-title { margin: 0; font-size: 0.95rem; font-weight: 800; color: #fff; }
-.cw-sub { margin: 0.2rem 0 0; font-size: 0.74rem; color: var(--slate-400); display: flex; align-items: center; gap: 0.35rem; }
-.cw-dot { width: 0.42rem; height: 0.42rem; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+.cw-title {
+  margin: 0; font-size: 0.95rem; font-weight: 800; color: #fdf4e6;
+  letter-spacing: 0.012em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.55);
+}
+.cw-sub {
+  margin: 0.2rem 0 0; font-size: 0.74rem; color: #e3cfae;
+  display: flex; align-items: center; gap: 0.35rem;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
+}
+.cw-dot {
+  width: 0.42rem; height: 0.42rem; border-radius: 50%;
+  background: var(--cw-patina); flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45), 0 0 6px rgba(53, 200, 154, 0.9);
+}
 .cw-close {
-  background: transparent; border: 0; color: var(--slate-400);
+  background: transparent; border: 0; color: #e3cfae;
   font-size: 1.45rem; line-height: 1; cursor: pointer; padding: 0 0.25rem; border-radius: 0.35rem;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
 }
-.cw-close:hover { color: #fff; }
+.cw-close:hover { color: #fff8ec; background: rgba(255, 255, 255, 0.1); }
 
 /* ---------------------------------------------------------------- log */
 .cw-log {
   flex: 1; overflow-y: auto; padding: 1rem;
   display: flex; flex-direction: column; gap: 0.7rem;
   scrollbar-width: thin;
+  scrollbar-color: var(--cw-bz-4) transparent;
+}
+.cw-log::-webkit-scrollbar { width: 9px; }
+.cw-log::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.35); }
+.cw-log::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--cw-bz-6), var(--cw-bz-4) 50%, var(--cw-bz-3));
+  border: 2px solid transparent; background-clip: padding-box;
 }
 .cw-msg { display: flex; }
 .cw-msg--user { justify-content: flex-end; }
@@ -54,38 +157,63 @@
   word-wrap: break-word;
   overflow-wrap: anywhere;
 }
+/* the agent speaks from a silver-rimmed plate */
 .cw-msg--agent .cw-bubble {
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--slate-300);
+  background:
+    linear-gradient(165deg, #171d28, var(--cw-face-deep)) padding-box,
+    var(--cw-plate-silver) border-box;
+  border: 1px solid transparent;
+  color: var(--cw-ink-cool);
   border-bottom-left-radius: 0.3rem;
+  box-shadow: inset 0 1px 0 rgba(242, 245, 249, 0.07), 0 2px 8px -3px rgba(0, 0, 0, 0.7);
 }
+/* the visitor speaks from a bronze-rimmed plate */
 .cw-msg--user .cw-bubble {
-  background: rgba(37, 99, 235, 0.28);
-  border: 1px solid rgba(59, 130, 246, 0.4);
-  color: #e2e8f0;
+  background:
+    linear-gradient(165deg, var(--cw-bz-1), #150f08) padding-box,
+    var(--cw-plate-bronze) border-box;
+  border: 1px solid transparent;
+  color: #fbeeda;
   border-bottom-right-radius: 0.3rem;
+  box-shadow: inset 0 1px 0 rgba(246, 224, 184, 0.18), 0 2px 8px -3px rgba(0, 0, 0, 0.7);
 }
-.cw-msg--error .cw-bubble { border-color: rgba(248, 113, 113, 0.5); color: #fca5a5; }
-.cw-bubble a { color: #93c5fd; text-decoration: underline; text-underline-offset: 2px; }
-.cw-bubble strong { color: #fff; }
+.cw-msg--error .cw-bubble {
+  background:
+    linear-gradient(165deg, #231317, #140b0d) padding-box,
+    linear-gradient(145deg, #f2a5a0, #7f2c28 50%, #f2a5a0) border-box;
+  color: #f2a5a0;
+}
+.cw-bubble a { color: var(--cw-bz-7); text-decoration: underline; text-underline-offset: 2px; }
+.cw-bubble a:hover { color: var(--cw-bz-8); }
+.cw-bubble strong { color: #fdf4e6; }
 
-/* suggestion chips */
+/* suggestion chips: little silver-plated tags */
 .cw-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .cw-chip {
-  background: rgba(2, 6, 23, 0.8);
-  border: 1px solid rgba(59, 130, 246, 0.35);
-  color: var(--slate-300);
+  background:
+    linear-gradient(180deg, var(--cw-ag-2), #10141c) padding-box,
+    var(--cw-plate-silver) border-box;
+  border: 1px solid transparent;
+  color: var(--cw-ag-5);
   font: inherit; font-size: 0.78rem;
   padding: 0.38rem 0.7rem; border-radius: 999px; cursor: pointer; text-align: left;
+  box-shadow: inset 0 1px 0 rgba(242, 245, 249, 0.14);
+  transition: color .18s ease, box-shadow .18s ease;
 }
-.cw-chip:hover { border-color: var(--blue-500); color: #fff; }
+.cw-chip:hover {
+  background:
+    linear-gradient(180deg, #2b2114, #15100a) padding-box,
+    var(--cw-plate-bronze) border-box;
+  color: #fff8ec;
+  box-shadow: inset 0 1px 0 rgba(246, 224, 184, 0.3), 0 0 12px -4px rgba(201, 149, 81, 0.8);
+}
+.cw-chip:focus-visible { outline: 2px solid var(--cw-bz-7); outline-offset: 2px; }
 
 /* typing indicator */
 .cw-dots { display: inline-flex; gap: 0.22rem; padding: 0.15rem 0; }
 .cw-dots i {
   width: 0.38rem; height: 0.38rem; border-radius: 50%;
-  background: var(--slate-500); display: block;
+  background: linear-gradient(180deg, var(--cw-bz-7), var(--cw-bz-4)); display: block;
   animation: cwblink 1.3s infinite ease-in-out;
 }
 .cw-dots i:nth-child(2) { animation-delay: .18s; }
@@ -95,47 +223,71 @@
 /* --------------------------------------------------------------- form */
 .cw-form {
   display: flex; align-items: flex-end; gap: 0.5rem;
-  padding: 0.7rem; border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(2, 6, 23, 0.6);
+  padding: 0.7rem;
+  border: 0;
+  background: var(--cw-brush), linear-gradient(180deg, var(--cw-ag-1), #0b0f16);
+  box-shadow: inset 0 1px 0 rgba(242, 245, 249, 0.16), inset 0 2px 5px -3px rgba(0, 0, 0, 0.9);
 }
+/* the input is machined into the plate, so its bevel runs the other way */
 .cw-input {
   flex: 1; resize: none; max-height: 110px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, #06080c, #0e131b);
+  border: 1px solid #000;
   border-radius: 0.65rem;
-  color: #fff; font: inherit; font-size: 0.88rem; line-height: 1.5;
+  color: var(--cw-ag-6); font: inherit; font-size: 0.88rem; line-height: 1.5;
   padding: 0.55rem 0.7rem;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9), inset 0 -1px 0 rgba(242, 245, 249, 0.14);
 }
-.cw-input:focus { outline: 2px solid var(--blue-500); outline-offset: 0; border-color: var(--blue-500); }
-.cw-input::placeholder { color: var(--slate-500); }
+.cw-input:focus {
+  outline: 2px solid var(--cw-bz-7); outline-offset: 0;
+  border-color: var(--cw-bz-5);
+}
+.cw-input::placeholder { color: #8d97a6; }
+/* send is a polished bronze key with engraved ink */
 .cw-send {
   flex-shrink: 0; width: 2.4rem; height: 2.4rem;
   display: inline-flex; align-items: center; justify-content: center;
-  background: var(--blue-600); color: #fff; border: 0; border-radius: 0.65rem; cursor: pointer;
+  background:
+    linear-gradient(180deg, var(--cw-bz-8) 0%, var(--cw-bz-7) 28%, var(--cw-bz-6) 52%,
+      var(--cw-bz-5) 72%, var(--cw-bz-6) 100%) padding-box,
+    var(--cw-plate-bronze) border-box;
+  color: var(--cw-ink-dark);
+  border: 1px solid transparent; border-radius: 0.65rem; cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 244, 0.75),
+    inset 0 -2px 2px rgba(90, 56, 20, 0.5),
+    0 2px 0 var(--cw-bz-2),
+    0 4px 10px -4px rgba(0, 0, 0, 0.8);
+  transition: transform .1s ease, box-shadow .1s ease, filter .15s ease;
 }
-.cw-send:hover:not(:disabled) { filter: brightness(1.08); }
+.cw-send:hover:not(:disabled) { filter: brightness(1.07); }
+/* pressing it actually seats the key */
+.cw-send:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 4px rgba(90, 56, 20, 0.7), 0 0 0 var(--cw-bz-2);
+}
+.cw-send:focus-visible { outline: 2px solid var(--cw-ag-6); outline-offset: 2px; }
 .cw-send:disabled { opacity: .45; cursor: not-allowed; }
 
 .cw-foot {
   margin: 0; padding: 0.45rem 0.8rem 0.65rem;
-  font-size: 0.68rem; color: var(--slate-500); text-align: center;
-  background: rgba(2, 6, 23, 0.6);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cw-launcher:hover { transform: none; }
-  .cw-dots i { animation: none; opacity: .6; }
+  font-size: 0.68rem; color: var(--cw-ag-4); text-align: center;
+  background: linear-gradient(180deg, #0b0f16, #060810);
+  box-shadow: inset 0 1px 0 rgba(242, 245, 249, 0.09);
 }
 
 /* ------------------------------------------- header actions + tool status */
 .cw-head-actions { display: flex; align-items: center; gap: 0.15rem; flex-shrink: 0; }
 .cw-restart {
-  background: transparent; border: 0; color: var(--slate-400);
+  background: transparent; border: 0; color: #e3cfae;
   cursor: pointer; padding: 0.3rem; border-radius: 0.35rem;
   display: inline-flex; align-items: center;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45));
 }
-.cw-restart:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
-.cw-status { color: var(--slate-400); font-size: 0.82rem; margin-right: 0.4rem; }
+.cw-restart:hover { color: #fff8ec; background: rgba(255, 255, 255, 0.12); }
+.cw-restart:focus-visible,
+.cw-close:focus-visible { outline: 2px solid #fff8ec; outline-offset: 1px; }
+.cw-status { color: #c2b49a; font-size: 0.82rem; margin-right: 0.4rem; }
 
 /* The panel opens from a page button, so it is anchored bottom-right but
    never sits under the sticky mobile bar or the WhatsApp button. */
@@ -144,47 +296,69 @@
 
 /* --------------------------------------------- inline contact form card */
 .cw-form-card {
-  background: linear-gradient(160deg, rgba(37, 99, 235, 0.16), rgba(15, 23, 42, 0.75));
-  border: 1px solid rgba(59, 130, 246, 0.4);
+  background:
+    linear-gradient(160deg, #1d2430, #11151e 70%) padding-box,
+    var(--cw-plate-duo) border-box;
+  border: 1px solid transparent;
   border-radius: 0.9rem;
   padding: 0.95rem 1rem 1rem;
+  box-shadow: inset 0 1px 0 rgba(246, 224, 184, 0.18), 0 6px 18px -8px rgba(0, 0, 0, 0.8);
 }
-.cw-form-title { margin: 0 0 0.2rem; font-size: 0.9rem; font-weight: 800; color: #fff; }
-.cw-form-sub { margin: 0 0 0.75rem; font-size: 0.76rem; color: var(--slate-400); line-height: 1.45; }
+.cw-form-title { margin: 0 0 0.2rem; font-size: 0.9rem; font-weight: 800; color: #fdf4e6; }
+.cw-form-sub { margin: 0 0 0.75rem; font-size: 0.76rem; color: var(--cw-ag-5); line-height: 1.45; }
 .cw-cf { display: flex; flex-direction: column; gap: 0.45rem; }
 .cw-cf-in {
   width: 100%;
-  background: rgba(2, 6, 23, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: linear-gradient(180deg, #05070b, #0d121a);
+  border: 1px solid #000;
   border-radius: 0.5rem;
-  color: #fff;
+  color: var(--cw-ag-6);
   font: inherit;
   font-size: 0.84rem;
   padding: 0.5rem 0.6rem;
   resize: vertical;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.9), inset 0 -1px 0 rgba(242, 245, 249, 0.12);
 }
-.cw-cf-in::placeholder { color: var(--slate-500); }
-.cw-cf-in:focus { outline: 2px solid var(--blue-500); outline-offset: 0; border-color: var(--blue-500); }
+.cw-cf-in::placeholder { color: #8d97a6; }
+.cw-cf-in:focus { outline: 2px solid var(--cw-bz-7); outline-offset: 0; border-color: var(--cw-bz-5); }
 .cw-cf-send {
   margin-top: 0.15rem;
-  background: var(--blue-600);
-  color: #fff;
-  border: 0;
+  background:
+    linear-gradient(180deg, var(--cw-bz-8) 0%, var(--cw-bz-7) 30%, var(--cw-bz-6) 54%,
+      var(--cw-bz-5) 74%, var(--cw-bz-6) 100%) padding-box,
+    var(--cw-plate-bronze) border-box;
+  color: var(--cw-ink-dark);
+  border: 1px solid transparent;
   border-radius: 0.5rem;
   font: inherit;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.012em;
   padding: 0.6rem 0.8rem;
   cursor: pointer;
+  text-shadow: 0 1px 0 rgba(255, 252, 244, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 252, 244, 0.75),
+    inset 0 -2px 2px rgba(90, 56, 20, 0.5),
+    0 2px 0 var(--cw-bz-2),
+    0 4px 10px -4px rgba(0, 0, 0, 0.8);
+  transition: transform .1s ease, box-shadow .1s ease, filter .15s ease;
 }
-.cw-cf-send:hover:not(:disabled) { filter: brightness(1.08); }
+.cw-cf-send:hover:not(:disabled) { filter: brightness(1.07); }
+.cw-cf-send:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 4px rgba(90, 56, 20, 0.7), 0 0 0 var(--cw-bz-2);
+}
+.cw-cf-send:focus-visible { outline: 2px solid var(--cw-ag-6); outline-offset: 2px; }
 .cw-cf-send:disabled { opacity: .55; cursor: not-allowed; }
-.cw-cf-note { margin: 0.35rem 0 0; font-size: 0.76rem; color: #fca5a5; line-height: 1.45; }
-.cw-cf-ok { margin: 0; font-size: 0.86rem; color: #4ade80; font-weight: 600; line-height: 1.5; }
+.cw-cf-note { margin: 0.35rem 0 0; font-size: 0.76rem; color: #f2a5a0; line-height: 1.45; }
+.cw-cf-ok { margin: 0; font-size: 0.86rem; color: #5fd9b0; font-weight: 600; line-height: 1.5; }
 
 /* ------------------------------------------------------ floating launcher
    Bottom right on every page. Stacks above the WhatsApp button (a human)
-   and clears the sticky mobile CTA bar, so nothing covers anything. */
+   and clears the sticky mobile CTA bar, so nothing covers anything.
+   A dark face in a thick bronze-and-silver rim, so the label stays readable
+   on metal rather than fighting it. */
 .cw-launcher {
   position: fixed;
   right: 1rem;
@@ -193,21 +367,53 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, var(--blue-600), #1d4ed8);
-  color: #fff;
-  border: 0;
+  background:
+    linear-gradient(165deg, #1b2130, var(--cw-face) 55%, #0b0f16) padding-box,
+    var(--cw-plate-duo) border-box;
+  color: var(--cw-ink);
+  border: 2px solid transparent;
   font: inherit;
   font-size: 0.86rem;
   font-weight: 700;
+  letter-spacing: 0.012em;
   padding: 0.75rem 1.1rem;
   border-radius: 999px;
   cursor: pointer;
-  box-shadow: 0 14px 32px -10px rgba(37, 99, 235, 0.75);
-  transition: transform .2s ease, filter .2s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(246, 224, 184, 0.3),
+    inset 0 -2px 6px -2px rgba(0, 0, 0, 0.9),
+    0 14px 32px -10px rgba(0, 0, 0, 0.85),
+    0 0 22px -8px rgba(201, 149, 81, 0.55);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.cw-launcher:hover { transform: translateY(-2px); filter: brightness(1.08); }
-.cw-launcher:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+.cw-launcher > * { position: relative; z-index: 1; }
+.cw-launcher svg { color: var(--cw-bz-7); }
+.cw-launcher:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(246, 224, 184, 0.45),
+    inset 0 -2px 6px -2px rgba(0, 0, 0, 0.9),
+    0 18px 38px -10px rgba(0, 0, 0, 0.9),
+    0 0 30px -6px rgba(201, 149, 81, 0.8);
+}
+.cw-launcher:focus-visible { outline: 3px solid var(--cw-bz-7); outline-offset: 3px; }
 .cw-launcher[hidden] { display: none !important; }
+
+/* a specular band that sweeps across the plating on hover */
+.cw-launcher::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(100deg,
+    transparent 36%, rgba(246, 224, 184, 0.16) 46%, rgba(255, 252, 244, 0.34) 50%,
+    rgba(246, 224, 184, 0.16) 54%, transparent 64%);
+  background-size: 260% 100%;
+  background-position: 135% 0;
+  transition: background-position .8s ease;
+}
+.cw-launcher:hover::before { background-position: -45% 0; }
 
 /* a quiet pulse so it is noticed without nagging */
 .cw-launcher::after {
@@ -215,14 +421,14 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.55);
+  box-shadow: 0 0 0 0 rgba(201, 149, 81, 0.55);
   animation: cwpulse 3.4s ease-out infinite;
   pointer-events: none;
 }
 @keyframes cwpulse {
-  0%   { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
-  60%  { box-shadow: 0 0 0 0.9rem rgba(59, 130, 246, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(201, 149, 81, 0.5); }
+  60%  { box-shadow: 0 0 0 0.9rem rgba(201, 149, 81, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 149, 81, 0); }
 }
 
 /* sit above the WhatsApp button when both are present */
@@ -235,6 +441,12 @@ body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cw-launcher { transition: none; }
   .cw-launcher:hover { transform: none; }
   .cw-launcher::after { animation: none; }
+  .cw-launcher::before { transition: none; }
+  .cw-send, .cw-cf-send, .cw-chip { transition: none; }
+  .cw-send:active:not(:disabled),
+  .cw-cf-send:active:not(:disabled) { transform: none; }
+  .cw-dots i { animation: none; opacity: .6; }
 }
