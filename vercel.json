@@ -438,6 +438,10 @@
     {
       "source": "/website-design/small-business",
       "destination": "/website-design-small-business"
+    },
+    {
+      "source": "/case-studies/hydrocom",
+      "destination": "/case-studies-hydrocom"
     }
   ]
 }
