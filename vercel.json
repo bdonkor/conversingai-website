@@ -6,81 +6,343 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/about-us", "destination": "/about", "permanent": true },
-    { "source": "/about-us/", "destination": "/about", "permanent": true },
-    { "source": "/contact-us", "destination": "/contact", "permanent": true },
-    { "source": "/contact-us/", "destination": "/contact", "permanent": true },
-    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
-    { "source": "/privacy-policy/", "destination": "/privacy", "permanent": true },
-    { "source": "/terms-and-conditions", "destination": "/terms", "permanent": true },
-    { "source": "/terms-and-conditions/", "destination": "/terms", "permanent": true },
-    { "source": "/return-policy", "destination": "/refund", "permanent": true },
-    { "source": "/return-policy/", "destination": "/refund", "permanent": true },
-    { "source": "/disclaimer", "destination": "/terms", "permanent": true },
-    { "source": "/disclaimer/", "destination": "/terms", "permanent": true },
-    { "source": "/ai-voice-agents", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/ai-voice-agents/", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/blog/", "destination": "/blog", "permanent": true },
-    { "source": "/blog/page/:num", "destination": "/blog", "permanent": true },
-    { "source": "/blog/page/:num/", "destination": "/blog", "permanent": true },
-    { "source": "/bizexpert", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/bizexpert/", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/linkedexpert", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/linkedexpert/", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/linkedexpert-desktop", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/linkedexpert-desktop/", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/ctibot-desktop-version", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/ctibot-desktop-version/", "destination": "/ai-chat-voice-agents", "permanent": true },
-    { "source": "/who-needs-ai-education-and-training", "destination": "/ai-courses", "permanent": true },
-    { "source": "/who-needs-ai-education-and-training/", "destination": "/ai-courses", "permanent": true },
-    { "source": "/ai-training-in-ghana-for-commerce-and-industries", "destination": "/blog-post-ai-training-ghana-commerce-industries", "permanent": true },
-    { "source": "/ai-training-in-ghana-for-commerce-and-industries/", "destination": "/blog-post-ai-training-ghana-commerce-industries", "permanent": true },
-    { "source": "/ai-training-in-ghana-for-commerce-and-industries-today", "destination": "/blog-post-ai-training-ghana-commerce-industries", "permanent": true },
-    { "source": "/ai-training-in-ghana-for-commerce-and-industries-today/", "destination": "/blog-post-ai-training-ghana-commerce-industries", "permanent": true },
-    { "source": "/how-to-create-a-website-with-lovable-dev-ai", "destination": "/blog", "permanent": true },
-    { "source": "/how-to-create-a-website-with-lovable-dev-ai/", "destination": "/blog", "permanent": true },
-    { "source": "/leadsgorilla-ai-software-review-2025", "destination": "/blog", "permanent": true },
-    { "source": "/leadsgorilla-ai-software-review-2025/", "destination": "/blog", "permanent": true },
-    { "source": "/multiverse-ai-premium-models-2025", "destination": "/blog", "permanent": true },
-    { "source": "/multiverse-ai-premium-models-2025/", "destination": "/blog", "permanent": true },
-    { "source": "/getresponse-review-2025", "destination": "/blog", "permanent": true },
-    { "source": "/getresponse-review-2025/", "destination": "/blog", "permanent": true },
-    { "source": "/apply-agentic-ai-to-business-growth", "destination": "/blog", "permanent": true },
-    { "source": "/apply-agentic-ai-to-business-growth/", "destination": "/blog", "permanent": true },
-    { "source": "/indicators-of-effective-ai-prompts", "destination": "/blog-post-indicators-of-effective-ai-prompts", "permanent": true },
-    { "source": "/indicators-of-effective-ai-prompts/", "destination": "/blog-post-indicators-of-effective-ai-prompts", "permanent": true },
-    { "source": "/the-history-of-chatbots-and-what-they-are-today", "destination": "/blog-post-history-of-chatbots", "permanent": true },
-    { "source": "/the-history-of-chatbots-and-what-they-are-today/", "destination": "/blog-post-history-of-chatbots", "permanent": true },
-    { "source": "/history-of-chatbots", "destination": "/blog-post-history-of-chatbots", "permanent": true },
-    { "source": "/history-of-chatbots/", "destination": "/blog-post-history-of-chatbots", "permanent": true },
-    { "source": "/what-are-ai-chat-and-voice-agents", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
-    { "source": "/what-are-ai-chat-and-voice-agents/", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
-    { "source": "/what-are-ai-chat-agents-and-ai-voice-agents", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
-    { "source": "/what-are-ai-chat-agents-and-ai-voice-agents/", "destination": "/blog-post-what-are-ai-chat-voice-agents", "permanent": true },
-    { "source": "/what-is-ai-prompt-engineering", "destination": "/blog", "permanent": true },
-    { "source": "/what-is-ai-prompt-engineering/", "destination": "/blog", "permanent": true },
-    { "source": "/optimize-ai-prompts-with-gina", "destination": "/blog", "permanent": true },
-    { "source": "/optimize-ai-prompts-with-gina/", "destination": "/blog", "permanent": true }
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy/",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/terms-and-conditions/",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/return-policy",
+      "destination": "/refund",
+      "permanent": true
+    },
+    {
+      "source": "/return-policy/",
+      "destination": "/refund",
+      "permanent": true
+    },
+    {
+      "source": "/disclaimer",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/disclaimer/",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/ai-voice-agents",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/ai-voice-agents/",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/:num",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/:num/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/bizexpert",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/bizexpert/",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/linkedexpert",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/linkedexpert/",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/linkedexpert-desktop",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/linkedexpert-desktop/",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/ctibot-desktop-version",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/ctibot-desktop-version/",
+      "destination": "/ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/who-needs-ai-education-and-training",
+      "destination": "/ai-courses",
+      "permanent": true
+    },
+    {
+      "source": "/who-needs-ai-education-and-training/",
+      "destination": "/ai-courses",
+      "permanent": true
+    },
+    {
+      "source": "/ai-training-in-ghana-for-commerce-and-industries",
+      "destination": "/blog-post-ai-training-ghana-commerce-industries",
+      "permanent": true
+    },
+    {
+      "source": "/ai-training-in-ghana-for-commerce-and-industries/",
+      "destination": "/blog-post-ai-training-ghana-commerce-industries",
+      "permanent": true
+    },
+    {
+      "source": "/ai-training-in-ghana-for-commerce-and-industries-today",
+      "destination": "/blog-post-ai-training-ghana-commerce-industries",
+      "permanent": true
+    },
+    {
+      "source": "/ai-training-in-ghana-for-commerce-and-industries-today/",
+      "destination": "/blog-post-ai-training-ghana-commerce-industries",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-create-a-website-with-lovable-dev-ai",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/how-to-create-a-website-with-lovable-dev-ai/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/leadsgorilla-ai-software-review-2025",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/leadsgorilla-ai-software-review-2025/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/multiverse-ai-premium-models-2025",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/multiverse-ai-premium-models-2025/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/getresponse-review-2025",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/getresponse-review-2025/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/apply-agentic-ai-to-business-growth",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/apply-agentic-ai-to-business-growth/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/indicators-of-effective-ai-prompts",
+      "destination": "/blog-post-indicators-of-effective-ai-prompts",
+      "permanent": true
+    },
+    {
+      "source": "/indicators-of-effective-ai-prompts/",
+      "destination": "/blog-post-indicators-of-effective-ai-prompts",
+      "permanent": true
+    },
+    {
+      "source": "/the-history-of-chatbots-and-what-they-are-today",
+      "destination": "/blog-post-history-of-chatbots",
+      "permanent": true
+    },
+    {
+      "source": "/the-history-of-chatbots-and-what-they-are-today/",
+      "destination": "/blog-post-history-of-chatbots",
+      "permanent": true
+    },
+    {
+      "source": "/history-of-chatbots",
+      "destination": "/blog-post-history-of-chatbots",
+      "permanent": true
+    },
+    {
+      "source": "/history-of-chatbots/",
+      "destination": "/blog-post-history-of-chatbots",
+      "permanent": true
+    },
+    {
+      "source": "/what-are-ai-chat-and-voice-agents",
+      "destination": "/blog-post-what-are-ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/what-are-ai-chat-and-voice-agents/",
+      "destination": "/blog-post-what-are-ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/what-are-ai-chat-agents-and-ai-voice-agents",
+      "destination": "/blog-post-what-are-ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/what-are-ai-chat-agents-and-ai-voice-agents/",
+      "destination": "/blog-post-what-are-ai-chat-voice-agents",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-ai-prompt-engineering",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/what-is-ai-prompt-engineering/",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/optimize-ai-prompts-with-gina",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/optimize-ai-prompts-with-gina/",
+      "destination": "/blog",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)\\.(css|js|jpg|jpeg|png|gif|svg|ico|webp|avif|woff|woff2|ttf|otf|mp4|webm)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)\\.html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
       ]
     },
     {
       "source": "/",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/ai-chat-agents/customer-service",
+      "destination": "/ai-chat-agents-customer-service"
+    },
+    {
+      "source": "/ai-chat-agents/ecommerce",
+      "destination": "/ai-chat-agents-ecommerce"
+    },
+    {
+      "source": "/ai-chat-agents/clinics",
+      "destination": "/ai-chat-agents-clinics"
+    },
+    {
+      "source": "/ai-chat-agents/real-estate",
+      "destination": "/ai-chat-agents-real-estate"
+    },
+    {
+      "source": "/ai-chat-agents/restaurants-hospitality",
+      "destination": "/ai-chat-agents-restaurants-hospitality"
+    },
+    {
+      "source": "/ai-chat-agents/schools-training",
+      "destination": "/ai-chat-agents-schools-training"
+    },
+    {
+      "source": "/website-design/small-business",
+      "destination": "/website-design-small-business"
     }
   ]
 }

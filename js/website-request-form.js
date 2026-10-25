@@ -71,7 +71,8 @@
   function showSuccess() {
     form.style.display = 'none';
     if (successBox) successBox.style.display = 'block';
-    window.scrollTo({ top: 200, behavior: 'smooth' });
+    // Hand off to the thank-you page, which carries the next steps.
+    window.location.href = 'thank-you';
   }
 
   form.addEventListener('submit', function (e) {

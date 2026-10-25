@@ -123,6 +123,9 @@ async function submitQuote() {
     document.getElementById('step2').style.display = 'none';
     document.getElementById('step3').style.display = 'none';
     document.getElementById('step-success').style.display = 'block';
+    // Hand off to the thank-you page, which carries the next steps.
+    window.location.href = 'thank-you';
+    return;
 
     document.getElementById('prog1').style.background = 'var(--blue-600)';
     document.getElementById('prog2').style.background = 'var(--blue-600)';

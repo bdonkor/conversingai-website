@@ -1,0 +1,95 @@
+{
+  "_comment": "Pricing shown on /pricing. Every price is a PLACEHOLDER until the owner supplies real numbers. While a tier's price is empty the card shows 'Quoted per project' instead of a number, which matches the site's fixed-written-quote stance and never invents a figure.",
+
+  "currency": "GHS",
+  "currencyNote": "Prices shown in Ghana cedis. We also work with clients billing in other currencies.",
+
+  "_todo": "TODO(owner): fill in `from` values and the agent plan prices. Leave any you are unsure about empty rather than guessing. See OWNER_INPUTS.md.",
+
+  "websites": [
+    {
+      "name": "Marketing site",
+      "from": "",
+      "blurb": "A focused site that wins enquiries. Right for most small businesses.",
+      "includes": [
+        "Up to 6 pages",
+        "Mobile-first, fast on patchy connections",
+        "Technical SEO set up from day one",
+        "Enquiry form wired to your inbox",
+        "2 to 3 weeks to launch",
+        "Hosting, updates, backups and monitoring"
+      ]
+    },
+    {
+      "name": "Business site",
+      "from": "",
+      "featured": true,
+      "blurb": "More pages, more structure, and an AI chat agent included.",
+      "includes": [
+        "Up to 15 pages",
+        "Everything in the marketing site",
+        "AI chat agent trained on your business",
+        "Blog or news section",
+        "Analytics and conversion tracking",
+        "Priority support"
+      ]
+    },
+    {
+      "name": "Web app",
+      "from": "",
+      "blurb": "Logins, payments, dashboards. The kind of thing we built for schools and workshops.",
+      "includes": [
+        "User accounts and roles",
+        "Payments, including mobile money",
+        "Dashboards and reporting",
+        "SMS and email automation",
+        "Timeline agreed in writing up front",
+        "Ongoing maintenance"
+      ]
+    }
+  ],
+
+  "agents": [
+    {
+      "name": "Starter agent",
+      "setup": "",
+      "monthly": "",
+      "blurb": "One agent on your website, trained on your core services.",
+      "includes": [
+        "Website chat",
+        "Trained on your services, prices and FAQs",
+        "Lead capture to your inbox",
+        "Human handover",
+        "Monthly conversation allowance",
+        "Month to month, cancel any time"
+      ]
+    },
+    {
+      "name": "Business agent",
+      "setup": "",
+      "monthly": "",
+      "featured": true,
+      "blurb": "Higher volume, more training, and the analytics to see what customers ask.",
+      "includes": [
+        "Everything in Starter",
+        "Higher conversation allowance",
+        "Multiple languages",
+        "Conversation analytics",
+        "Quarterly retraining as your business changes",
+        "Priority support"
+      ]
+    }
+  ],
+
+  "bundle": {
+    "name": "Website + AI agent",
+    "from": "",
+    "blurb": "The recommended path. Built together, launched together, quoted as one project.",
+    "includes": [
+      "Everything in the Business site",
+      "Business agent included",
+      "Both live on the same day",
+      "One team, one quote, one point of contact"
+    ]
+  }
+}

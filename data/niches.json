@@ -1,0 +1,181 @@
+{
+  "_comment": "Niche landing pages. tools/build-pages.cjs generates one HTML page per entry using the shared template, so adding a niche means adding an object here and re-running the build. Portfolio examples are referenced by id from data/portfolio.json.",
+
+  "pages": [
+    {
+      "slug": "ai-chat-agents/customer-service",
+      "file": "ai-chat-agents-customer-service.html",
+      "title": "AI Customer Service Agents for Any Business",
+      "metaDescription": "An AI chat agent trained on your business, answering customer questions on your website 24/7 and passing real enquiries to your team.",
+      "badge": "Customer service",
+      "h1": "Your Customers Ask the Same Ten Questions. <span class=\"highlight\">Let an Agent Answer Them.</span>",
+      "intro": "Opening hours, delivery areas, prices, returns. The same questions every day, answered by whoever happens to be free. An agent trained on your business answers them instantly, every time, and hands over the ones that need a person.",
+      "pains": [
+        "The same questions answered a dozen times a day by staff who should be doing other work.",
+        "Messages arriving after hours that sit unread until morning.",
+        "Customers who give up and go to a competitor who replied faster."
+      ],
+      "chat": [
+        ["in", "Do you deliver to Kumasi and how long does it take?"],
+        ["out", "Yes, we deliver to Kumasi. Orders placed before 2pm go out the same day and usually arrive within 48 hours. Would you like me to check a specific item?"],
+        ["in", "Yes, the 50kg bag."],
+        ["out", "That one is in stock. Shall I take your number so the team can confirm the delivery slot?"]
+      ],
+      "examples": ["mockexams", "rab-energy", "anystudents"],
+      "faq": [
+        ["Will it know our actual policies?", "Only what you give it. We train it on your real delivery areas, prices, hours and returns policy. If it has not been told something, it says so rather than inventing an answer."],
+        ["What happens to the conversations?", "They come to you. You see what customers are asking, which is usually the most useful by-product: it shows you what your website should have said in the first place."]
+      ]
+    },
+    {
+      "slug": "ai-chat-agents/ecommerce",
+      "file": "ai-chat-agents-ecommerce.html",
+      "title": "AI Chat Agents for Online Stores",
+      "metaDescription": "An AI agent that answers order, delivery and stock questions on your online store around the clock, and captures the sale when a customer hesitates.",
+      "badge": "Online stores",
+      "h1": "\"Where Is My Order?\" <span class=\"highlight\">Answered Before You Read It.</span>",
+      "intro": "Online shoppers ask about stock, sizes, delivery and returns, and they ask at midnight. An agent on your store answers immediately, checks what it has been told, and takes a contact number when something needs a human.",
+      "pains": [
+        "Order-status messages arriving faster than anyone can reply to them.",
+        "Carts abandoned because a simple question went unanswered.",
+        "The same delivery questions repeated across every channel."
+      ],
+      "chat": [
+        ["in", "I ordered on Monday, has it shipped?"],
+        ["out", "I can check that. What is the order number, or the phone number you used at checkout?"],
+        ["in", "0244 123 456"],
+        ["out", "Thank you. I have passed that to the team with your number so they can confirm the tracking today."]
+      ],
+      "examples": ["mockexams", "yourcountant"],
+      "faq": [
+        ["Can it see my real order data?", "Only if you connect it to your store and want it to. Many shops start with the agent answering policy and delivery questions and taking details, which needs no integration at all."],
+        ["Will it push discount codes?", "Only the ones you give it. It will not invent an offer to close a sale."]
+      ]
+    },
+    {
+      "slug": "ai-chat-agents/clinics",
+      "file": "ai-chat-agents-clinics.html",
+      "title": "AI Chat Agents for Clinics and Salons",
+      "metaDescription": "An AI agent that answers treatment, price and availability questions and captures booking requests while you are with a client.",
+      "badge": "Clinics & salons",
+      "h1": "You Cannot Answer the Phone <span class=\"highlight\">With a Client in the Chair.</span>",
+      "intro": "Appointment businesses lose bookings to the simplest thing: nobody free to answer. An agent handles the questions and takes the booking request, then hands you a name, a number and a preferred time.",
+      "pains": [
+        "Calls and messages missed while you are mid-appointment.",
+        "Enquiries at nine at night that are gone by nine in the morning.",
+        "Repeating prices and preparation instructions all day."
+      ],
+      "chat": [
+        ["in", "Do you have anything Saturday morning?"],
+        ["out", "We do. There is a 9:30 and an 11:00 on Saturday. Which would you prefer, and what is the treatment?"],
+        ["in", "11:00, a trim."],
+        ["out", "Noted. Can I take a name and number so the salon can confirm it?"]
+      ],
+      "examples": ["rab-energy", "schoolspec"],
+      "faq": [
+        ["Can it book directly into my calendar?", "It can, if you use a booking system we can connect to. Otherwise it collects the request and the contact details and sends them straight to you, which most small clinics find is enough."],
+        ["Will it give medical advice?", "No. It is trained to answer practical questions about services, prices and availability, and to refer anything clinical to your staff."]
+      ]
+    },
+    {
+      "slug": "ai-chat-agents/real-estate",
+      "file": "ai-chat-agents-real-estate.html",
+      "title": "AI Chat Agents for Real Estate",
+      "metaDescription": "An AI agent that answers property questions, qualifies renters and buyers, and captures viewing requests on your real estate website.",
+      "badge": "Real estate",
+      "h1": "Separate the Serious Buyers <span class=\"highlight\">From the Browsers.</span>",
+      "intro": "Property enquiries arrive in volume and most are not ready. An agent asks the qualifying questions first, so what reaches you is a budget, a timeframe and a phone number rather than one line of curiosity.",
+      "pains": [
+        "An inbox mixing genuine buyers with people with no budget.",
+        "Repeating the same availability and price details on every listing.",
+        "Viewing requests lost between WhatsApp, email and the website form."
+      ],
+      "chat": [
+        ["in", "Is the two bedroom in Spintex still available?"],
+        ["out", "It is. It is a two bedroom, furnished, with parking. Are you looking to rent or to buy, and when would you want to move?"],
+        ["in", "Rent, from next month."],
+        ["out", "Good. What budget range should I note, and what is the best number for the agent to call you on?"]
+      ],
+      "examples": ["hydrocom", "fabri-manager"],
+      "faq": [
+        ["Can it handle a long list of properties?", "Yes. The more structured your listings are, the better it answers. We train it on what you have and keep it updated as stock changes."],
+        ["Does it replace my agents?", "No. It does the filtering your agents currently do by hand, so their time goes to people who are actually ready."]
+      ]
+    },
+    {
+      "slug": "ai-chat-agents/restaurants-hospitality",
+      "file": "ai-chat-agents-restaurants-hospitality.html",
+      "title": "AI Chat Agents for Restaurants and Hospitality",
+      "metaDescription": "An AI agent that answers menu, opening hours, booking and event questions for restaurants, hotels and venues, day and night.",
+      "badge": "Restaurants & hospitality",
+      "h1": "Menus, Hours, Tables. <span class=\"highlight\">Answered While You're Serving.</span>",
+      "intro": "Hospitality runs on questions that are easy to answer and impossible to keep up with during service. An agent handles them and collects reservation and event enquiries for you to confirm.",
+      "pains": [
+        "Phone ringing through the dinner rush.",
+        "Menu, allergen and parking questions repeated endlessly.",
+        "Event and large-party enquiries lost in a busy inbox."
+      ],
+      "chat": [
+        ["in", "Do you have vegetarian options and can you take a table of eight on Friday?"],
+        ["out", "Yes, there are vegetarian dishes across the starters and mains. For a table of eight on Friday I can take the details now so the team can confirm. What time were you thinking?"],
+        ["in", "Around 7pm."],
+        ["out", "Noted, Friday around 7pm for eight. What name and number should I put on the request?"]
+      ],
+      "examples": ["rab-energy", "fabri-manager"],
+      "faq": [
+        ["Can it take a booking outright?", "It can collect everything needed for one and pass it to you instantly. Direct booking is possible where you use a reservation system we can connect to."],
+        ["What about allergens?", "It answers only from the information you give it, and refers anything it is unsure about to staff. Guessing about allergens is exactly the kind of thing we train it never to do."]
+      ]
+    },
+    {
+      "slug": "ai-chat-agents/schools-training",
+      "file": "ai-chat-agents-schools-training.html",
+      "title": "AI Chat Agents for Schools and Training Providers",
+      "metaDescription": "An AI agent that answers admissions, fee and timetable questions for schools and course providers, and captures enrolment enquiries.",
+      "badge": "Schools & training",
+      "h1": "Parents Ask About Fees <span class=\"highlight\">at Ten at Night.</span>",
+      "intro": "Admissions seasons bring the same questions in waves: fees, forms, term dates, requirements. An agent answers them accurately whenever they are asked, and gives your office the enquiries that need a person.",
+      "pains": [
+        "The office answering identical admissions questions all day.",
+        "Parents enquiring outside office hours and getting nothing back.",
+        "Enrolment interest that cools before anyone follows up."
+      ],
+      "chat": [
+        ["in", "What are the fees for JHS 1 and when does term start?"],
+        ["out", "Fees for JHS 1 are set per term and the next term begins in January. I can send you the fee breakdown and the admission form. What is the best number to reach you on?"],
+        ["in", "0540 987 654"],
+        ["out", "Thank you. The admissions office will send both to that number today."]
+      ],
+      "examples": ["anystudents", "mockexams", "schoolspec"],
+      "faq": [
+        ["We are a school, not a shop. Does this still fit?", "It fits well. Schools get the same question repeatedly in bursts, which is exactly what an agent is good at. We built SchoolSpec for Ghanaian basic schools, so we know the workflow."],
+        ["Can it handle fee amounts?", "Yes, if you want it to quote them. Some schools prefer it to collect contact details and let the office quote. Both are fine."]
+      ]
+    },
+    {
+      "slug": "website-design/small-business",
+      "file": "website-design-small-business.html",
+      "title": "Website Design for Small Businesses",
+      "metaDescription": "Conversion-focused website design for small businesses, built fast, built for phones, with an optional AI chat agent that answers customers 24/7.",
+      "badge": "Small business",
+      "h1": "A Small Business Website <span class=\"highlight\">That Actually Brings You Work.</span>",
+      "intro": "Most small business sites are a brochure nobody reads. Yours should do one job: turn the people who find you into enquiries. We build it that way, and you own it outright when it is done.",
+      "pains": [
+        "A site that looks fine but has never produced an enquiry.",
+        "Slow loading on the phones your customers actually use.",
+        "No way to capture the people who visit outside working hours."
+      ],
+      "chat": [
+        ["in", "How much for burglar proof on a three bedroom house?"],
+        ["out", "It depends on the number of windows and the design. Can I take your number and the area, so the team can quote you properly in the morning?"],
+        ["in", "Sure, it's 0203 555 010, East Legon."],
+        ["out", "Thank you. That is with the team now, and they will call you tomorrow."]
+      ],
+      "examples": ["rab-energy", "fabri-manager", "hydrocom"],
+      "faq": [
+        ["How much does a small business site cost?", "You get a fixed written quote before any work starts. A focused marketing site is a different build from one with logins and payments, so we price it on what you actually need."],
+        ["How long does it take?", "Usually two to three weeks for a marketing site. You will know the launch date before we start."]
+      ]
+    }
+  ]
+}
