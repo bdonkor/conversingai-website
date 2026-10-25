@@ -79,7 +79,15 @@ function sanitise(messages) {
 }
 
 /* -------------------------------------------------------------------- tools */
-const leadEmailTool = betaTool({
+/* The demo has a fixed order: open, accept, website + details, question 1,
+ * question 2, then the email. Left to instructions alone the model sometimes
+ * calls the email tool while it is still reading the website, then has to
+ * correct itself in front of the visitor. Counting the visitor's turns is a
+ * fact the server can check, so the stage gate lives here rather than in the
+ * prompt. */
+const MIN_VISITOR_TURNS_BEFORE_EMAIL = 5;
+
+const makeLeadEmailTool = (visitorTurns) => betaTool({
   name: 'send_lead_email',
   description:
     'Send the HOT LEAD notification email to the visitor, showing them what their own business would receive ' +
@@ -104,6 +112,14 @@ const leadEmailTool = betaTool({
     additionalProperties: false,
   },
   run: async (input) => {
+    if (visitorTurns < MIN_VISITOR_TURNS_BEFORE_EMAIL) {
+      return (
+        'NOT SENT. It is too early in the demo to send the lead email. ' +
+        'Finish the demonstration first: prepare the website, answer the '  +
+          'first question, then answer the second question. Send the email only ' +
+        'after the second answer. Do not tell the visitor an email has been sent.'
+      );
+    }
     const result = await sendLeadEmail(input);
     return result.ok
       ? `SENT. ${result.detail}`
@@ -185,7 +201,7 @@ export default async function handler(req, res) {
       // The demo is a scripted flow, not a hard reasoning problem, and it is
       // latency-sensitive. Low effort keeps replies quick.
       output_config: { effort: 'low' },
-      tools: [webFetchTool, leadEmailTool],
+      tools: [webFetchTool, makeLeadEmailTool(messages.filter((m) => m.role === 'user').length)],
       messages,
       max_iterations: MAX_ITERATIONS,
       stream: true,
