@@ -288,3 +288,6 @@
    .footer-contact-item sets display:flex, which otherwise keeps an
    unconfigured contact row visible as a bare icon with no text. */
 [hidden] { display: none !important; }
+
+.demo-note { color: var(--slate-500); font-size: 0.85rem; line-height: 1.6; margin: 1.25rem auto 0; max-width: 34rem; }
+.demo-note a { color: var(--blue-400); }

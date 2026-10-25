@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="./css/style.css?v=20261010">
   <link rel="stylesheet" href="./css/portfolio.css?v=20261026b">
   <link rel="stylesheet" href="./css/home.css?v=20261026c">
+  <link rel="stylesheet" href="./css/chat-widget.css?v=20261026d">
 
   <style>
     /* Hero headline capped at 60px (was 72px). Still fluid below that;
@@ -251,7 +252,7 @@
 
           <div class="hero-buttons hero-fade-in" style="animation-delay: 0.3s;">
             <a href="website-development-request" class="btn btn-primary btn-lg">Get a fixed quote &rarr;</a>
-            <a href="#live-demo" class="btn btn-outline btn-lg" data-site="chat-launcher" data-opens-widget>Chat with our AI agent</a>
+            <a href="#live-demo" class="btn btn-outline btn-lg" data-opens-demo>Try the demo agent</a>
           </div>
 
           <div class="hero-social-proof hero-fade-in" style="animation-delay: 0.4s;">
@@ -415,23 +416,17 @@
             The fairest test of whether we can build you an agent is whether ours can answer you.</p>
         </div>
 
-        <!-- shown while no provider is configured -->
-        <div class="demo-box fade-up" data-site="demo-pending">
-          <p class="demo-lead">Our own agent is being trained now.</p>
-          <p>We would rather show you nothing than a demo that embarrasses us. Until it is ready, the honest proof is
-            that four sites we built already run one. Open one and interrogate it.</p>
+        <div class="demo-box fade-up">
+          <p class="demo-lead">Run it on your own website, right now.</p>
+          <p>Give the agent your website address and it will read your public pages, then answer questions about
+            your business the way an agent installed on your site would. At the end it emails you the lead
+            notification your team would receive. It takes about two minutes.</p>
           <div class="demo-actions">
-            <a href="#see-it-working" class="btn btn-primary">Try a live agent we built</a>
-            <a href="contact" class="btn btn-outline">Ask us a question directly</a>
+            <a href="#" class="btn btn-primary btn-lg" data-opens-demo>Start the demo &rarr;</a>
+            <a href="website-development-request" class="btn btn-outline btn-lg">Skip it, get a quote</a>
           </div>
-          <!-- TODO(owner): set chatAgent.provider + enabled in config/site.json to replace this with the real widget -->
-        </div>
-
-        <!-- shown once a provider is configured -->
-        <div class="demo-box fade-up" data-site="demo-live" hidden>
-          <p class="demo-lead">Ask it anything about what we do.</p>
-          <div id="chat-demo-mount"></div>
-          <ul class="demo-prompts" id="demo-prompts"></ul>
+          <p class="demo-note">It is a demo agent, so it runs the demonstration and then ends. For anything else,
+            <a href="contact">talk to the team</a>.</p>
         </div>
 
         <div style="max-width:34rem;margin:2.75rem auto 0;text-align:center;">
@@ -1000,6 +995,7 @@
   </a>
 
   <script src="./js/analytics.js?v=20261026" defer></script>
+  <script src="./js/chat-widget.js?v=20261026d" defer></script>
 </body>
 
 </html>

@@ -1,0 +1,143 @@
+/* Demo chat agent widget. Sits above the sticky mobile CTA and below the
+   consent banner so nothing ever covers a decision the visitor must make. */
+
+.cw-root { position: fixed; inset: auto 0 0 auto; z-index: 78; }
+
+/* -------------------------------------------------------------- panel */
+.cw-panel {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: min(23rem, calc(100vw - 2rem));
+  height: min(32rem, calc(100vh - 2rem));
+  display: flex;
+  flex-direction: column;
+  background: #0b1220;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  border-radius: 1.1rem;
+  overflow: hidden;
+  box-shadow: 0 28px 60px -18px rgba(0, 0, 0, 0.8);
+}
+@media (max-width: 480px) {
+  .cw-panel { right: 0.5rem; left: 0.5rem; bottom: 0.5rem; width: auto; height: min(78vh, 34rem); }
+}
+
+.cw-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem;
+  padding: 0.95rem 1rem;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.22), rgba(15, 23, 42, 0.5));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.cw-title { margin: 0; font-size: 0.95rem; font-weight: 800; color: #fff; }
+.cw-sub { margin: 0.2rem 0 0; font-size: 0.74rem; color: var(--slate-400); display: flex; align-items: center; gap: 0.35rem; }
+.cw-dot { width: 0.42rem; height: 0.42rem; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+.cw-close {
+  background: transparent; border: 0; color: var(--slate-400);
+  font-size: 1.45rem; line-height: 1; cursor: pointer; padding: 0 0.25rem; border-radius: 0.35rem;
+}
+.cw-close:hover { color: #fff; }
+
+/* ---------------------------------------------------------------- log */
+.cw-log {
+  flex: 1; overflow-y: auto; padding: 1rem;
+  display: flex; flex-direction: column; gap: 0.7rem;
+  scrollbar-width: thin;
+}
+.cw-msg { display: flex; }
+.cw-msg--user { justify-content: flex-end; }
+.cw-bubble {
+  max-width: 85%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.9rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+.cw-msg--agent .cw-bubble {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--slate-300);
+  border-bottom-left-radius: 0.3rem;
+}
+.cw-msg--user .cw-bubble {
+  background: rgba(37, 99, 235, 0.28);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  color: #e2e8f0;
+  border-bottom-right-radius: 0.3rem;
+}
+.cw-msg--error .cw-bubble { border-color: rgba(248, 113, 113, 0.5); color: #fca5a5; }
+.cw-bubble a { color: #93c5fd; text-decoration: underline; text-underline-offset: 2px; }
+.cw-bubble strong { color: #fff; }
+
+/* suggestion chips */
+.cw-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.cw-chip {
+  background: rgba(2, 6, 23, 0.8);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: var(--slate-300);
+  font: inherit; font-size: 0.78rem;
+  padding: 0.38rem 0.7rem; border-radius: 999px; cursor: pointer; text-align: left;
+}
+.cw-chip:hover { border-color: var(--blue-500); color: #fff; }
+
+/* typing indicator */
+.cw-dots { display: inline-flex; gap: 0.22rem; padding: 0.15rem 0; }
+.cw-dots i {
+  width: 0.38rem; height: 0.38rem; border-radius: 50%;
+  background: var(--slate-500); display: block;
+  animation: cwblink 1.3s infinite ease-in-out;
+}
+.cw-dots i:nth-child(2) { animation-delay: .18s; }
+.cw-dots i:nth-child(3) { animation-delay: .36s; }
+@keyframes cwblink { 0%,80%,100% { opacity: .25; } 40% { opacity: 1; } }
+
+/* --------------------------------------------------------------- form */
+.cw-form {
+  display: flex; align-items: flex-end; gap: 0.5rem;
+  padding: 0.7rem; border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(2, 6, 23, 0.6);
+}
+.cw-input {
+  flex: 1; resize: none; max-height: 110px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.65rem;
+  color: #fff; font: inherit; font-size: 0.88rem; line-height: 1.5;
+  padding: 0.55rem 0.7rem;
+}
+.cw-input:focus { outline: 2px solid var(--blue-500); outline-offset: 0; border-color: var(--blue-500); }
+.cw-input::placeholder { color: var(--slate-500); }
+.cw-send {
+  flex-shrink: 0; width: 2.4rem; height: 2.4rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--blue-600); color: #fff; border: 0; border-radius: 0.65rem; cursor: pointer;
+}
+.cw-send:hover:not(:disabled) { filter: brightness(1.08); }
+.cw-send:disabled { opacity: .45; cursor: not-allowed; }
+
+.cw-foot {
+  margin: 0; padding: 0.45rem 0.8rem 0.65rem;
+  font-size: 0.68rem; color: var(--slate-500); text-align: center;
+  background: rgba(2, 6, 23, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cw-launcher:hover { transform: none; }
+  .cw-dots i { animation: none; opacity: .6; }
+}
+
+/* ------------------------------------------- header actions + tool status */
+.cw-head-actions { display: flex; align-items: center; gap: 0.15rem; flex-shrink: 0; }
+.cw-restart {
+  background: transparent; border: 0; color: var(--slate-400);
+  cursor: pointer; padding: 0.3rem; border-radius: 0.35rem;
+  display: inline-flex; align-items: center;
+}
+.cw-restart:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.cw-status { color: var(--slate-400); font-size: 0.82rem; margin-right: 0.4rem; }
+
+/* The panel opens from a page button, so it is anchored bottom-right but
+   never sits under the sticky mobile bar or the WhatsApp button. */
+@media (max-width: 768px) { .cw-panel { bottom: 4.9rem; } }
+@media (max-width: 480px) { .cw-panel { bottom: 4.9rem; } }
