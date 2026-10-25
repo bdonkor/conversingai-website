@@ -83,7 +83,8 @@ const leadEmailTool = betaTool({
   name: 'send_lead_email',
   description:
     'Send the HOT LEAD notification email to the visitor, showing them what their own business would receive ' +
-    'when a website visitor becomes a potential customer. Call this once, after the second demo question. ' +
+    'when a website visitor becomes a potential customer. Call this EXACTLY ONCE per demo, and only AFTER the ' +
+    'second demo question has been answered. Do not call it while preparing the website or between questions. ' +
     'The result tells you whether delivery was actually accepted. If it reports a failure you MUST tell the ' +
     'visitor the email could not be sent, and you must not claim it was.',
   inputSchema: {
@@ -199,10 +200,15 @@ export default async function handler(req, res) {
         if (event.type === 'content_block_start') {
           const b = event.content_block;
           if (b?.type === 'server_tool_use' || b?.type === 'tool_use') {
-            // Reading a website takes a few seconds; tell the visitor why.
-            send('status', {
-              text: b.name === 'web_fetch' ? 'Reading your website…' : 'Preparing your lead email…',
-            });
+            /* Map explicitly. A fallback here is wrong: the name is not always
+             * populated when a block starts, so "anything that is not
+             * web_fetch" previously mislabelled web fetches as the lead email
+             * and made it look like the email was being sent repeatedly. */
+            const label =
+              b.name === 'web_fetch' ? 'Reading your website…' :
+              b.name === 'send_lead_email' ? 'Sending your lead email…' :
+              'Working…';
+            send('status', { text: label });
           }
         } else if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
           sawText = true;

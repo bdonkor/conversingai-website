@@ -127,6 +127,28 @@ function buildText(d) {
 
 let cachedTransport = null;
 
+/* Send-once guard. A visitor should never receive the same lead twice if the
+ * model calls the tool more than once in a conversation. Keyed by recipient
+ * plus website, held briefly in memory. Serverless instances are ephemeral so
+ * this is not a hard guarantee, but it catches the realistic case: repeat
+ * calls within the same short-lived conversation on the same instance. */
+const recentlySent = new Map();
+const DEDUPE_WINDOW_MS = 10 * 60 * 1000;
+
+function dedupeKey(d) {
+  return String(d.email || '').toLowerCase() + '|' + String(d.website || '').toLowerCase();
+}
+
+function alreadySent(d) {
+  const key = dedupeKey(d);
+  const at = recentlySent.get(key);
+  if (at && Date.now() - at < DEDUPE_WINDOW_MS) return true;
+  for (const [k, t] of recentlySent) {
+    if (Date.now() - t > DEDUPE_WINDOW_MS) recentlySent.delete(k);
+  }
+  return false;
+}
+
 function transport() {
   if (cachedTransport) return cachedTransport;
   const port = Number(process.env.SMTP_PORT || 465);
@@ -181,6 +203,14 @@ export async function sendLeadEmail(d) {
     return { ok: false, detail: 'No recipient email address was supplied, so nothing was sent.' };
   }
 
+  if (alreadySent(d)) {
+    return {
+      ok: true,
+      detail: `The lead email for ${d.email} was already sent a moment ago, so it was not sent again. ` +
+        'Tell the visitor it is on its way; do not send another.',
+    };
+  }
+
   const from = process.env.LEAD_EMAIL_FROM || SMTP_USER;
   const name = process.env.LEAD_EMAIL_NAME || 'Conversing AI Demo';
 
@@ -205,6 +235,7 @@ export async function sendLeadEmail(d) {
       };
     }
 
+    recentlySent.set(dedupeKey(d), Date.now());
     return {
       ok: true,
       detail: `Email accepted by the mail server for delivery to ${accepted.join(', ')}` +
