@@ -87,26 +87,6 @@
 
 <body>
 
-  <!-- AD BELT -->
-  <div class="ad-belt" role="region" aria-label="Announcements">
-    <div class="ad-belt-track">
-      <!-- One set of items; duplicated below for a seamless loop -->
-      <a class="ad-belt-item" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">✍️ Write professional letters in seconds <span class="ad-belt-cta">Try LettersReady →</span></a>
-      <span class="ad-belt-sep">•</span>
-      <a class="ad-belt-item" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">📩 Reply to letters quickly and professionally <span class="ad-belt-cta">Try LettersReady →</span></a>
-      <span class="ad-belt-sep">•</span>
-      <a class="ad-belt-item" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">🌍 Write professional letters in any language — English · Français · Español · العربية <span class="ad-belt-cta">Try LettersReady →</span></a>
-      <span class="ad-belt-sep">•</span>
-      <!-- duplicate for seamless scroll -->
-      <a class="ad-belt-item" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">✍️ Write professional letters in seconds <span class="ad-belt-cta">Try LettersReady →</span></a>
-      <span class="ad-belt-sep">•</span>
-      <a class="ad-belt-item" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">📩 Reply to letters quickly and professionally <span class="ad-belt-cta">Try LettersReady →</span></a>
-      <span class="ad-belt-sep">•</span>
-      <a class="ad-belt-item" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">🌍 Write professional letters in any language — English · Français · Español · العربية <span class="ad-belt-cta">Try LettersReady →</span></a>
-      <span class="ad-belt-sep">•</span>
-    </div>
-  </div>
-
   <!-- HEADER -->
   <header class="header">
     <div class="container header-inner">
@@ -219,7 +199,7 @@
   <main>
     <!-- HERO SECTION -->
     <section class="hero">
-      <video autoplay muted loop playsinline preload="auto" poster="./images/hero-bg.png" class="hero-video">
+      <video autoplay muted loop playsinline preload="none" poster="./images/hero-bg.png" class="hero-video">
         <source src="./images/hero-video-v2.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
@@ -228,31 +208,96 @@
         <div class="hero-text">
           <div class="badge badge-blue hero-fade-in" style="animation-delay: 0.0s;">
             <span class="pulse-dot"></span>
-            Conversing AI
+            Website design &amp; AI chat agents
           </div>
 
           <h1 class="hero-title hero-fade-in" style="animation-delay: 0.1s;">
-            <span class="highlight">AI Automation <br class="hero-mobile-br">& Web Development</span> <br> <span class="text-glow">That Grow Your Business 24/7</span>
+            <span class="highlight">Websites That Win Customers</span> <br class="hero-mobile-br">
+            <span class="text-glow">and an AI Agent That Answers Them 24/7</span>
           </h1>
 
           <p class="hero-subtitle hero-fade-in" style="animation-delay: 0.2s;">
-            We design, build, and manage AI automation and high-converting websites that capture leads, handle conversations, and streamline your operations &mdash; so you can focus on growth.
+            We design your website and train an AI chat agent on your business to handle customer service, answer
+            questions and capture leads, day and night. Four of the sites we built already run one.
+            Open one and ask it a question.
           </p>
 
           <div class="hero-buttons hero-fade-in" style="animation-delay: 0.3s;">
-            <a href="get-started" class="btn btn-primary btn-lg">
-              Get Started &rarr;
-            </a>
+            <a href="website-development-request" class="btn btn-primary btn-lg">Get a fixed quote &rarr;</a>
+            <a href="#live-demo" class="btn btn-outline btn-lg" data-site="chat-launcher" data-opens-widget>Chat with our AI agent</a>
           </div>
 
           <div class="hero-social-proof hero-fade-in" style="animation-delay: 0.4s;">
             <p class="social-proof-text">Eight websites and web apps we built, live right now. Four answer customers with their own AI agent.</p>
             <a href="#our-work" class="social-proof-link">See the work &rarr;</a>
           </div>
-
         </div>
 
-        <div class="hero-fade-in" aria-hidden="true" style="animation-delay:0.45s; width:100vw; flex-shrink:0; height:3px; background:linear-gradient(90deg, rgba(37,99,235,0.5) 0%, rgba(96,165,250,0.95) 50%, rgba(37,99,235,0.5) 100%); box-shadow:0 0 18px rgba(59,130,246,0.55);"></div>
+        <div class="hero-shots hero-fade-in" style="animation-delay:0.5s;">
+          <div class="hero-shots-inner" id="hero-shots">
+            <figure class="hero-shot is-active">
+              <img src="./images/portfolio/anystudents.webp" alt="AnyStudents, a learning platform we built, with its AI agent Sofia open" width="800" height="500" fetchpriority="high" decoding="async">
+              <figcaption>AnyStudents &middot; its agent is called Sofia</figcaption>
+            </figure>
+            <figure class="hero-shot">
+              <img src="./images/portfolio/mockexams.webp" alt="MockExams, an exam practice site we built, with its AI agent Ama open" width="800" height="500" loading="lazy" decoding="async">
+              <figcaption>MockExams &middot; its agent is called Ama</figcaption>
+            </figure>
+            <figure class="hero-shot">
+              <img src="./images/portfolio/rab-energy.webp" alt="RAB Energy Solutions, a solar installer site we built, with its live chat agent" width="800" height="500" loading="lazy" decoding="async">
+              <figcaption>RAB Energy &middot; live chat on a solar installer's site</figcaption>
+            </figure>
+            <figure class="hero-shot">
+              <img src="./images/portfolio/yourcountant.webp" alt="Yourcountant, a bookkeeping web app we built" width="800" height="500" loading="lazy" decoding="async">
+              <figcaption>Yourcountant &middot; offline-first bookkeeping</figcaption>
+            </figure>
+          </div>
+          <div class="hero-shot-dots" id="hero-shot-dots" role="tablist" aria-label="Choose a site to preview"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEE IT WORKING -->
+    <section class="section" id="see-it-working" style="padding-top:2.5rem;">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge badge-blue fade-up" style="margin-bottom:1rem;">See it working</div>
+          <h2 class="section-title fade-up">Don't Take Our Word For It. <span class="highlight">Go Ask One.</span></h2>
+        </div>
+        <!-- BUILD:agent-strip -->
+          <div class="ag-grid">
+            <a class="ag-card fade-up" href="https://anystudents.com" target="_blank" rel="noopener">
+              <span class="ag-live"><span class="pf-pulse"></span>Agent live</span>
+              <span class="ag-name">AnyStudents</span>
+              <span class="ag-niche">AI learning platform</span>
+              <span class="ag-prompt">Ask: can you explain photosynthesis for BECE?</span>
+              <span class="ag-go">Open and ask <span aria-hidden="true">&rarr;</span></span>
+            </a>
+            <a class="ag-card fade-up" href="https://mockexams.anystudents.com" target="_blank" rel="noopener">
+              <span class="ag-live"><span class="pf-pulse"></span>Agent live</span>
+              <span class="ag-name">MockExams</span>
+              <span class="ag-niche">Exam practice</span>
+              <span class="ag-prompt">Ask: how do I generate a BECE maths paper?</span>
+              <span class="ag-go">Open and ask <span aria-hidden="true">&rarr;</span></span>
+            </a>
+            <a class="ag-card fade-up" href="https://yourcountant.com/" target="_blank" rel="noopener">
+              <span class="ag-live"><span class="pf-pulse"></span>Agent live</span>
+              <span class="ag-name">Yourcountant</span>
+              <span class="ag-niche">Shop bookkeeping</span>
+              <span class="ag-prompt">Ask: does it work offline?</span>
+              <span class="ag-go">Open and ask <span aria-hidden="true">&rarr;</span></span>
+            </a>
+            <a class="ag-card fade-up" href="https://rabenergysolutions.com" target="_blank" rel="noopener">
+              <span class="ag-live"><span class="pf-pulse"></span>Agent live</span>
+              <span class="ag-name">RAB Energy Solutions</span>
+              <span class="ag-niche">Solar &amp; renewable energy</span>
+              <span class="ag-prompt">Ask: what size solar system do I need?</span>
+              <span class="ag-go">Open and ask <span aria-hidden="true">&rarr;</span></span>
+            </a>
+          </div>
+          <p class="ag-caption fade-up">Each of these runs its own AI chat agent, trained on that business. Visit one
+            and ask it a question. <a href="website-design#our-work">See all 8 websites and web apps we have built &rarr;</a></p>
+        <!-- /BUILD:agent-strip -->
       </div>
     </section>
 
@@ -260,6 +305,7 @@
     <section class="stats-band">
       <div class="container">
         <div class="stats-grid">
+          <!-- BUILD:stats -->
           <a class="stat-card fade-up" href="#our-work">
             <div class="stat-number">8</div>
             <div class="stat-label">live websites &amp; web apps built</div>
@@ -268,7 +314,7 @@
             <div class="stat-number">4</div>
             <div class="stat-label">running a live 24/7 AI chat agent</div>
           </a>
-          <a class="stat-card fade-up" href="website-development-request">
+          <a class="stat-card fade-up" href="/website-development-request">
             <div class="stat-number">Fixed</div>
             <div class="stat-label">written quotes, no meter</div>
           </a>
@@ -276,289 +322,543 @@
             <div class="stat-number">You own</div>
             <div class="stat-label">the code &amp; domain</div>
           </a>
+                <!-- /BUILD:stats -->
         </div>
       </div>
     </section>
 
-    <!-- SERVICES SECTION -->
-    <section class="section" id="services">
+    <!-- TWO CORE OFFERS -->
+    <section class="section" id="offers">
       <div class="container">
         <div class="section-header">
-          <div class="badge badge-primary fade-up">Our Services</div>
-          <h2 class="section-title fade-up">Everything You Need <br>to <span class="highlight">Grow Digitally</span>
-          </h2>
-          <p class="section-subtitle fade-up">Premium done-for-you services. We handle the technology, you enjoy the
-            results. No technical expertise required.</p>
+          <h2 class="section-title fade-up">Two Things We Do, <span class="highlight">Properly</span></h2>
+          <p class="fade-up" style="max-width:42rem;margin:1rem auto 0;color:var(--muted);text-align:center;line-height:1.75;">
+            Both work for any business, in any niche. Most clients take both, because they are better together.</p>
         </div>
 
-        <div class="services-grid">
-          <!-- Service 1 -->
-          <div class="service-card fade-up">
-            <div class="service-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-              </svg></div>
-            <h3>AI Chat &amp; Voice Agents</h3>
-            <p>24/7 intelligent chat and voice agents that handle customer interactions, answer questions, and drive
-              conversions.</p>
-            <ul class="service-features">
-              <li class="service-feature"><span class="dot"></span>Website chat agents</li>
-              <li class="service-feature"><span class="dot"></span>Voice &amp; phone agents</li>
-              <li class="service-feature"><span class="dot"></span>WhatsApp support</li>
+        <div class="offer-grid">
+          <div class="offer-card fade-up">
+            <div class="offer-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="18" height="14" x="3" y="4" rx="2"/><path d="M3 9h18M8 21h8M12 17v4"/></svg></div>
+            <h3>Website design</h3>
+            <p class="offer-lead">A site built to win enquiries, not just to look tidy.</p>
+            <ul class="offer-list">
+              <li>Designed around one job: turning a visitor into an enquiry.</li>
+              <li>Fast on a phone and a patchy connection, because that is how your customers arrive.</li>
+              <li>Technical SEO in place from day one, not sold to you later.</li>
+              <li>Hosting, updates, backups and monitoring handled for you.</li>
             </ul>
-            <a href="ai-chat-voice-agents" class="service-learn-more">Learn More <svg width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg></a>
+            <p class="offer-price">Fixed written quote <span>before any work starts</span></p>
+            <a href="website-design" class="offer-link">Learn more <span aria-hidden="true">&rarr;</span></a>
           </div>
-          <!-- Service 2 -->
-          <div class="service-card fade-up">
-            <div class="service-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg></div>
-            <h3>AI Receptionist</h3>
-            <p>Never miss a call. Our AI receptionists handle inquiries, book appointments, and route calls
-              intelligently.</p>
-            <ul class="service-features">
-              <li class="service-feature"><span class="dot"></span>Call handling</li>
-              <li class="service-feature"><span class="dot"></span>Appointment booking</li>
-              <li class="service-feature"><span class="dot"></span>Human handover</li>
+
+          <div class="offer-card fade-up">
+            <div class="offer-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></div>
+            <h3>AI chat agents</h3>
+            <p class="offer-lead">An agent trained on your business, answering on your site around the clock.</p>
+            <ul class="offer-list">
+              <li>Knows your services, your prices and the questions customers actually ask.</li>
+              <li>Captures the enquiry and sends it to you, including at midnight and on Sundays.</li>
+              <li>Hands over to a human when it should, rather than guessing.</li>
+              <li>Retrained whenever your business changes.</li>
             </ul>
-            <a href="ai-receptionist" class="service-learn-more">Deploy AI Receptionist Today <svg width="16"
-                height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg></a>
-          </div>
-          <!-- Service 3 -->
-          <div class="service-card fade-up">
-            <div class="service-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg></div>
-            <h3>Website Design</h3>
-            <p>Premium, conversion-focused websites built to capture leads and establish your brand authority.</p>
-            <ul class="service-features">
-              <li class="service-feature"><span class="dot"></span>Mobile responsive</li>
-              <li class="service-feature"><span class="dot"></span>SEO optimized</li>
-              <li class="service-feature"><span class="dot"></span>Conversion focused</li>
-            </ul>
-            <a href="website-design" class="service-learn-more">Learn More <svg width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg></a>
-          </div>
-          <!-- Service 6 -->
-          <div class="service-card fade-up">
-            <div class="service-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2">
-                <path d="M12 19l7-7 3 3-7 7-3-3z" />
-                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-                <path d="M2 2l7.586 7.586" />
-                <circle cx="11" cy="11" r="2" />
-              </svg></div>
-            <h3>Blog Writing &amp; SEO</h3>
-            <p>Authority-building content that ranks. Professional, human-sounding articles delivered regularly.</p>
-            <ul class="service-features">
-              <li class="service-feature"><span class="dot"></span>SEO friendly</li>
-              <li class="service-feature"><span class="dot"></span>Authority building</li>
-              <li class="service-feature"><span class="dot"></span>Regular publishing</li>
-            </ul>
-            <a href="blog-writing-seo" class="service-learn-more">Learn More <svg width="16" height="16"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg></a>
+            <p class="offer-price">Setup + monthly <span>priced per business</span></p>
+            <a href="ai-chat-voice-agents" class="offer-link">Learn more <span aria-hidden="true">&rarr;</span></a>
           </div>
         </div>
 
-        <div class="consultation-cta fade-up">
-          <p>Not sure which service you need? Let's discuss your goals.</p>
-          <a href="get-quote" class="btn btn-primary btn-round">
-            Order Free Consultation <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-              stroke-width="2" style="margin-left:0.5rem;">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
+        <!-- BETTER TOGETHER -->
+        <div class="bundle fade-up">
+          <span class="bundle-flag">Recommended</span>
+          <h3>Better together</h3>
+          <p>A website brings people in. An agent makes sure none of them leave unanswered. Separately each one works.
+            Together they close the gap most small businesses lose money in: the hours when nobody is at the desk.</p>
+          <p class="bundle-sub">One project, one quote, one team. The agent is trained while the site is being built,
+            so both go live on the same day.</p>
+          <a href="website-development-request" class="btn btn-primary btn-lg">Get a quote for both &rarr;</a>
         </div>
       </div>
     </section>
 
-    <!-- REAL IMPACT SECTION -->
-    <section class="section"
-      style="background: rgba(15, 23, 42, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
-      <div class="container">
-        <div class="split-row" style="margin-bottom: 6rem;">
-          <div class="fade-up">
-            <div class="badge badge-blue" style="margin-bottom: 1.5rem;">The Human Edge</div>
-            <h2 class="section-title">Built by <span class="highlight">Experts</span>,<br>Driven by AI</h2>
-            <p style="color: var(--muted); font-size: 1.125rem; line-height: 1.8; margin-bottom: 2rem;">
-              Behind every Conversing AI agent is a team of specialists dedicated to training and fine-tuning your
-              business's voice. We ensure your AI doesn't just talk—it understands and converts.
-            </p>
-            <ul style="list-style: none; padding: 0; margin-bottom: 2.5rem;">
-              <li
-                style="display: flex; align-items: center; gap: 0.75rem; color: #fff; margin-bottom: 1rem; font-weight: 600;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-400)" stroke-width="3">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                Expert training & fine-tuning
-              </li>
-              <li
-                style="display: flex; align-items: center; gap: 0.75rem; color: #fff; margin-bottom: 1rem; font-weight: 600;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-400)" stroke-width="3">
-                  <path d="M20 6 9 17l-5-5" />
-                </svg>
-                Human-like empathy & tone
-              </li>
-            </ul>
-            <a href="about" class="btn btn-outline btn-lg">Learn More About Us</a>
-          </div>
-          <div class="fade-up" style="position: relative;">
-            <div
-              style="position: absolute; inset: -40px; background: var(--blue-500); filter: blur(100px); opacity: 0.08; z-index: -1;">
-            </div>
-            <img src="./images/collaborative-experts-planning.png" alt="Collaborative AI Expert Team"
-              loading="lazy" decoding="async"
-              style="width: 100%; border-radius: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.6);" />
-          </div>
-        </div>
-
-        <!-- Centered Case Study -->
-        <div class="centered-case fade-up">
-          <div class="badge badge-blue" style="margin-bottom: 1.5rem;">Real-World Case</div>
-          <h2 class="section-title" style="margin-bottom: 1.5rem; line-height: 1.2;">Perfect for <span
-              class="highlight">Clinics & Small Businesses</span></h2>
-          <p style="color: var(--muted); font-size: 1.125rem; line-height: 1.8; margin-bottom: 2.5rem;">
-            Whether you're running a busy dental clinic or a high-end boutique, our AI Receptionist handles your front
-            desk with precision—answering questions, booking appointments, and never missing a call.
-          </p>
-          <div class="case-image-wrap" style="max-width: 900px; width: 100%; margin: 0 auto 2.5rem; position: relative;">
-            <div
-              style="position: absolute; inset: -30px; background: var(--blue-500); filter: blur(80px); opacity: 0.12; z-index: -1;">
-            </div>
-            <img src="./images/AI Receptionist for all businesses.png" alt="AI Receptionist for All Businesses"
-              class="case-image" loading="lazy" decoding="async"
-              style="border-radius: 0.5rem; width: 100%; height: auto; display: block;" />
-          </div>
-          <a href="ai-receptionist" class="btn btn-primary btn-lg">Deploy AI Receptionist Today</a>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- HOW IT WORKS SECTION -->
-    <section class="section" id="how-it-works" style="position:relative;overflow:hidden;padding-bottom:2rem;">
+    <!-- LIVE DEMO -->
+    <section class="section" id="live-demo" style="background:rgba(15,23,42,0.3);">
       <div class="container">
         <div class="section-header">
-          <div class="badge badge-blue fade-up">
-            <span class="pulse-dot"></span>
-            How It Works
-          </div>
-          <h2 class="section-title fade-up">Your Path to <span class="highlight text-glow">Digital Transformation</span>
-          </h2>
-          <p class="section-subtitle fade-up">A simple, streamlined process that takes you from idea to implementation
-            without the complexity. We do the heavy lifting so you don't have to.</p>
+          <h2 class="section-title fade-up">Try an Agent <span class="highlight">Right Here</span></h2>
+          <p class="fade-up" style="max-width:42rem;margin:1rem auto 0;color:var(--muted);text-align:center;line-height:1.75;">
+            The fairest test of whether we can build you an agent is whether ours can answer you.</p>
         </div>
+
+        <!-- shown while no provider is configured -->
+        <div class="demo-box fade-up" data-site="demo-pending">
+          <p class="demo-lead">Our own agent is being trained now.</p>
+          <p>We would rather show you nothing than a demo that embarrasses us. Until it is ready, the honest proof is
+            that four sites we built already run one. Open one and interrogate it.</p>
+          <div class="demo-actions">
+            <a href="#see-it-working" class="btn btn-primary">Try a live agent we built</a>
+            <a href="contact" class="btn btn-outline">Ask us a question directly</a>
+          </div>
+          <!-- TODO(owner): set chatAgent.provider + enabled in config/site.json to replace this with the real widget -->
+        </div>
+
+        <!-- shown once a provider is configured -->
+        <div class="demo-box fade-up" data-site="demo-live" hidden>
+          <p class="demo-lead">Ask it anything about what we do.</p>
+          <div id="chat-demo-mount"></div>
+          <ul class="demo-prompts" id="demo-prompts"></ul>
+        </div>
+
+        <div style="max-width:34rem;margin:2.75rem auto 0;text-align:center;">
+          <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem;">Where our agents can run today</h3>
+          <!-- BUILD:channels -->
+          <ul class="ch-list">
+            <li class="ch-item" data-channel="website" data-channel-state="live">
+              <span class="ch-dot"></span>
+              <span data-channel-name>Website chat</span>
+              <span class="ch-state" data-channel-state-label>Live</span>
+            </li>
+            <li class="ch-item" data-channel="whatsapp" data-channel-state="soon">
+              <span class="ch-dot"></span>
+              <span data-channel-name>WhatsApp</span>
+              <span class="ch-state" data-channel-state-label>Coming soon</span>
+            </li>
+            <li class="ch-item" data-channel="messenger" data-channel-state="soon">
+              <span class="ch-dot"></span>
+              <span data-channel-name>Facebook Messenger</span>
+              <span class="ch-state" data-channel-state-label>Coming soon</span>
+            </li>
+            <li class="ch-item" data-channel="instagram" data-channel-state="soon">
+              <span class="ch-dot"></span>
+              <span data-channel-name>Instagram</span>
+              <span class="ch-state" data-channel-state-label>Coming soon</span>
+            </li>
+          </ul>
+          <p class="ch-waitlist">Want one of these the moment it launches?
+            <a href="website-development-request?need=whatsapp-social-agent">Join the waitlist &rarr;</a></p>
+        <!-- /BUILD:channels -->
+        </div>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="section" id="use-cases">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title fade-up">What It Does, <span class="highlight">Whatever You Sell</span></h2>
+          <p class="fade-up" style="max-width:42rem;margin:1rem auto 0;color:var(--muted);text-align:center;line-height:1.75;">
+            The same agent, trained on different businesses. Pick the one closest to yours.</p>
+        </div>
+
+        <div class="uc-tabs" role="tablist" aria-label="Choose an industry">
+          <button class="uc-tab is-active" role="tab" aria-selected="true" data-uc="service">Customer service</button>
+          <button class="uc-tab" role="tab" aria-selected="false" data-uc="ecom">Online store</button>
+          <button class="uc-tab" role="tab" aria-selected="false" data-uc="leads">Service business</button>
+          <button class="uc-tab" role="tab" aria-selected="false" data-uc="booking">Clinic or salon</button>
+          <button class="uc-tab" role="tab" aria-selected="false" data-uc="property">Real estate</button>
+          <button class="uc-tab" role="tab" aria-selected="false" data-uc="school">School or course</button>
+        </div>
+
+        <div class="uc-panels" id="uc-panels">
+          <div class="uc-panel is-active" data-uc="service">
+            <h3>Customer service and FAQs</h3>
+            <p class="uc-pain">The same ten questions, every day, answered by whoever is free.</p>
+            <div class="chat">
+              <p class="chat-in">Do you deliver to Kumasi and how long does it take?</p>
+              <p class="chat-out">Yes, we deliver to Kumasi. Orders placed before 2pm go out the same day and usually arrive within 48 hours. Would you like me to check a specific item?</p>
+              <p class="chat-in">Yes, the 50kg bag.</p>
+            </div>
+            <a class="uc-link" href="ai-chat-agents/customer-service">Customer service agents &rarr;</a>
+          </div>
+
+          <div class="uc-panel" data-uc="ecom">
+            <h3>Order and delivery questions</h3>
+            <p class="uc-pain">"Where is my order?" arriving faster than you can reply.</p>
+            <div class="chat">
+              <p class="chat-in">I ordered on Monday, has it shipped?</p>
+              <p class="chat-out">I can check that. What is the order number, or the phone number you used at checkout?</p>
+              <p class="chat-in">0244 123 456</p>
+            </div>
+            <a class="uc-link" href="ai-chat-agents/ecommerce">Agents for online stores &rarr;</a>
+          </div>
+
+          <div class="uc-panel" data-uc="leads">
+            <h3>Lead qualification</h3>
+            <p class="uc-pain">Enquiries that arrive at night and go cold by morning.</p>
+            <div class="chat">
+              <p class="chat-in">How much for burglar proof on a three bedroom house?</p>
+              <p class="chat-out">It depends on the number of windows and the design. Most three bedroom jobs land between two ranges. Can I take your number and the area, so the team can quote you properly in the morning?</p>
+              <p class="chat-in">Sure, it's 0203 555 010, East Legon.</p>
+            </div>
+            <a class="uc-link" href="website-design/small-business">Agents for service businesses &rarr;</a>
+          </div>
+
+          <div class="uc-panel" data-uc="booking">
+            <h3>Bookings and appointments</h3>
+            <p class="uc-pain">Calls you cannot take while you are with a client.</p>
+            <div class="chat">
+              <p class="chat-in">Do you have anything Saturday morning?</p>
+              <p class="chat-out">We do. There is a 9:30 and an 11:00 on Saturday. Which would you prefer, and what is the treatment?</p>
+              <p class="chat-in">11:00, a trim.</p>
+            </div>
+            <a class="uc-link" href="ai-chat-agents/clinics">Agents for clinics and salons &rarr;</a>
+          </div>
+
+          <div class="uc-panel" data-uc="property">
+            <h3>Property enquiries</h3>
+            <p class="uc-pain">Serious buyers and time-wasters arriving in the same inbox.</p>
+            <div class="chat">
+              <p class="chat-in">Is the two bedroom in Spintex still available?</p>
+              <p class="chat-out">It is. It is a two bedroom, furnished, with parking. Are you looking to rent or to buy, and when would you want to move?</p>
+              <p class="chat-in">Rent, from next month.</p>
+            </div>
+            <a class="uc-link" href="ai-chat-agents/real-estate">Agents for real estate &rarr;</a>
+          </div>
+
+          <div class="uc-panel" data-uc="school">
+            <h3>Admissions and course questions</h3>
+            <p class="uc-pain">Parents asking about fees and forms at ten at night.</p>
+            <div class="chat">
+              <p class="chat-in">What are the fees for JHS 1 and when does term start?</p>
+              <p class="chat-out">Fees for JHS 1 are set per term and the next term begins in January. I can send you the fee breakdown and the admission form. What is the best number to reach you on?</p>
+              <p class="chat-in">0540 987 654</p>
+            </div>
+            <a class="uc-link" href="ai-chat-agents/schools-training">Agents for schools and training &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="section" id="our-work" style="background:rgba(15,23,42,0.3);">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge badge-blue fade-up" style="margin-bottom:1rem;">Proof of work</div>
+          <h2 class="section-title fade-up">Websites and Web Apps We <span class="highlight">Designed, Built and Run</span></h2>
+          <p class="fade-up" style="max-width:46rem;margin:1rem auto 0;color:var(--muted);text-align:center;line-height:1.75;">
+            Every one is live on the open internet. Open any of them and judge the work yourself.</p>
+        </div>
+
+        <!-- BUILD:portfolio -->
+        <div class="pf-filters" role="tablist" aria-label="Filter the portfolio">
+          <button class="pf-filter is-active" data-filter="all" role="tab" aria-selected="true">All <span>8</span></button>
+          <button class="pf-filter" data-filter="website" role="tab" aria-selected="false">Websites <span>4</span></button>
+          <button class="pf-filter" data-filter="web-app" role="tab" aria-selected="false">Web apps <span>4</span></button>
+          <button class="pf-filter" data-filter="agent" role="tab" aria-selected="false">With an AI agent <span>4</span></button>
+        </div>
+
+        <div class="pf-grid" id="pf-grid">
+          <article class="pf-card fade-up" data-category="website" data-agent="yes">
+            <div class="pf-shot">
+              <img src="./images/portfolio/anystudents.webp" alt="Screenshot of the AnyStudents website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              <span class="pf-badge pf-badge--agent">&#128172; AI agent on site</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>AnyStudents</h3>
+                <span class="pf-niche">AI learning platform</span>
+              </div>
+              <p class="pf-desc">An AI tutoring platform used by students around the world. One-on-one interactive tutoring, study guides and mock exams, with a genuinely free daily tier.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>A conversational AI tutor, free for thirty minutes every day.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Nine core subjects, each with a full study guide and curated resources.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Mock papers and adaptive practice for WAEC, BECE, JAMB, IGCSE and SAT.</span></li>
+              </ul>
+              <p class="pf-try"><strong>Try its AI agent.</strong> Ask: can you explain photosynthesis for BECE?</p>
+              <div class="pf-foot">
+                <span class="pf-url">anystudents.com</span>
+                <a class="pf-link" href="https://anystudents.com" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="pf-card fade-up" data-category="website" data-agent="yes">
+            <div class="pf-shot">
+              <img src="./images/portfolio/mockexams.webp" alt="Screenshot of the MockExams website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              <span class="pf-badge pf-badge--agent">&#128172; AI agent on site</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>MockExams</h3>
+                <span class="pf-niche">Exam practice</span>
+              </div>
+              <p class="pf-desc">A mock exam generator for Ghanaian candidates sitting BECE and WASSCE. It writes fresh WAEC-standard papers on demand rather than recycling the same question bank every student has already seen.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Unique papers generated per subject, so practice never goes stale.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Marking schemes returned instantly, so a student can grade themselves the same evening.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>First exam free, with no card required to start.</span></li>
+              </ul>
+              <p class="pf-try"><strong>Try its AI agent.</strong> Ask: how do I generate a BECE maths paper?</p>
+              <div class="pf-foot">
+                <span class="pf-url">mockexams.anystudents.com</span>
+                <a class="pf-link" href="https://mockexams.anystudents.com" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="pf-card fade-up" data-category="web-app" data-agent="yes">
+            <div class="pf-shot">
+              <img src="./images/portfolio/yourcountant.webp" alt="Screenshot of the Yourcountant website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              <span class="pf-badge pf-badge--agent">&#128172; AI agent on site</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>Yourcountant</h3>
+                <span class="pf-niche">Shop bookkeeping</span>
+              </div>
+              <p class="pf-desc">Shop bookkeeping for traders who run the whole business from a handset. It is the shop's money notebook, not an accountant's ledger, and it keeps working when the network does not.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Sales, expenses, stock and debts recorded in seconds on a phone.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Works fully offline, then syncs to the cloud the moment signal returns.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Built for shop owners, with no bookkeeping vocabulary to learn first.</span></li>
+              </ul>
+              <p class="pf-try"><strong>Try its AI agent.</strong> Ask: does it work offline?</p>
+              <div class="pf-foot">
+                <span class="pf-url">yourcountant.com</span>
+                <a class="pf-link" href="https://yourcountant.com/" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="pf-card fade-up" data-category="website" data-agent="yes">
+            <div class="pf-shot">
+              <img src="./images/portfolio/rab-energy.webp" alt="Screenshot of the RAB Energy Solutions website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              <span class="pf-badge pf-badge--agent">&#128172; AI agent on site</span>
+              <span class="pf-badge pf-badge--client">Client work</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>RAB Energy Solutions</h3>
+                <span class="pf-niche">Solar &amp; renewable energy</span>
+              </div>
+              <p class="pf-desc">A solar and renewable energy installer based in Takoradi, serving homes and businesses across Ghana with panels, inverters, batteries and backup power.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Built for a local service business where most visitors arrive on a phone.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Presents panels, inverters, batteries and backup power for homes and businesses.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Runs a live chat agent that answers sizing and cost questions around the clock.</span></li>
+              </ul>
+              <p class="pf-try"><strong>Try its AI agent.</strong> Ask: what size solar system do I need?</p>
+              <div class="pf-foot">
+                <span class="pf-url">rabenergysolutions.com</span>
+                <a class="pf-link" href="https://rabenergysolutions.com" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="pf-card fade-up" data-category="website" data-agent="no">
+            <div class="pf-shot">
+              <img src="./images/portfolio/hydrocom.webp" alt="Screenshot of the Hydrocom Limited website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              <span class="pf-badge pf-badge--client">Client work</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>Hydrocom Limited</h3>
+                <span class="pf-niche">Engineering &amp; infrastructure</span>
+              </div>
+              <p class="pf-desc">A wholly Ghanaian-owned engineering, procurement and construction firm working since 1996. The site had to carry real institutional weight, because its readers decide on contracts worth millions.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Four service sectors presented clearly: water supply, energy, roads and buildings, and sanitation.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>A project record front and centre, including the Karaga and Tsiame water supply schemes.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Written for an audience of funders and agencies, from the World Bank and DANIDA to UNDP.</span></li>
+              </ul>
+              <div class="pf-foot">
+                <span class="pf-url">hydrocomlimited.com</span>
+                <a class="pf-link" href="https://www.hydrocomlimited.com/" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="pf-card fade-up" data-category="web-app" data-agent="no">
+            <div class="pf-shot">
+              <img src="./images/portfolio/schoolspec.webp" alt="Screenshot of the SchoolSpec website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>SchoolSpec</h3>
+                <span class="pf-niche">School management</span>
+              </div>
+              <p class="pf-desc">A complete school management system for basic schools in Ghana, from Creche to JHS 3. Everything the office used to do on paper, finished before the bell.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Four sign-in roles. Heads, teachers, parents and students each see only what belongs to them.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Mobile money fee collection with partial payments and automatic SMS receipts to parents.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Report cards printed under the school's own crest in a single click.</span></li>
+              </ul>
+              <div class="pf-foot">
+                <span class="pf-url">schoolspec.com</span>
+                <a class="pf-link" href="https://schoolspec.com" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="pf-card fade-up" data-category="web-app" data-agent="no">
+            <div class="pf-shot">
+              <img src="./images/portfolio/fabri-manager.webp" alt="Screenshot of the Fabri Manager website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>Fabri Manager</h3>
+                <span class="pf-niche">Job &amp; invoice management</span>
+              </div>
+              <p class="pf-desc">Job management for the trades. Every enquiry, job, invoice and payment in one system, built hands-on inside a working fabrication shop rather than a boardroom.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>One straight line from first enquiry to fully paid, with nothing lost in notebooks or chats.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>A client portal that answers the "how far is my job?" call before it is made.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Serves fabricators, carpenters, plumbers, electricians, roofers and fit-out teams.</span></li>
+              </ul>
+              <div class="pf-foot">
+                <span class="pf-url">fabrimanager.com</span>
+                <a class="pf-link" href="https://fabrimanager.com" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+          <article class="pf-card fade-up" data-category="web-app" data-agent="no">
+            <div class="pf-shot">
+              <img src="./images/portfolio/lettersready.webp" alt="Screenshot of the LettersReady website we designed and built"
+                   width="800" height="500" loading="lazy" decoding="async">
+              <div class="pf-badges">
+                <span class="pf-badge pf-badge--live"><span class="pf-pulse"></span>Live</span>
+              </div>
+            </div>
+            <div class="pf-body">
+              <div class="pf-head">
+                <h3>LettersReady</h3>
+                <span class="pf-niche">AI correspondence</span>
+              </div>
+              <p class="pf-desc">A focused AI writing tool for business correspondence. Draft or reply to any professional letter in seconds, in the language your reader expects.</p>
+              <ul class="pf-list">
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Professional letters drafted and answered in seconds, not hours.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Writes in English, French, Spanish and Arabic.</span></li>
+                <li><svg class="pf-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg><span>Secure accounts with saved history, on a modern application stack.</span></li>
+              </ul>
+              <div class="pf-foot">
+                <span class="pf-url">lettersready.conversingai.com</span>
+                <a class="pf-link" href="https://lettersready.conversingai.com" target="_blank" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="pf-note fade-up">Some of this is client work. The rest we built for ourselves and still run every
+          day, which means we live with the consequences of our own design decisions. That is a very different
+          discipline from handing a site over and walking away.</p>
+        <!-- /BUILD:portfolio -->
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title fade-up">From First Call to <span class="highlight">Live in About Two Weeks</span></h2>
+          <p class="fade-up" style="max-width:42rem;margin:1rem auto 0;color:var(--muted);text-align:center;line-height:1.75;">
+            A marketing site usually takes two to three weeks. Web apps with logins and payments take longer, and we
+            agree that timeline in writing before we start.</p>
+        </div>
+
         <div class="steps-grid">
-          <div class="step-card fade-up">
-            <div class="step-number">01</div>
-            <h3>Tell Us What You Need</h3>
-            <p>Share your business goals and challenges. We'll listen carefully and understand exactly what you're
-              looking for.</p>
-          </div>
-          <div class="step-card fade-up">
-            <div class="step-number">02</div>
-            <h3>We Design The Solution</h3>
-            <p>Our team crafts a tailored strategy using AI and automation to address your specific needs and
-              objectives.</p>
-          </div>
-          <div class="step-card fade-up">
-            <div class="step-number">03</div>
-            <h3>We Build &amp; Deploy</h3>
-            <p>We handle everything &mdash; from development to deployment. You don't need to lift a finger or worry
-              about
-              technical details.</p>
-          </div>
-          <div class="step-card fade-up">
-            <div class="step-number">04</div>
-            <h3>We Support &amp; Optimize</h3>
-            <p>We continuously monitor, maintain, and improve your systems. Your success is our ongoing commitment.</p>
-          </div>
-        </div>
-
-        <div style="margin-top:4rem;display:flex;justify-content:center;" class="fade-up">
-          <a href="how-it-works" class="btn btn-primary btn-round btn-lg">
-            Learn More About Our Process
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              style="margin-left:0.5rem;">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
+          <div class="step-item fade-up"><span class="step-day">Day 1</span><h4>Strategy call</h4><p>We learn the business, the customers and what a good enquiry looks like for you. You get a fixed written quote.</p></div>
+          <div class="step-item fade-up"><span class="step-day">Day 3</span><h4>Design &amp; agent training</h4><p>The design takes shape while we train the agent on your services, prices and real customer questions.</p></div>
+          <div class="step-item fade-up"><span class="step-day">Day 10</span><h4>You review</h4><p>You see the real site and talk to your own agent. We change what you want changed.</p></div>
+          <div class="step-item fade-up"><span class="step-day">Day 14</span><h4>Launch</h4><p>Site and agent go live together. Hosting, backups, security and monitoring are ours from then on.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- FOUNDING CLIENTS (replaces the removed placeholder testimonials) -->
-    <section class="section" id="testimonials" style="padding-top:1.5rem;padding-bottom:2.5rem;">
+    <!-- PRICING TEASER -->
+    <section class="section" style="background:rgba(15,23,42,0.3);">
+      <div class="container" style="max-width:48rem;text-align:center;">
+        <h2 class="section-title fade-up">What It <span class="highlight">Costs</span></h2>
+        <p class="fade-up" style="color:var(--muted);font-size:1.05rem;line-height:1.8;margin-top:1.25rem;">
+          We do not run a meter. You tell us what the business needs, and we send a fixed written quote before any work
+          starts. A marketing site is a different build from a web app with logins and payments, so the honest answer
+          is that it depends, and we will tell you the number up front rather than after.</p>
+        <div class="fade-up" style="margin-top:1.75rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+          <a href="pricing" class="btn btn-primary btn-lg">See pricing &rarr;</a>
+          <a href="website-development-request" class="btn btn-outline btn-lg">Get my fixed quote</a>
+        </div>
+        <div data-site="guarantee" hidden style="margin-top:2rem;background:rgba(15,23,42,0.6);border:1px solid rgba(59,130,246,0.3);border-radius:1rem;padding:1.5rem;">
+          <h3 data-site="guarantee-title" style="font-size:1.05rem;font-weight:700;margin-bottom:0.5rem;"></h3>
+          <p data-site="guarantee-body" style="color:var(--muted);font-size:0.95rem;line-height:1.7;margin:0;"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
       <div class="container">
         <div class="section-header">
-          <div class="badge badge-primary fade-up">Founding clients</div>
-          <h2 class="section-title fade-up">No Testimonials Here <span class="highlight">Until They're Real</span></h2>
-          <p class="section-subtitle fade-up">We removed the stock quotes that used to sit on this page. We would rather
-            show you working software than words we wrote ourselves.</p>
+          <h2 class="section-title fade-up">Fair Questions, <span class="highlight">Straight Answers</span></h2>
         </div>
-
-        <style>
-          .founding { max-width:46rem; margin:2rem auto 0; background:rgba(15,23,42,0.5);
-            border:1px solid rgba(59,130,246,0.25); border-radius:1.25rem; padding:2rem 1.9rem; text-align:center; }
-          .founding p { color:var(--slate-300); font-size:1rem; line-height:1.75; margin:0 0 1rem; }
-          .founding p.small { color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem; }
-          @media (max-width:640px){ .founding { padding:1.6rem 1.25rem; } }
-        </style>
-
-        <div class="founding fade-up">
-          <p>Every website and web app in our portfolio is live on the open internet. Open any one of them and judge the
-            work directly, which tells you more than a quote ever could.</p>
-          <p class="small">We are taking on founding clients now, at founding-client terms.
-            <!-- TODO(owner): founding-client offer details and price. See OWNER_INPUTS.md -->
-          </p>
-          <a href="website-development-request" class="btn btn-primary btn-lg">Become a founding client <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:0.4rem;"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <div class="wdfaq" id="home-faq">
+          <details class="fade-up"><summary>How much does a website cost?</summary><div class="wdfaq-a">It depends on what the site has to do. A sharp marketing site that wins enquiries is a very different build from a platform with logins, payments and dashboards. Tell us what you need and we send a fixed written quote before any work starts, so there is no meter running and no surprise at the end.</div></details>
+          <details class="fade-up"><summary>How long does it take?</summary><div class="wdfaq-a">A focused marketing site is usually ready in two to three weeks. Web apps with accounts, payments or custom workflows take longer, and we agree the timeline with you in writing up front. You will know the launch date before we begin, not after.</div></details>
+          <details class="fade-up"><summary>Do I own the site and the data when it is finished?</summary><div class="wdfaq-a">Yes. The design, the code, the domain and your customer data are yours. We do not hold your site hostage, and you are free to take it elsewhere at any time. Most clients stay because the support is worth having, not because they are locked in.</div></details>
+          <details class="fade-up"><summary>Will my customers know it is AI?</summary><div class="wdfaq-a">Yes, and that is deliberate. The agent introduces itself as an assistant rather than pretending to be a person. Customers are far more forgiving of a bot that says what it is than one they catch out.</div></details>
+          <details class="fade-up"><summary>What happens when the AI cannot answer?</summary><div class="wdfaq-a">It says so and hands over, rather than inventing an answer. Depending on what you prefer, it either takes a message and a contact number for your team, or passes the conversation to a human. Making things up is the fastest way to lose a customer, so we train against it.</div></details>
+          <details class="fade-up" id="faq-channels"><summary>Which channels does it work on?</summary><div class="wdfaq-a"><span data-channels-sentence>Available today on your website. WhatsApp, Facebook Messenger and Instagram are coming soon, and you can join the waitlist.</span> <a href="website-development-request?need=whatsapp-social-agent" style="color:var(--blue-400);">Ask us about a WhatsApp or social agent &rarr;</a></div></details>
+          <details class="fade-up"><summary>What languages does it speak?</summary><div class="wdfaq-a">The underlying models handle the major world languages well, including English, French, Spanish and Arabic. What matters more is the training: an agent that knows your business in one language is more useful than one that is vague in six. Tell us which languages your customers actually write in.</div></details>
+          <details class="fade-up"><summary>How do you train it on my business?</summary><div class="wdfaq-a">We start from what you already have: your services, prices, policies, delivery areas and the questions your team answers every week. Nothing is invented. If the agent does not know something, it is taught or it says it does not know.</div></details>
+          <details class="fade-up"><summary>Can you work with the website I already have?</summary><div class="wdfaq-a">Often, yes. Sometimes the fastest win is fixing speed, structure and the enquiry path on what you already own, and adding an agent to it, rather than starting again. We will tell you honestly which makes more sense, even when rebuilding would be the bigger invoice.</div></details>
+          <details class="fade-up"><summary>Can I cancel?</summary><div class="wdfaq-a">The agent is month to month. Cancel and the agent stops. Your website, your code, your domain and your data stay yours either way.</div></details>
+          <details class="fade-up"><summary>Do you only work with businesses in Ghana?</summary><div class="wdfaq-a">No. We are a remote team and we build for clients wherever they are. That said, we know the Ghanaian market unusually well, including mobile money, SMS habits and what it means to design for someone on a handset and a patchy connection.</div></details>
         </div>
       </div>
     </section>
 
-    <!-- CTA SECTION -->
-    <section class="section" id="contact" style="padding-top:2rem;">
+    <!-- FINAL CTA -->
+    <section class="section">
       <div class="container">
         <div class="cta-box">
           <div class="cta-glow-1"></div>
           <div class="cta-glow-2"></div>
           <div class="cta-content">
-            <div class="badge badge-blue fade-up">Ready to Transform?</div>
-            <h2 class="cta-title fade-up">Let's Build Your <span class="highlight">AI-Powered Future</span></h2>
-            <p class="cta-text fade-up">Stop struggling with technology. Let our experts design, build, and manage AI
-              solutions that drive real results for your business.</p>
+            <h2 class="cta-title fade-up">Let's Build Your <span class="highlight">Website and Your Agent</span></h2>
+            <p class="cta-text fade-up">Tell us about the business. You get a plan and a fixed written quote, with no
+              obligation and no meter.</p>
             <div class="cta-buttons fade-up">
-              <a href="get-started" class="btn btn-primary btn-lg">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                </svg> Get started
-              </a>
-
-            </div>
-            <div class="cta-tags fade-up">
-              <span>AI Agents</span><span>Website Design</span><span>Automation</span>
+              <a href="website-development-request" class="btn btn-primary btn-lg">Get my fixed quote &rarr;</a>
+              <a href="get-started" class="btn btn-outline btn-lg" data-site="book-call">Book a call</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALSO FROM CONVERSING AI -->
+    <section class="section" id="also-from" style="background:rgba(15,23,42,0.3);">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title fade-up">Also From <span class="highlight">Conversing AI</span></h2>
+          <p class="fade-up" style="max-width:40rem;margin:1rem auto 0;color:var(--muted);text-align:center;line-height:1.7;">
+            Websites and agents are the main work. These sit alongside them.</p>
+        </div>
+        <div class="also-grid">
+          <a class="also-card fade-up" href="ai-receptionist"><h3>AI receptionist &amp; voice</h3><p>Answers the phone, books appointments and takes messages when nobody can pick up.</p></a>
+          <a class="also-card fade-up" href="blog-writing-seo"><h3>Blog writing &amp; SEO</h3><p>Content that earns rankings, written to be read rather than to hit a keyword count.</p></a>
+          <a class="also-card fade-up" href="custom-email-marketing"><h3>Email marketing</h3><p>Autoresponders, lead capture and campaigns, on a list you own outright.</p></a>
+          <a class="also-card fade-up" href="social-media-growth"><h3>Social media growth</h3><p>Consistent posting and growth for businesses with no time to do it themselves.</p></a>
+          <a class="also-card fade-up" href="ai-courses"><h3>AI training</h3><p>Courses, one-to-one sessions and corporate training on using AI properly at work.</p></a>
+          <a class="also-card fade-up" href="https://lettersready.conversingai.com" target="_blank" rel="noopener"><h3>LettersReady</h3><p>Our own tool for writing and answering business letters in seconds, in four languages.</p></a>
         </div>
       </div>
     </section>
@@ -658,6 +958,20 @@
 
   <script src="./js/letters-popup.js?v=20260717off" defer></script>
   <script src="./js/site-config.js?v=20261025" defer></script>
+  <script src="./js/portfolio.js?v=20261025" defer></script>
+  <script src="./js/home.js?v=20261025" defer></script>
+  <!-- Sticky mobile CTA -->
+  <div class="sticky-cta" aria-label="Quick actions">
+    <a class="sc-primary" href="website-development-request">Get free plan</a>
+    <a class="sc-secondary" href="#live-demo" data-site="chat-launcher">Chat now</a>
+  </div>
+
+  <!-- Floating WhatsApp to reach a HUMAN. Hidden until a number is set in config/site.json. -->
+  <a class="wa-float" data-site="whatsapp" hidden aria-label="Chat with our team on WhatsApp">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 15l-1.3 4.7 4.84-1.27A9.9 9.9 0 1 0 12.04 2zm0 1.8a8.1 8.1 0 1 1-4.1 15.08l-.3-.17-2.87.75.77-2.8-.18-.3A8.1 8.1 0 0 1 12.04 3.8zm4.62 10.2c-.25-.13-1.47-.73-1.7-.81-.23-.09-.4-.13-.56.12-.17.25-.65.8-.8.97-.14.17-.29.19-.54.06a6.6 6.6 0 0 1-1.95-1.2 7.3 7.3 0 0 1-1.35-1.68c-.14-.25-.02-.38.11-.5.11-.12.25-.3.37-.44.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.23.9 2.42 1.03 2.59.12.16 1.76 2.68 4.26 3.76.6.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.2-.58.2-1.08.14-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
+    <span>Chat with our team</span>
+  </a>
+
 </body>
 
 </html>
