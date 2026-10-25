@@ -283,3 +283,8 @@
 .maint-close:hover { background: rgba(0, 0, 0, 0.2); color: #fff; }
 @media (prefers-reduced-motion: reduce) { .maint-dot { animation: none; } }
 @media (max-width: 640px) { .maint-bar { font-size: 0.8rem; padding-right: 2.4rem; } }
+
+/* The hidden attribute must win over component display rules.
+   .footer-contact-item sets display:flex, which otherwise keeps an
+   unconfigured contact row visible as a bare icon with no text. */
+[hidden] { display: none !important; }
