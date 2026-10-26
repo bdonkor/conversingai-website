@@ -142,9 +142,10 @@
   /* --------------------------------------------------------------- render */
 
   /* Something to read in the empty panel before the visitor has said
-     anything. It is taken away for good the moment they do, and it sits at
-     the bottom of whatever room is left, so it fills the gap under the
-     opener instead of pushing it down the panel. */
+     anything. It heads the panel, and the opener is pushed to the foot of
+     the space below it, so the eye lands on the quote first and finishes on
+     the question that starts the chat. Taken away for good the moment they
+     reply. */
   var QUOTE_HTML =
     '<figure class="cw-quote">' +
       '<span class="cw-quote-mark" aria-hidden="true">&ldquo;</span>' +
@@ -160,9 +161,9 @@
     if (el.log.querySelector('.cw-msg--user')) {
       if (q) q.remove();                          // they have started talking
     } else if (q) {
-      el.log.appendChild(q);                      // keep it under what arrived
+      el.log.insertBefore(q, el.log.firstChild);  // keep it above what arrived
     } else {
-      el.log.insertAdjacentHTML('beforeend', QUOTE_HTML);
+      el.log.insertAdjacentHTML('afterbegin', QUOTE_HTML);
     }
   }
 

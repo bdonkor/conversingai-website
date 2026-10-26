@@ -210,16 +210,21 @@
 .cw-chip:focus-visible { outline: 2px solid var(--cw-bz-7); outline-offset: 2px; }
 
 /* ------------------------------------------------- opening-screen quote
-   Fills the empty panel before the visitor says anything. margin-top:auto
-   drops it to the bottom of the space left under the opener; the script
-   removes it on their first message. Set in a serif italic so it reads as a
-   quotation rather than another thing the agent said. */
+   Heads the empty panel before the visitor says anything, with the opener
+   pushed to the foot of the space below it by the rule that follows, so the
+   eye lands on the quote and finishes on the question that starts the chat.
+   The script removes it on their first message. Set in a serif italic so it
+   reads as a quotation rather than another thing the agent said. */
 .cw-quote {
-  margin: auto 0 0.2rem;
-  padding: 0.5rem 0.9rem 0;
+  margin: 0.15rem 0 0.25rem;
+  padding: 0.35rem 0.9rem 0;
   text-align: center;
   animation: cwquotein .55s ease both;
 }
+/* Only while the quote is up: drop the opener to the bottom of the panel,
+   next to the box the visitor types in. Once they reply the quote goes and
+   the log returns to filling from the top. */
+.cw-log:has(.cw-quote) > .cw-msg:first-of-type { margin-top: auto; }
 .cw-quote-mark {
   display: block;
   font-family: Georgia, 'Times New Roman', serif;
