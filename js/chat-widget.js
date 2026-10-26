@@ -335,7 +335,7 @@
             '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>' +
           '</button>' +
         '</form>' +
-        '<p class="cw-foot">This is a demo agent. It runs a short demonstration, then ends.</p>' +
+        '<p class="cw-foot">Powered by <a href="https://conversingai.com/website-design" target="_blank" rel="noopener">Conversingai.com</a></p>' +
       '</section>';
 
     document.body.appendChild(root);
