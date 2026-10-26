@@ -151,6 +151,7 @@
       '<blockquote class="cw-quote-text">A website without an AI Chat Agent is like ' +
         'an office without a front desk executive.</blockquote>' +
       '<span class="cw-quote-rule" aria-hidden="true"></span>' +
+      '<figcaption class="cw-quote-ask">Would you ever do that?</figcaption>' +
     '</figure>';
 
   function syncQuote() {

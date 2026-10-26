@@ -246,9 +246,49 @@
   margin: 0.85rem auto 0;
   background: linear-gradient(90deg, transparent, var(--cw-bz-6), transparent);
 }
+/* The question is the part meant to be noticed, so it comes back to the UI
+   sans and brightens. It arrives a beat after the quote has landed, then a
+   specular band sweeps across the letters on a loop, the same trick the
+   launcher uses on hover. background-clip:text paints the sweep, so the
+   fallback below keeps the text visible where that is unsupported. */
+.cw-quote-ask {
+  display: block;
+  margin: 0.8rem 0 0;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: 0.012em;
+  color: var(--cw-bz-7);
+  animation: cwaskin .5s .5s ease both;
+}
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+  .cw-quote-ask {
+    background: linear-gradient(100deg,
+      var(--cw-bz-6) 0%, var(--cw-bz-6) 38%, #fff6e4 50%, var(--cw-bz-6) 62%, var(--cw-bz-6) 100%);
+    background-size: 280% 100%;
+    background-position: 110% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: cwaskin .5s .5s ease both, cwasksheen 3.4s 1.1s linear infinite;
+  }
+}
 @keyframes cwquotein {
   from { opacity: 0; transform: translateY(7px); }
   to   { opacity: 1; transform: none; }
+}
+@keyframes cwaskin {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+/* Measured, not guessed: the highlight is only on the letters between about
+   20% and 80%, so the sweep runs 90% -> 10% and rests outside. Both ends look
+   identical, which is what hides the jump back to the start. */
+@keyframes cwasksheen {
+  0%   { background-position: 90% 0; }
+  40%  { background-position: 10% 0; }
+  100% { background-position: 10% 0; }
 }
 
 /* typing indicator */
@@ -494,6 +534,14 @@ body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 5rem; }
   .cw-launcher::before { transition: none; }
   .cw-send, .cw-cf-send, .cw-chip { transition: none; }
   .cw-quote { animation: none; }
+  /* no sweep and no arrival, but the question must still be readable, so the
+     gradient fill is dropped rather than just frozen */
+  .cw-quote-ask {
+    animation: none;
+    background: none;
+    color: var(--cw-bz-7);
+    -webkit-text-fill-color: var(--cw-bz-7);
+  }
   .cw-send:active:not(:disabled),
   .cw-cf-send:active:not(:disabled) { transform: none; }
   .cw-dots i { animation: none; opacity: .6; }
