@@ -209,6 +209,48 @@
 }
 .cw-chip:focus-visible { outline: 2px solid var(--cw-bz-7); outline-offset: 2px; }
 
+/* ------------------------------------------------- opening-screen quote
+   Fills the empty panel before the visitor says anything. margin-top:auto
+   drops it to the bottom of the space left under the opener; the script
+   removes it on their first message. Set in a serif italic so it reads as a
+   quotation rather than another thing the agent said. */
+.cw-quote {
+  margin: auto 0 0.2rem;
+  padding: 0.5rem 0.9rem 0;
+  text-align: center;
+  animation: cwquotein .55s ease both;
+}
+.cw-quote-mark {
+  display: block;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2.7rem;
+  line-height: 0.55;
+  color: var(--cw-bz-5);
+  opacity: .6;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+.cw-quote-text {
+  margin: 0.5rem 0 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.87rem;
+  line-height: 1.7;
+  letter-spacing: 0.008em;
+  color: #d8cdb8;
+  text-wrap: balance;
+}
+/* a short engraved rule, bright in the middle and fading at both ends */
+.cw-quote-rule {
+  display: block;
+  width: 3.6rem; height: 1px;
+  margin: 0.85rem auto 0;
+  background: linear-gradient(90deg, transparent, var(--cw-bz-6), transparent);
+}
+@keyframes cwquotein {
+  from { opacity: 0; transform: translateY(7px); }
+  to   { opacity: 1; transform: none; }
+}
+
 /* typing indicator */
 .cw-dots { display: inline-flex; gap: 0.22rem; padding: 0.15rem 0; }
 .cw-dots i {
@@ -451,6 +493,7 @@ body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 5rem; }
   .cw-launcher::after { animation: none; }
   .cw-launcher::before { transition: none; }
   .cw-send, .cw-cf-send, .cw-chip { transition: none; }
+  .cw-quote { animation: none; }
   .cw-send:active:not(:disabled),
   .cw-cf-send:active:not(:disabled) { transform: none; }
   .cw-dots i { animation: none; opacity: .6; }

@@ -92,6 +92,7 @@
       '</form>';
 
     el.log.appendChild(wrap);
+    syncQuote();
     scrollDown();
 
     var f = wrap.querySelector('.cw-cf');
@@ -139,11 +140,37 @@
   }
 
   /* --------------------------------------------------------------- render */
+
+  /* Something to read in the empty panel before the visitor has said
+     anything. It is taken away for good the moment they do, and it sits at
+     the bottom of whatever room is left, so it fills the gap under the
+     opener instead of pushing it down the panel. */
+  var QUOTE_HTML =
+    '<figure class="cw-quote">' +
+      '<span class="cw-quote-mark" aria-hidden="true">&ldquo;</span>' +
+      '<blockquote class="cw-quote-text">A website without an AI Chat Agent is like ' +
+        'an office without a front desk executive.</blockquote>' +
+      '<span class="cw-quote-rule" aria-hidden="true"></span>' +
+    '</figure>';
+
+  function syncQuote() {
+    if (!el.log) return;
+    var q = el.log.querySelector('.cw-quote');
+    if (el.log.querySelector('.cw-msg--user')) {
+      if (q) q.remove();                          // they have started talking
+    } else if (q) {
+      el.log.appendChild(q);                      // keep it under what arrived
+    } else {
+      el.log.insertAdjacentHTML('beforeend', QUOTE_HTML);
+    }
+  }
+
   function bubble(role, html, isError) {
     var wrap = document.createElement('div');
     wrap.className = 'cw-msg cw-msg--' + role + (isError ? ' cw-msg--error' : '');
     wrap.innerHTML = '<div class="cw-bubble">' + html + '</div>';
     el.log.appendChild(wrap);
+    syncQuote();
     scrollDown();
     return wrap.querySelector('.cw-bubble');
   }
@@ -154,6 +181,7 @@
       if (m.hidden) return;                       // the synthetic opener
       bubble(m.role === 'user' ? 'user' : 'agent', format(m.content));
     });
+    syncQuote();
   }
 
   /* ------------------------------------------------------------ streaming */
@@ -343,6 +371,7 @@
     el.launcher = root.querySelector('.cw-launcher');
     el.panel = root.querySelector('.cw-panel');
     el.log = root.querySelector('.cw-log');
+    syncQuote();
     el.input = root.querySelector('.cw-input');
     el.send = root.querySelector('.cw-send');
 
