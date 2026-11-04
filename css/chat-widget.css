@@ -107,11 +107,19 @@
     right: 0.5rem;
     left: 0.5rem;
     width: auto;
-    bottom: 0.5rem;
-    height: min(34rem, calc(100vh - 1rem));
-    height: min(34rem, calc(100dvh - 1rem));
-    max-height: calc(100vh - 1rem);
-    max-height: calc(100dvh - 1rem);
+    /* --cw-kb is however much of the viewport the soft keyboard is covering,
+       measured in the script. Lifting by it keeps the text box and the send
+       button on screen while they are being used, and the matching
+       subtraction stops the panel growing taller than what is left. */
+    bottom: calc(0.5rem + var(--cw-kb, 0px) + env(safe-area-inset-bottom, 0px));
+    height: min(34rem, calc(100vh - 1rem - var(--cw-kb, 0px)));
+    height: min(34rem, calc(100dvh - 1rem - var(--cw-kb, 0px)));
+    max-height: calc(100vh - 1rem - var(--cw-kb, 0px));
+    max-height: calc(100dvh - 1rem - var(--cw-kb, 0px));
+  }
+  /* the launcher goes up with it, rather than hiding behind the keyboard */
+  .cw-launcher {
+    bottom: calc(1rem + var(--cw-kb, 0px) + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -591,8 +599,10 @@ body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 5rem; }
   /* The label stays on a phone now. It was hidden to save room next to the
      CTA bar; with the bar gone there is room, and a button that says what it
      does beats a bare icon. */
-  .cw-launcher { bottom: 1rem; right: 0.75rem; padding: 0.7rem 1rem; }
-  body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 5rem; }
+  .cw-launcher { right: 0.75rem; padding: 0.7rem 1rem; }
+  body:has(.wa-float:not([hidden])) .cw-launcher {
+    bottom: calc(5rem + var(--cw-kb, 0px) + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

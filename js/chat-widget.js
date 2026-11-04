@@ -305,6 +305,7 @@
       el.launcher.hidden = true;        // the panel replaces it while open
     }
     document.body.classList.add('cw-open');
+    syncKeyboardInset();
     setTimeout(function () { el.input.focus(); }, 60);
     track('chat_widget_open', { agent: 'demo' });
 
@@ -404,6 +405,27 @@
 
     restore();
     renderHistory();
+  }
+
+  /* ------------------------------------------------------- soft keyboard */
+  /* A phone keyboard shrinks the visual viewport but not the layout one, so a
+   * panel pinned to the bottom ends up behind it, taking the text box and the
+   * send button with it. visualViewport is the only thing that reports this
+   * on both iOS and Android, so measure the overlap here and let the
+   * stylesheet lift the panel by it. Resolves to 0 everywhere else. */
+  function syncKeyboardInset() {
+    var vv = window.visualViewport;
+    if (!vv) return;
+    // how much of the layout viewport is hidden at the bottom right now
+    var hidden = window.innerHeight - vv.height - vv.offsetTop;
+    var inset = hidden > 24 ? Math.round(hidden) : 0;   // ignore toolbar noise
+    document.documentElement.style.setProperty('--cw-kb', inset + 'px');
+    if (inset && state.open) scrollDown();
+  }
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', syncKeyboardInset);
+    window.visualViewport.addEventListener('scroll', syncKeyboardInset);
   }
 
   /* --------------------------------------------------------------- start up */
