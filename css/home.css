@@ -157,24 +157,10 @@
 .wdfaq details[open] summary::after { transform: rotate(45deg); }
 .wdfaq .wdfaq-a { padding: 0 1.4rem 1.3rem; color: var(--muted); font-size: 0.94rem; line-height: 1.75; }
 
-/* --------------------------------------------------- sticky mobile CTA bar */
-.sticky-cta {
-  position: fixed; left: 0; right: 0; bottom: 0; z-index: 70;
-  display: none;
-  gap: 0.6rem;
-  padding: 0.65rem 0.8rem calc(0.65rem + env(safe-area-inset-bottom));
-  background: rgba(2, 6, 23, 0.95);
-  border-top: 1px solid rgba(59, 130, 246, 0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.sticky-cta a { flex: 1; text-align: center; font-size: 0.88rem; padding: 0.7rem 0.5rem; border-radius: 0.6rem; font-weight: 700; text-decoration: none; }
-.sticky-cta .sc-primary { background: var(--blue-600); color: #fff; }
-.sticky-cta .sc-secondary { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.15); color: var(--slate-300); }
-@media (max-width: 768px) {
-  .sticky-cta { display: flex; }
-  body { padding-bottom: 4.25rem; }
-}
+/* The sticky mobile CTA bar is gone. Its body padding went with it: that
+   4.25rem was reserved on all 52 pages that load this stylesheet, while the
+   bar itself only ever existed on the homepage, so 51 pages carried 68px of
+   empty space at the foot for a bar that was never there. */
 
 /* ------------------------------------------------- floating WhatsApp (human) */
 .wa-float {
