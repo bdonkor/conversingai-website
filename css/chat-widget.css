@@ -127,7 +127,9 @@
 }
 .cw-close {
   background: transparent; border: 0; color: #e3cfae;
-  font-size: 1.45rem; line-height: 1; cursor: pointer; padding: 0 0.25rem; border-radius: 0.35rem;
+  font-size: 1.45rem; line-height: 1; cursor: pointer; padding: 0; border-radius: 0.35rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 1.75rem; min-height: 1.75rem;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45);
 }
 .cw-close:hover { color: #fff8ec; background: rgba(255, 255, 255, 0.1); }
@@ -370,10 +372,15 @@
 
 /* ------------------------------------------- header actions + tool status */
 .cw-head-actions { display: flex; align-items: center; gap: 0.15rem; flex-shrink: 0; }
+/* The restart glyph is a thin outline while the close is a solid text
+   glyph, so at the same 15px box the refresh read as the smaller of the two.
+   It is now 20px with a heavier stroke, and both buttons share a 1.75rem
+   square so they sit level and clear the 24px minimum touch target. */
 .cw-restart {
   background: transparent; border: 0; color: #e3cfae;
-  cursor: pointer; padding: 0.3rem; border-radius: 0.35rem;
-  display: inline-flex; align-items: center;
+  cursor: pointer; padding: 0.2rem; border-radius: 0.35rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 1.75rem; min-height: 1.75rem;
   filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.45));
 }
 .cw-restart:hover { color: #fff8ec; background: rgba(255, 255, 255, 0.12); }
