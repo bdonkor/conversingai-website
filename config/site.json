@@ -1,7 +1,7 @@
 {
   "_comment": "Single source of truth for contact details, socials, channel status and headline stats. js/site-config.js reads this and fills the header, footer and channel badges on every page.",
   "maintenance": {
-    "enabled": true,
+    "enabled": false,
     "message": "We are actively improving this site. Some pages are still being built, so a few things may look unfinished or change day to day.",
     "linkText": "Everything below is live and working",
     "linkHref": "#our-work",
