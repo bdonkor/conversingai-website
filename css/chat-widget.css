@@ -104,9 +104,15 @@
    by arithmetic rather than by hoping 34rem happens to fit. */
 @media (max-width: 768px) {
   .cw-panel {
+    /* Right-anchored with a ceiling rather than stretched between both
+       edges. At 0.5rem each side the panel was 374px of a 390px screen, 96%
+       of the width, which reads as neither a card nor a full-screen view.
+       22rem caps it so it stays a panel; on a phone narrower than that the
+       calc takes over and it keeps its 0.5rem gutters. */
+    left: auto;
     right: 0.5rem;
-    left: 0.5rem;
-    width: auto;
+    width: calc(100vw - 1rem);
+    max-width: 22rem;
     /* --cw-kb is however much of the viewport the soft keyboard is covering,
        measured in the script. Lifting by it keeps the text box and the send
        button on screen while they are being used, and the matching
