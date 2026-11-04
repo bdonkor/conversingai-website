@@ -187,11 +187,35 @@
   if ('requestIdleCallback' in window) requestIdleCallback(loadGaTag, { timeout: 4000 });
   else setTimeout(loadGaTag, 2500);
 
+  /* Whether to ask at all is config, not code: analytics.consentRequired in
+     config/site.json. The config arrives by fetch, so this waits for the
+     ready event rather than DOMContentLoaded, and runs once either way. */
+  var decided = false;
+  function decide() {
+    if (decided) return;
+    decided = true;
+
+    var cfg = (window.SITE_CONFIG || {}).analytics || {};
+    var state = consentState();
+
+    // somebody who already said no keeps saying no. Taking the banner down is
+    // the owner choosing not to ask; it does not overturn an answer given.
+    if (state === 'denied') return;
+
+    if (state === 'granted' || cfg.consentRequired === false) {
+      enableAnalytics();
+      return;
+    }
+    showBanner();
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     attachUtmsToForms();
     wireEvents();
-    var state = consentState();
-    if (state === 'granted') enableAnalytics();
-    else if (state !== 'denied') showBanner();
+    if (window.SITE_CONFIG) decide();
   });
+  document.addEventListener('site-config-ready', decide);
+  // if the config never arrives, do not ambush the visitor with a banner the
+  // owner has switched off; stay quiet and leave analytics denied.
+  setTimeout(function () { decided = true; }, 4000);
 })();

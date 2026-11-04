@@ -90,7 +90,7 @@
   "analytics": {
     "ga4": "G-LQKGQXKE92",
     "metaPixel": "",
-    "consentRequired": true
+    "consentRequired": false
   },
   "_todo_analytics": "TODO(owner): Meta Pixel ID if you intend to run Facebook ads. GA4 is already live.",
   "forms": {
