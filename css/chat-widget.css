@@ -551,3 +551,11 @@ body:has(.wa-float:not([hidden])) .cw-launcher { bottom: 5rem; }
   .cw-cf-send:active:not(:disabled) { transform: none; }
   .cw-dots i { animation: none; opacity: .6; }
 }
+
+/* The panel subtitle and the attribution are deliberate small print, but at
+   11.8px and 10.9px they fell under the 12px legibility floor on a phone,
+   where the panel is widest relative to the screen. Raised on mobile only,
+   so the desktop panel keeps its proportions. */
+@media (max-width: 768px) {
+  .cw-sub, .cw-foot { font-size: 0.75rem; }
+}

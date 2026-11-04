@@ -205,3 +205,23 @@
   .pf-body { padding: 1.15rem 1.1rem 1.3rem; }
   .pf-url { max-width: 100%; }
 }
+
+/* ---------------------------------------------------- mobile floors
+   Badges, niches and URLs sat between 10.9px and 11.8px on a phone, under
+   the 12px that counts as legible. "Visit site" was a 22px-high target. */
+@media (max-width: 768px) {
+  .pf-badge,
+  .pf-niche,
+  .pf-url,
+  .ch-state,
+  .ag-niche,
+  .ag-live { font-size: 0.75rem; }
+
+  .pf-link,
+  .ag-go {
+    display: inline-flex;
+    padding: 0.25rem 0;
+    min-height: 1.5rem;
+    align-items: center;
+  }
+}

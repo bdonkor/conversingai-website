@@ -1268,7 +1268,7 @@ button {
    ============================================ */
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: 2rem;
 }
 
@@ -2033,4 +2033,22 @@ body {
   .logo-text {
     font-size: 1.25rem;
   }
+}
+
+/* ---------------------------------------------------- mobile floors
+   Measured at 390px wide: form labels came out at 10px and footer nav links
+   were 17px tall, under the 24px WCAG 2.2 AA minimum target. These raise
+   only the floor, so nothing changes on a desktop where there is room. */
+@media (max-width: 768px) {
+  .form-label { font-size: 0.75rem; }
+
+  /* the link keeps its size; the padding makes it reachable with a thumb */
+  .footer-menu-list a {
+    display: inline-block;
+    padding: 0.3rem 0;
+    min-height: 1.5rem;
+  }
+  .footer-menu-list li { margin-bottom: 0.4rem; }
+
+  .footer-contact-item a { display: inline-block; padding: 0.15rem 0; min-height: 1.5rem; }
 }
