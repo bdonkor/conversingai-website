@@ -71,8 +71,18 @@
   position: fixed;
   right: 1rem;
   bottom: 1rem;
+  box-sizing: border-box;
   width: min(23rem, calc(100vw - 2rem));
+  /* vh first as the fallback, then dvh for anything that understands it.
+     On a phone 100vh is the viewport with the toolbars hidden, so a panel
+     sized in vh is taller than the room it actually has while they are up,
+     and it resizes when they slide away. dvh tracks what is really visible. */
   height: min(32rem, calc(100vh - 2rem));
+  height: min(32rem, calc(100dvh - 2rem));
+  /* a hard ceiling, so no combination of the above can overflow the screen */
+  max-width: calc(100vw - 1rem);
+  max-height: calc(100vh - 1rem);
+  max-height: calc(100dvh - 1rem);
   display: flex;
   flex-direction: column;
   /* face on the inside, plating in the border */
@@ -88,8 +98,21 @@
     0 28px 60px -18px rgba(0, 0, 0, 0.85),
     0 0 30px -14px rgba(201, 149, 81, 0.35);
 }
-@media (max-width: 480px) {
-  .cw-panel { right: 0.5rem; left: 0.5rem; bottom: 0.5rem; width: auto; height: min(78vh, 34rem); }
+/* Every phone-width screen gets the edge-to-edge panel, not just the ones
+   reporting 480px or less. bottom clears the sticky CTA bar, and the height
+   is whatever is left over, so the panel is pinned inside the visible area
+   by arithmetic rather than by hoping 34rem happens to fit. */
+@media (max-width: 768px) {
+  .cw-panel {
+    right: 0.5rem;
+    left: 0.5rem;
+    width: auto;
+    bottom: 4.9rem;
+    height: min(34rem, calc(100vh - 5.9rem));
+    height: min(34rem, calc(100dvh - 5.9rem));
+    max-height: calc(100vh - 5.9rem);
+    max-height: calc(100dvh - 5.9rem);
+  }
 }
 
 /* the header is a brushed bronze nameplate, seamed to the body in silver */
@@ -389,9 +412,9 @@
 .cw-status { color: #c2b49a; font-size: 0.82rem; margin-right: 0.4rem; }
 
 /* The panel opens from a page button, so it is anchored bottom-right but
-   never sits under the sticky mobile bar or the WhatsApp button. */
-@media (max-width: 768px) { .cw-panel { bottom: 4.9rem; } }
-@media (max-width: 480px) { .cw-panel { bottom: 4.9rem; } }
+   never sits under the sticky mobile bar or the WhatsApp button. The offset
+   itself now lives in the phone-width block above, together with the height
+   that depends on it, so the two cannot drift apart. */
 
 /* --------------------------------------------- inline contact form card */
 .cw-form-card {
