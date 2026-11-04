@@ -7,7 +7,8 @@
  * Talks to /api/chat, which holds the API key server-side and streams the
  * reply over Server-Sent Events.
  *
- * The agent speaks first. Per the prompt it must ask "Are you in for a demo?"
+ * The agent speaks first. Per the prompt it opens with "Would you like to see
+ * a quick demo?"
  * the moment it opens, so opening posts a hidden opener turn and renders only
  * the agent's reply.
  */
@@ -308,7 +309,7 @@
     track('chat_widget_open', { agent: 'demo' });
 
     // The agent speaks first. Hidden opener turn, so its reply is the
-    // "Are you in for a demo?" the prompt requires.
+    // opening question the prompt requires.
     if (!state.messages.length) send(OPENER, { hidden: true });
   }
 
