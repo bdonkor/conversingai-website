@@ -238,7 +238,7 @@
   margin: 0.5rem 0 0;
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  font-size: 0.87rem;
+  font-size: 1.12rem;   /* 17.9px: the old 0.87rem was 13.9px, asked up by 4 */
   line-height: 1.7;
   letter-spacing: 0.008em;
   color: #d8cdb8;
@@ -251,7 +251,7 @@
   margin: 0.85rem auto 0;
   background: linear-gradient(90deg, transparent, var(--cw-bz-6), transparent);
 }
-/* The question is the part meant to be noticed, so it comes back to the UI
+/* The closing line is the part meant to be noticed, so it comes back to the UI
    sans and brightens. It arrives a beat after the quote has landed, then a
    specular band sweeps across the letters on a loop, the same trick the
    launcher uses on hover. background-clip:text paints the sweep, so the

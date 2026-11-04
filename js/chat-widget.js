@@ -152,7 +152,7 @@
       '<blockquote class="cw-quote-text">A website without an AI Chat Agent is like ' +
         'an office without a front desk executive.</blockquote>' +
       '<span class="cw-quote-rule" aria-hidden="true"></span>' +
-      '<figcaption class="cw-quote-ask">Would you ever do that?</figcaption>' +
+      '<figcaption class="cw-quote-ask">Get your AI Chat agent today</figcaption>' +
     '</figure>';
 
   function syncQuote() {
@@ -348,7 +348,7 @@
       '<section class="cw-panel" id="cw-panel" hidden aria-label="Conversing AI demo agent">' +
         '<header class="cw-head">' +
           '<div>' +
-            '<p class="cw-title">Demo agent</p>' +
+            '<p class="cw-title">Demo Agent</p>' +
             '<p class="cw-sub"><span class="cw-dot"></span>A live demo on your own website</p>' +
           '</div>' +
           '<div class="cw-head-actions">' +
