@@ -109,8 +109,13 @@
        of the width, which reads as neither a card nor a full-screen view.
        22rem caps it so it stays a panel; on a phone narrower than that the
        calc takes over and it keeps its 0.5rem gutters. */
-    left: auto;
-    right: 0.5rem;
+    /* Centred, not anchored right. Capping the width while pinning one edge
+       left 30px of gutter on one side and 8px on the other, which is the
+       lopsided look. Equal margins fix it without giving back the width. */
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     width: calc(100vw - 1rem);
     max-width: 22rem;
     /* --cw-kb is however much of the viewport the soft keyboard is covering,
@@ -348,20 +353,26 @@
 
 /* --------------------------------------------------------------- form */
 .cw-form {
-  display: flex; align-items: flex-end; gap: 0.5rem;
+  display: block;
   padding: 0.7rem;
   border: 0;
   background: var(--cw-brush), linear-gradient(180deg, var(--cw-ag-1), #0b0f16);
   box-shadow: inset 0 1px 0 rgba(242, 245, 249, 0.16), inset 0 2px 5px -3px rgba(0, 0, 0, 0.9);
 }
 /* the input is machined into the plate, so its bevel runs the other way */
+/* The field and the button share one box now, so the button can sit inside
+   the recess instead of beside it. */
+.cw-inputwrap { position: relative; display: block; }
+
 .cw-input {
-  flex: 1; resize: none; max-height: 110px;
+  display: block; width: 100%; resize: none; max-height: 110px;
   background: linear-gradient(180deg, #06080c, #0e131b);
   border: 1px solid #000;
   border-radius: 0.65rem;
   color: var(--cw-ag-6); font: inherit; font-size: 0.88rem; line-height: 1.5;
-  padding: 0.55rem 0.7rem;
+  /* the right padding is the button's width plus its margins, so typing
+     never runs underneath it */
+  padding: 0.55rem 2.9rem 0.55rem 0.7rem;
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.9), inset 0 -1px 0 rgba(242, 245, 249, 0.14);
 }
 .cw-input:focus {
@@ -370,8 +381,14 @@
 }
 .cw-input::placeholder { color: #8d97a6; }
 /* send is a polished bronze key with engraved ink */
+/* Same plate, same bevel, same press travel. Only the position and the size
+   change: it now sits in the field, pinned to the bottom so it stays put as
+   the textarea grows. 2rem is still above the 24px minimum target. */
 .cw-send {
-  flex-shrink: 0; width: 2.4rem; height: 2.4rem;
+  position: absolute;
+  right: 0.35rem;
+  bottom: 0.35rem;
+  width: 2rem; height: 2rem;
   display: inline-flex; align-items: center; justify-content: center;
   background:
     linear-gradient(180deg, var(--cw-bz-8) 0%, var(--cw-bz-7) 28%, var(--cw-bz-6) 52%,

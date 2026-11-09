@@ -362,10 +362,12 @@
         '</header>' +
         '<div class="cw-log" role="log" aria-live="polite"></div>' +
         '<form class="cw-form">' +
+          '<div class="cw-inputwrap">' +
           '<textarea class="cw-input" rows="1" maxlength="2000" placeholder="Type your answer…" aria-label="Your message"></textarea>' +
           '<button type="submit" class="cw-send" aria-label="Send">' +
             '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg>' +
           '</button>' +
+          '</div>' +
         '</form>' +
         '<p class="cw-foot">Powered by <a href="https://conversingai.com/website-design" target="_blank" rel="noopener">Conversingai.com</a></p>' +
       '</section>';
