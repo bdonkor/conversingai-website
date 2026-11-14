@@ -347,21 +347,35 @@ A brief, well-judged reply is itself part of the demonstration.`,
     }
   } catch (err) {
     const status = err?.status;
-    console.error('demo agent error:', status, err?.type, err?.message);
+    const message = String(err?.message || '');
+    console.error('demo agent error:', status, err?.type, message);
+
+    /* An empty account does NOT arrive as the 402 billing_error the error
+     * table implies. Observed in production: 400 invalid_request_error,
+     * "Your credit balance is too low to access the Anthropic API."
+     *
+     * So the message has to be read. It is the only thing separating that
+     * 400 from a genuinely malformed request, and the two must be handled
+     * differently: a bad request is our bug, and silently handing it to a
+     * second provider would hide it. Hence the narrow match rather than
+     * treating every 400 as a billing problem. */
+    const outOfCredit =
+      status === 402 || (status === 400 && /credit balance is too low/i.test(message));
 
     /* Whether waiting helps is the thing the visitor needs to know, and it is
      * not the same question as what went wrong. 429 and 529 clear on their
-     * own. 402 (billing), 400, 401 and 403 never do: the same request will
-     * fail the same way until somebody changes something here. Telling a
+     * own. An empty balance (402, or a 400 naming the credit balance), a bad
+     * request, 401 and 403 never do: the same request will fail the same way
+     * until somebody changes something here. Telling a
      * prospect to try again on one of those leaves them pressing a dead
      * button until they give up, so those get the contact form instead and
      * the lead survives the outage. */
     const clearsOnItsOwn = status === 429 || status === 529 || (status >= 500 && status < 600);
 
     let text = 'Something went wrong at our end. Try again, or email info@conversingai.com.';
-    if (status === 429 || status === 529 || status === 402) {
-      // 402 is the account being out of credit. The visitor does not need to
-      // know that, and it reads to them exactly like the service being busy.
+    if (status === 429 || status === 529 || outOfCredit) {
+      // Out of credit reads to the visitor exactly like the service being
+      // busy, and that is all they need to know.
       text = 'Lots of people are trying the demo right now. Give it about thirty seconds and ask me again.';
     } else if (status === 401 || status === 403) {
       text = 'The demo agent is not configured correctly. We have been alerted.';
@@ -374,7 +388,7 @@ A brief, well-judged reply is itself part of the demonstration.`,
      * limit. Only attempted if nothing has been streamed yet, because half a
      * reply from one model followed by a whole one from another reads as a
      * glitch. */
-    const worthFallback = status === 402 || status === 401 || status === 403;
+    const worthFallback = outOfCredit || status === 401 || status === 403;
     if (worthFallback && !sawText && !closed && process.env.GROQ_API_KEY) {
       console.warn('falling back to groq after anthropic', status);
       const fb = await runGroqAgent({ messages, send, isClosed: () => closed }).catch((e) => ({
