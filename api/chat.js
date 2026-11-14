@@ -27,6 +27,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import { betaTool } from '@anthropic-ai/sdk/helpers/beta/json-schema';
 import { SYSTEM_PROMPT } from './_agent-prompt.js';
 import { sendLeadEmail, sendTeamNotification } from './_lead-email.js';
+import { runGroqAgent } from './_groq-agent.js';
 
 const MODEL = process.env.AGENT_MODEL || 'claude-opus-5-5';
 const RATE_PER_MIN = Number(process.env.AGENT_RATE_PER_MIN || 10);
@@ -242,6 +243,10 @@ export default async function handler(req, res) {
   let closed = false;
   req.on('close', () => { closed = true; });
 
+  /* Declared out here, not inside the try, because the catch needs it: a
+   * fallback is only safe while nothing has been streamed yet. */
+  let sawText = false;
+
   try {
     const runner = client.beta.messages.toolRunner({
       model: MODEL,
@@ -286,7 +291,6 @@ A brief, well-judged reply is itself part of the demonstration.`,
       stream: true,
     });
 
-    let sawText = false;
 
     // Outer loop: one iteration per model turn. Inner loop: stream events.
     for await (const messageStream of runner) {
@@ -361,6 +365,27 @@ A brief, well-judged reply is itself part of the demonstration.`,
       text = 'Lots of people are trying the demo right now. Give it about thirty seconds and ask me again.';
     } else if (status === 401 || status === 403) {
       text = 'The demo agent is not configured correctly. We have been alerted.';
+    }
+
+    /* Before giving up, try the other provider. The cases worth falling back
+     * on are the ones that will not fix themselves: out of credit, bad key,
+     * no permission. A 429 is not one of them - Anthropic is fine and simply
+     * busy, and moving that traffic to a free tier would just hit a smaller
+     * limit. Only attempted if nothing has been streamed yet, because half a
+     * reply from one model followed by a whole one from another reads as a
+     * glitch. */
+    const worthFallback = status === 402 || status === 401 || status === 403;
+    if (worthFallback && !sawText && !closed && process.env.GROQ_API_KEY) {
+      console.warn('falling back to groq after anthropic', status);
+      const fb = await runGroqAgent({ messages, send, isClosed: () => closed }).catch((e) => ({
+        ok: false, sawText: false, detail: e?.message,
+      }));
+      if (fb.ok && fb.sawText) {
+        send('done', { stop_reason: 'fallback' });
+        try { res.end(); } catch { /* already closed */ }
+        return;
+      }
+      console.error('groq fallback also failed:', fb.detail);
     }
 
     send('error', { text });
