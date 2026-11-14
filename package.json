@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:content": "node tools/build.cjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.70.0",
