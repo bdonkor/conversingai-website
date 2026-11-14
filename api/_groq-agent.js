@@ -20,6 +20,15 @@
  * What is deliberately identical is the event stream: delta, status, form,
  * error, done. js/chat-widget.js cannot tell which provider answered, and
  * does not need to.
+ *
+ * KNOWN BUG, fix before re-enabling (GROQ_FALLBACK=on):
+ * the loop below streams text on EVERY iteration, so anything the model says
+ * alongside a tool call goes straight to the visitor. Claude stays quiet
+ * before a tool call; gpt-oss-120b does not, and the result on 2026-11-14 was
+ * four questions run together in one reply, then repeated. Only the text of
+ * the final iteration - the one that makes no tool calls - belongs on screen.
+ * That alone will not make the demo good on an open model, but it removes the
+ * part that is ours.
  * ──────────────────────────────────────────────────────────────────────────
  */
 import Groq from 'groq-sdk';

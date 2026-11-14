@@ -388,8 +388,30 @@ A brief, well-judged reply is itself part of the demonstration.`,
      * limit. Only attempted if nothing has been streamed yet, because half a
      * reply from one model followed by a whole one from another reads as a
      * glitch. */
+    /* The fallback is off unless GROQ_FALLBACK is explicitly "on".
+     *
+     * It was briefly live on 2026-11-14 and taken straight back out. The
+     * handover itself worked - Anthropic's 400 was caught, Groq answered,
+     * the visitor's site was read correctly - but gpt-oss-120b does not run
+     * the demo script. It asked for name, email, phone and WhatsApp all in
+     * one breath and then asked again, showed the contact form in response
+     * to a plain website address, and announced the demo before answering a
+     * question nobody had asked. A visitor meeting that is worse off than a
+     * visitor meeting the contact form, because the form at least captures
+     * the lead.
+     *
+     * The switch is deliberately separate from the key. Presence of a
+     * credential is not consent to use it, and the key cannot be renamed or
+     * read back once stored as a Vercel Secret, so tying the behaviour to it
+     * would have meant destroying the key to turn the feature off.
+     *
+     * To re-enable: set GROQ_FALLBACK=on. Fix the interim-text streaming in
+     * _groq-agent.js first - see the note there. */
+    const fallbackEnabled =
+      process.env.GROQ_FALLBACK === 'on' && Boolean(process.env.GROQ_API_KEY);
+
     const worthFallback = outOfCredit || status === 401 || status === 403;
-    if (worthFallback && !sawText && !closed && process.env.GROQ_API_KEY) {
+    if (worthFallback && !sawText && !closed && fallbackEnabled) {
       console.warn('falling back to groq after anthropic', status);
       const fb = await runGroqAgent({ messages, send, isClosed: () => closed }).catch((e) => ({
         ok: false, sawText: false, detail: e?.message,
