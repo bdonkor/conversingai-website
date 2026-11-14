@@ -342,11 +342,29 @@ A brief, well-judged reply is itself part of the demonstration.`,
       res.end();
     }
   } catch (err) {
-    console.error('demo agent error:', err?.status, err?.message);
+    const status = err?.status;
+    console.error('demo agent error:', status, err?.type, err?.message);
+
+    /* Whether waiting helps is the thing the visitor needs to know, and it is
+     * not the same question as what went wrong. 429 and 529 clear on their
+     * own. 402 (billing), 400, 401 and 403 never do: the same request will
+     * fail the same way until somebody changes something here. Telling a
+     * prospect to try again on one of those leaves them pressing a dead
+     * button until they give up, so those get the contact form instead and
+     * the lead survives the outage. */
+    const clearsOnItsOwn = status === 429 || status === 529 || (status >= 500 && status < 600);
+
     let text = 'Something went wrong at our end. Try again, or email info@conversingai.com.';
-    if (err?.status === 429) text = 'The agent is busy right now. Give it a few seconds and try again.';
-    else if (err?.status === 401 || err?.status === 403) text = 'The demo agent is not configured correctly. We have been alerted.';
+    if (status === 429 || status === 529 || status === 402) {
+      // 402 is the account being out of credit. The visitor does not need to
+      // know that, and it reads to them exactly like the service being busy.
+      text = 'Lots of people are trying the demo right now. Give it about thirty seconds and ask me again.';
+    } else if (status === 401 || status === 403) {
+      text = 'The demo agent is not configured correctly. We have been alerted.';
+    }
+
     send('error', { text });
+    if (!clearsOnItsOwn) send('form', { reason: 'unavailable' });
     try { res.end(); } catch { /* already closed */ }
   }
 }
