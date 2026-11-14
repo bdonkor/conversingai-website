@@ -773,14 +773,20 @@ button {
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
+/* The poster sits under the video at every width, so the hero has a backdrop
+   while the video loads instead of a flat navy rectangle, and still has one
+   if the video never plays. */
+.hero {
+  background-image: url('../images/hero-bg.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+/* Someone who has asked for less motion gets the still image. The video is
+   decorative, so there is nothing to lose by not playing it. */
+@media (prefers-reduced-motion: reduce) {
   .hero-video {
     display: none;
-  }
-  .hero {
-    background-image: url('../images/hero-bg.webp');
-    background-size: cover;
-    background-position: center;
   }
 }
 
