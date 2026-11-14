@@ -27,10 +27,20 @@ import { SYSTEM_PROMPT } from './_agent-prompt.js';
 import { sendLeadEmail, sendTeamNotification } from './_lead-email.js';
 import { fetchSite } from './_fetch-site.js';
 
-// llama-3.3-70b-versatile is the production Llama model and, unlike the
-// gpt-oss ones, supports parallel tool calls. 131K context, so a fetched
-// site fits with room to spare.
-const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
+/* openai/gpt-oss-120b is Groq's current Production model for this job.
+ *
+ * It replaced llama-3.3-70b-versatile, which Groq stopped serving to free and
+ * developer tiers on 2026-08-16 - the live API answered a request for it with
+ * 404 model_not_found. The other listed replacement, qwen/qwen3.6-27b, is
+ * still marked Preview, so it is not something to put under a customer demo.
+ *
+ * Llama was originally chosen because the gpt-oss models do not do parallel
+ * tool calls. That turned out not to matter: the loop below runs tool calls
+ * sequentially regardless, and the demo issues them one at a time.
+ *
+ * GROQ_MODEL overrides this without a deploy, which is the lever to pull when
+ * this one is retired too. */
+const GROQ_MODEL = process.env.GROQ_MODEL || 'openai/gpt-oss-120b';
 const MAX_OUTPUT_TOKENS = 700;
 const MAX_ITERATIONS = 12;
 const MIN_VISITOR_TURNS_BEFORE_EMAIL = 5;
