@@ -148,6 +148,48 @@ function renderStats() {
 }
 
 /* ------------------------------------------------------------------ apply */
+/* ---------------------------------------------------------------- counts
+ * Numbers written into sentences go stale the moment the portfolio changes,
+ * and spelled as words they do not even show up in a search for a digit.
+ * These keep them derived from data/portfolio.json while still shipping as
+ * real text, so a crawler sees the number and not a placeholder.
+ *
+ *   <!--n:agents-->Four<!--/n-->         capitalised word
+ *   <!--n:total,lower-->eight<!--/n-->   lowercase word
+ *
+ * Keys: agents, total, websites, apps. An unknown key is left untouched
+ * rather than silently blanked.
+ */
+const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',
+  'eight', 'nine', 'ten', 'eleven', 'twelve'];
+
+function counts() {
+  const i = portfolio.items;
+  return {
+    agents: i.filter(x => x.hasAiAgent).length,
+    total: i.length,
+    websites: i.filter(x => x.category === 'website').length,
+    apps: i.filter(x => x.category === 'web-app').length,
+  };
+}
+
+function numberWord(n, lower) {
+  // past twelve a digit reads better than a word, and never gets capitalised
+  if (n >= WORDS.length) return String(n);
+  const w = WORDS[n];
+  return lower ? w : w[0].toUpperCase() + w.slice(1);
+}
+
+function applyCounts(html, tally) {
+  const c = counts();
+  return html.replace(/<!--n:(\w+)(,lower)?-->[\s\S]*?<!--\/n-->/g, (m, key, lower) => {
+    if (!(key in c)) return m;
+    tally[key] = (tally[key] || 0) + 1;
+    return '<!--n:' + key + (lower || '') + '-->' +
+      numberWord(c[key], !!lower) + '<!--/n-->';
+  });
+}
+
 const BLOCKS = {
   portfolio: renderPortfolio,
   'agent-strip': renderAgentStrip,
@@ -159,6 +201,7 @@ function build() {
   const files = fs.readdirSync(ROOT).filter(f => f.endsWith('.html'));
   let touched = 0;
   const summary = {};
+  const countTally = {};
 
   for (const f of files) {
     const p = path.join(ROOT, f);
@@ -174,6 +217,8 @@ function build() {
       }
     }
 
+    html = applyCounts(html, countTally);
+
     if (html !== before) {
       fs.writeFileSync(p, html);
       touched++;
@@ -185,8 +230,12 @@ function build() {
   for (const [k, v] of Object.entries(summary)) {
     console.log('  ' + k.padEnd(16) + ' rendered into ' + v + ' page(s)');
   }
-  const agents = portfolio.items.filter(i => i.hasAiAgent).length;
-  console.log('  portfolio       : ' + portfolio.items.length + ' items, ' + agents + ' with a live AI agent');
+  const c = counts();
+  const spans = Object.values(countTally).reduce((a, b) => a + b, 0);
+  console.log('  counts in prose : ' + spans + ' span(s) refreshed ' +
+    JSON.stringify(countTally));
+  console.log('  portfolio       : ' + c.total + ' items, ' + c.agents +
+    ' with a live AI agent (' + c.websites + ' websites, ' + c.apps + ' apps)');
 }
 
 build();
